@@ -1,4 +1,4 @@
-# EUROLAB v1.2 — Investigação e estratégias personalizadas
+# EUROLAB v1.3 — Investigação, geração e comparação de estratégias
 
 Aplicação web **local**, em português de Portugal, que reúne o histórico de **1 999 sorteios** (13/02/2004 a 17/11/2026) dos seis arquivos ZIP fornecidos pelo utilizador. **Não** inclui o sorteio de 20/11/2026 e **não** se atualiza automaticamente.
 
@@ -13,12 +13,22 @@ Se o macOS bloquear o atalho: no Terminal escrever `bash ` (incluindo espaço), 
 
 Se a porta 8765 estiver ocupada por uma versão anterior, fecha o respetivo Terminal e volta a executar o atalho. A porta fixa é importante para preservar o Cofre e as configurações guardadas no navegador.
 
+## Novidades da v1.3
+
+- **Comparar estratégias:** cinco métodos do gerador avaliados no mesmo conjunto de concursos, com janelas cronológicas de 100, 250 ou 500 sorteios, avaliação dos últimos 120, 250 ou 500 concursos elegíveis, semente reproduzível, tabela de acertos, evolução acumulada e comparação por ano.
+- **Exportações:** relatório JSON detalhado e CSV com cada chave gerada para cada sorteio avaliado.
+- **Referência teórica:** 0,5 acertos de números e 1/3 de acertos de estrelas por chave em sorteios independentes e justos; bandas de referência normais aproximadas a 95%, sem correção para seleção entre estratégias.
+- **Testes de regressão:** `node tests/comparacao.test.cjs` para verificar janelas, valores esperados, rejeição de chaves inválidas e reprodutibilidade.
+
+Os resultados são **exploratórios**. Selecionar a estratégia aparentemente melhor depois de ver o histórico não constitui demonstração preditiva. O período mais recente ainda é 17/11/2026, e os dados não se atualizam automaticamente.
+
 ## Principais módulos
 
 - Visão geral: sorteios, histórico e frequências.
 - Gerador: cinco modos de seleção, exportação CSV, diversificação de chaves.
 - Cofre: até 100 chaves distintas guardadas no navegador, exportação/importação JSON.
 - Validação: teste cronológico dos cinco modos da aplicação anterior.
+- **Comparar estratégias (v1.3):** avaliação comparável dos cinco métodos, gráfico acumulado, resultados por ano e exportação.
 - **Estratégia personalizada (novo v1.2):** pesos de frequências de números e estrelas, filtros de paridade, soma e anti-datas, exclusões de números, cinco predefinições, geração de chaves e armazenamento de configuração.
 - **Teste personalizado (novo v1.2):** avaliação dos últimos 120/250/500 sorteios no regime atual, usando janela cronológica anterior de 100/250 sorteios, uma chave por concurso, semente reprodutível, comparação descritiva com 500 amostras aleatórias e exportação JSON por concurso.
 - Máquinas & evidências: documentação e **diário local de observações**, com data, máquina, conjunto, URL e notas, exportável em JSON. Entradas do diário **não são verificadas**.
@@ -35,9 +45,21 @@ Se a porta 8765 estiver ocupada por uma versão anterior, fecha o respetivo Term
 - **Nenhuma estratégia demonstrou vantagem preditiva.** Em sorteio uniforme, cada chave específica tem probabilidade `1 em 139 838 160` de jackpot.
 - O Cofre, a estratégia e o diário são guardados via `localStorage`. Não há login nem sincronização. Exporta cópias JSON. Não se fazem apostas nem são enviados dados a servidores externos pela app local.
 
-Relatório técnico detalhado: `RELATORIO_V12.md`. Sem dependências externas, sem npm e sem Homebrew.
+Relatórios técnicos: `RELATORIO_V12.md` e `RELATORIO_V13.md`. Sem dependências externas, sem npm e sem Homebrew.
 
 
 ## Código-fonte e atualizações no GitHub
 
 Ver [`GUIA-GITHUB.md`](GUIA-GITHUB.md) para publicar este projeto no repositório privado `C1g0r/EUROLAB`, executar testes de integridade e enviar as próximas alterações. O projeto inclui histórico de commits, tag `v1.2.0` e workflow de validação.
+
+
+## Verificar a versão 1.3
+
+```bash
+node --check assets/comparacao-core.js
+node --check assets/comparacao.js
+node tests/comparacao.test.cjs
+python3 tests/verificar_dados.py
+```
+
+A publicação no GitHub foi efetuada no repositório privado `C1g0r/EUROLAB`. A aplicação continua local, via `INICIAR-EUROLAB.command` e `http://127.0.0.1:8765`; ainda não está publicada em GitHub Pages.
