@@ -29,7 +29,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p _site/assets _site/data
-          cp index.html laboratorio-avancado.html _site/
+          cp index.html painel-investigacao.html laboratorio-avancado.html _site/
           cp assets/*.js assets/*.css _site/assets/
           cp data/*.json data/*.csv _site/data/
           cp ARQUITETURA_FUTURA_WEBAPP.md RELATORIO_V08.md _site/
@@ -37,6 +37,10 @@ jobs:
           # Não publicar ZIP originais, scripts internos, testes, diários locais nem ficheiros Git.
           test -s _site/index.html
           test -s _site/assets/app.js
+          test -s _site/assets/duas-chaves.js
+          test -s _site/assets/duas-chaves-core.js
+          test -s _site/assets/duas-chaves.css
+          test -s _site/painel-investigacao.html
           test -s _site/data/dados-validados.json
           test ! -e _site/fontes
 
