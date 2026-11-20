@@ -1,22 +1,29 @@
-# EUROLAB v1.6 — Duas chaves geradas por modelos estatísticos
+# EUROLAB v1.7 — Chave 1 escolhe automaticamente o melhor método histórico
 
 Aplicação web **local e online**, em português de Portugal, que reúne o histórico de **1 999 sorteios** (13/02/2004 a 17/11/2026) dos seis arquivos ZIP fornecidos pelo utilizador. O histórico inicial termina em 17/11/2026; a v1.4 acrescenta atualização programada com validação rigorosa. Consulta o painel para confirmar a última data incluída.
 
-## Regra principal — os dois geradores utilizam modelos do EUROLAB
+## v1.7 — Seleção automática do método com melhor desempenho histórico
 
-**Página principal:** https://c1g0r.github.io/EUROLAB/
+**Aplicação:** https://c1g0r.github.io/EUROLAB/
 
-**Chave 1: Frequências históricas (modelo «frequentes», desenvolvido na v1.1).** Lê os 250 concursos mais recentes do regime das 12 estrelas em `data/dados-validados.json`. Para cada número principal e estrela, conta ocorrências e atribui pesos entre 1 e 5 pela transformação `1 + 4 × (frequência − mínima)/(máxima − mínima)`. Com todas as frequências iguais, todos os pesos são 1. Amostragem aleatória ponderada sem reposição. Não é previsão do sorteio.
+**Chave 1 — Motor adaptativo (avaliador walk-forward):** a cada carregamento de dados o EUROLAB compara cinco métodos desenvolvidos no projeto: aleatório uniforme, frequências altas, frequências baixas, equilibrado e anti-datas. Cada método recebe exatamente a mesma série de **250 concursos de avaliação** do regime de 12 estrelas, usando para cada concurso apenas os **250 concursos anteriores** como janela estatística. São feitas **cinco simulações reprodutíveis por método**, com sementes fixas, num total de 1 250 chaves históricas por método. Avalia-se o número médio de acertos de números + 0,5 × acertos de estrelas por chave. O modelo com maior pontuação média é utilizado para gerar a Chave 1 com aleatoriedade criptográfica.
 
-**Chave 2: Crowd Intelligence (modelo v1.4).** Lê diretamente `data/modelo-popularidade-v14.json`. Usa o coeficiente de calendário (aproximadamente +0,0462588) derivado de uma razão agregada entre escalões de vencedores. Para cada grupo com `d` números entre 1 e 31, pondera `C(N_1_31,d) × C(N_32_50,5-d) × exp(−coeficiente × (d − 3))`, sendo `N` as quantidades ainda disponíveis depois da Chave 1. Admite apenas grupos com pelo menos 80 observações na calibração. Sorteia cinco números e duas estrelas que não constem da primeira chave. As estrelas não recebem pesos Crowd, porque esse modelo não contém dados sobre preferências por estrelas.
+A interface mostra o nome do método selecionado, as pontuações do vencedor e da referência aleatória e um quadro completo das cinco estratégias, acessível em **Ver avaliação e classificação dos métodos**. Empates utilizam uma ordem estável. Quando o histórico de sorteios é atualizado, a classificação é recalculada. O comparador está isolado em `assets/selecao-core.js` e utiliza `EuroDuasChaves.generateMode()`, o mesmo motor que gera a Chave 1.
 
-Ambas utilizam `crypto.getRandomValues` no navegador. O histórico e o modelo Crowd são **obrigatórios**: caso falhem, a aplicação não apresenta chaves supostamente científicas nem substitui o método por aleatoriedade uniforme. As chaves guardadas na versão anterior não são reutilizadas automaticamente. A página mostra a data do histórico, a categoria Crowd e o respetivo índice agregado.
+**Resultado no conjunto atualmente disponível (17/11/2026):** o método anti-datas foi primeiro, com pontuação 0,6980; frequências altas 0,6800; equilibrado 0,6584; uniforme 0,6468; frequências baixas 0,6424. A referência matemática para qualquer chave válida num sorteio independente é 0,6667. Este resultado é exploratório e **não comprova vantagem preditiva**; a seleção do máximo entre cinco métodos causa enviesamento e cinco sementes não equivalem a cinco conjuntos de sorteios independentes. Os resultados podem variar depois da atualização do histórico.
 
-**Limitações:** nenhum dos modelos demonstrou vantagem para prever os números vencedores. O indicador Crowd é uma associação de vencedores por categoria, não mede popularidade individual nem prova redução no risco de partilha de prémios. O fator 44,3% é uma melhoria de erro num modelo agregado, não de probabilidade de ganhar.
+**Chave 2 — Crowd Intelligence (v1.4):** mantém a ligação obrigatória ao ficheiro `data/modelo-popularidade-v14.json`, com coeficiente de calendário derivado das contagens agregadas de vencedores. Pondera os grupos possíveis de combinações em função do número de valores entre 1 e 31, filtrando categorias com menos de 80 observações históricas, e não repete números nem estrelas da primeira chave. As estrelas são sorteadas uniformemente entre as disponíveis, pois o modelo Crowd não as avalia.
 
-**Testes automáticos:** `node tests/duas-chaves.test.cjs`, incluindo dependência real dos pesos históricos, sensibilidade ao coeficiente Crowd, 1 500 pares válidos, rejeição de fontes em falta e ausência de repetições.
+A Chave 2 não está incluída no ranking de acertos da Chave 1, porque foi desenhada para investigar popularidade, não para tentar prever as bolas.
 
-**Investigação anterior preservada:** [painel-investigacao.html](painel-investigacao.html).
+**Segurança e proveniência:** os dados históricos, o modelo Crowd e a avaliação do seletor têm de ser carregados e validados antes de gerar qualquer chave. O navegador utiliza `crypto.getRandomValues` para a geração real e guarda localmente as duas chaves e a seleção (nova chave de armazenamento v1.7). Nunca faz apostas. O teste usa números pseudoaleatórios determinísticos para reproduzir resultados, sem serem confundidos com a geração final.
+
+**Limites científicos:** nenhuma abordagem mostrou vantagem confirmada para acertar ou para ganhar dinheiro; a melhor pontuação num backtest não significa maior probabilidade futura. O indicador Crowd não é uma probabilidade individual de partilha de prémio e a melhoria de 44,3% referida na investigação é relativa ao erro de uma razão agregada de vencedores, não às hipóteses de ganhar.
+
+**Verificação:** `node tests/duas-chaves.test.cjs`, `node --check assets/selecao-core.js`.
+
+**Investigação anterior:** [painel-investigacao.html](painel-investigacao.html).
+
 
 ---
 ## Iniciar no Mac
