@@ -10,7 +10,7 @@ for path in DATA.glob('*.json'):
         json.load(f)
 info = json.loads((DATA / 'dados-validados.json').read_text(encoding='utf-8'))
 draws = info['draws']
-assert len(draws) == 1999, f'Esperavam-se 1999 sorteios, existem {len(draws)}'
+assert len(draws) >= 1999, f'Histórico truncado: {len(draws)} sorteios'
 dates = []
 for draw in draws:
     d = date.fromisoformat(draw['date'])
@@ -22,5 +22,11 @@ for draw in draws:
     assert sorted(draw['stars_raw']) == sorted(s), draw
 assert len(set(dates)) == len(dates), 'Datas duplicadas'
 assert min(dates).isoformat() == '2004-02-13'
-assert max(dates).isoformat() == '2026-11-17'
-print('OK: JSON válido, 1999 sorteios únicos, 2004-02-13 a 2026-11-17 e consistência estrutural.')
+assert max(dates).isoformat() == info['meta']['expected_through']
+assert len(draws) == info['meta']['imported']
+audit = json.loads((DATA / 'auditoria-financeira-v09.json').read_text(encoding='utf-8'))
+assert len(audit['records']) == len(draws)
+assert audit['summary']['draws'] == len(draws)
+assert len({d['date'] for d in audit['records']}) == len(draws)
+assert set(d['date'] for d in audit['records']) == set(datestr.isoformat() for datestr in dates)
+print(f'OK: JSON válido, {len(draws)} sorteios únicos até {max(dates)} e consistência estrutural financeira.')
