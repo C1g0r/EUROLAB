@@ -9,11 +9,13 @@
 <script src="assets/strategy.js" defer></script>
 <script src="assets/comparacao-core.js" defer></script>
 <script src="assets/comparacao.js" defer></script>
+<script src="assets/crowd-core.js" defer></script>
+<script src="assets/crowd.js" defer></script>
 </head>
 <body>
 <div class="shell">
  <aside class="sidebar">
-  <div class="brand"><div class="brand-symbol">✳</div><div><strong>EURO<span>LAB</span></strong><small>LABORATÓRIO · V1.3</small></div></div>
+  <div class="brand"><div class="brand-symbol">✳</div><div><strong>EURO<span>LAB</span></strong><small>LABORATÓRIO · V1.4</small></div></div>
   <div class="nav-title">INVESTIGAÇÃO</div>
   <nav class="nav" aria-label="Navegação principal">
    <button class="nav-link active" data-route="inicio"><span>◫</span> Visão geral</button>
@@ -22,6 +24,7 @@
    <button class="nav-link" data-route="validacao"><span>◈</span> Testar métodos</button>
    <button class="nav-link" data-route="estrategia"><span>◎</span> Estratégia personalizada <em>NOVO</em></button>
    <button class="nav-link" data-route="comparacao"><span>≋</span> Comparar estratégias <em>NOVO</em></button>
+   <button class="nav-link" data-route="popularidade"><span>◉</span> Popularidade <em>NOVO</em></button>
    <button class="nav-link" data-route="historico"><span>▤</span> Histórico</button>
    <button class="nav-link" data-route="estatisticas"><span>▥</span> Estatísticas</button>
    <button class="nav-link" data-route="ciencia"><span>⌁</span> Testes científicos</button>
@@ -115,6 +118,47 @@
       <div><b>Acertos não são prémios</b><small>O número de correspondências não equivale a lucro ou acerto do jackpot.</small></div>
       <div><b>Evitar sobreajuste</b><small>Repetir testes e escolher depois o método melhor não prova capacidade preditiva; é necessário validar em sorteios futuros.</small></div>
     </div></article>
+   </section>
+
+   <section data-screen="popularidade" class="screen hidden">
+     <div class="page-title"><div class="eyebrow">EUROLAB · V1.4 · CROWD INTELLIGENCE</div><h1>Popularidade <em>experimental.</em></h1>
+     <p>Estuda um sinal observável nas contagens de vencedores: a quantidade de números de calendário entre 1 e 31.</p></div>
+     <div class="notice"><strong>O que este indicador NÃO faz:</strong> não conhece as apostas reais dos jogadores, não calcula a popularidade individual de uma chave e não prevê o sorteio nem os prémios. A proporção estimada compara categorias agregadas de vencedores.</div>
+     <div class="metrics">
+       <div class="metric"><div class="metric-head">TREINO HISTÓRICO</div><strong id="crowd-training">—</strong><small>Concursos até 2023</small></div>
+       <div class="metric"><div class="metric-head">VALIDAÇÃO FUTURA RELATIVA</div><strong id="crowd-validation">—</strong><small>Concursos 2024–2026</small></div>
+       <div class="metric"><div class="metric-head">REDUÇÃO DO ERRO NO TESTE</div><strong id="crowd-improvement">—</strong><small>Relativamente à média constante</small></div>
+       <div class="metric"><div class="metric-head">PROBABILIDADE DO JACKPOT</div><strong>1 / 139,8 M</strong><small>Igual para qualquer chave simples</small></div>
+     </div>
+     <p id="crowd-model-status" class="muted tiny" role="status">A carregar o indicador experimental…</p>
+     <div class="two-thirds">
+       <article class="panel"><div class="panel-head"><h2>Analisar uma chave</h2><span class="pill">5 + 2</span></div>
+        <label class="field-label" for="crowd-numbers">Cinco números principais (1–50)</label>
+        <input id="crowd-numbers" placeholder="Ex.: 32, 36, 41, 45, 48" value="32, 36, 41, 45, 48">
+        <label class="field-label" for="crowd-stars">Duas estrelas (1–12)</label>
+        <input id="crowd-stars" placeholder="Ex.: 4, 11" value="4, 11">
+        <div class="inline-actions"><button class="primary" id="crowd-manual-submit" disabled>Calcular indicador</button></div>
+        <div id="crowd-manual-result" aria-live="polite"></div>
+       </article>
+       <article class="panel"><h2>O que estamos realmente a medir?</h2>
+        <p>Para cada sorteio, comparamos o número de vencedores europeus no escalão <b>3 números + 0 estrelas</b> com o escalão <b>2 números + 0 estrelas</b>. O modelo estima como muda o logaritmo dessa razão quando varia a quantidade de números de 1 a 31 sorteados.</p>
+        <p>Entre 2016 e novembro de 2026 existiam 1 058 concursos elegíveis. O modelo foi ajustado até ao fim de 2023 e avaliado em 301 concursos posteriores.</p>
+        <p class="muted tiny">A qualidade da previsão refere-se apenas à razão agregada e não permite estimar quantos boletins escolheram uma combinação exata. O modelo não utiliza as estrelas para esta classificação.</p>
+       </article>
+     </div>
+     <article class="panel"><div class="panel-head"><h2>Comparar as chaves do Cofre</h2><span class="pill">GUARDADO NO NAVEGADOR</span></div>
+       <p class="muted tiny">Ordena as chaves já guardadas pelo indicador de calendário, não por probabilidade real de prémio. As chaves permanecem no teu navegador.</p>
+       <button class="outline" id="crowd-vault-submit" disabled>Comparar o meu Cofre</button>
+       <div id="crowd-vault-result" aria-live="polite"></div>
+     </article>
+     <article class="panel"><h2>Limitações e referências</h2><div class="method-grid">
+       <div><b>Diferença de previsão, não retorno</b><small>A redução de 44,3% mede erro quadrático médio numa razão de vencedores; não retorno financeiro.</small></div>
+       <div><b>Apenas um atributo</b><small>Um maior número de datas está associado a uma razão diferente de vencedores; padrões de boletim e escolhas de estrelas continuam por investigar.</small></div>
+       <div><b>Dados e calibração versionados</b><small>O modelo permanece congelado até revisão de metodologia; dados novos não alteram silenciosamente os coeficientes.</small></div>
+       <div><b>Sorteio aleatório</b><small>Nenhum número fica mais provável por ser habitual ou pouco habitual.</small></div>
+     </div>
+     <p class="muted tiny">Fontes: <a target="_blank" rel="noopener noreferrer" href="https://academic.oup.com/jrssig/article/20/1/31/7034183">Which lottery numbers do players play?</a> · <a target="_blank" rel="noopener noreferrer" href="https://www.cambridge.org/core/journals/judgment-and-decision-making/article/number-preferences-in-lotteries/47BA27051627CEED421AD3AEE255521E">Number preferences in lotteries</a> · <a target="_blank" rel="noopener noreferrer" href="https://www.fdj.fr/jeux-de-tirage/euromillions-my-million/historique">Arquivo FDJ</a>.</p>
+     </article>
    </section>
    <section data-screen="historico" class="screen hidden"><div class="page-title"><div class="eyebrow">ARQUIVO · 2004—2026</div><h1>Todos os <em>sorteios.</em></h1><p>Consulta os 1 999 resultados, incluindo a sequência original registada no CSV.</p></div><article class="panel"><div class="filters"><div><label class="field-label" for="history-year">Ano</label><select id="history-year"><option value="all">Todos os anos</option></select></div><div><label class="field-label" for="history-search">Pesquisar por data ou número</label><input id="history-search" placeholder="Ex.: 17/11/2026 ou 44"></div><div><label class="field-label" for="history-order">Ordem</label><select id="history-order"><option value="new">Mais recentes</option><option value="old">Mais antigos</option></select></div></div><div class="panel-head compact"><div class="muted tiny" id="history-count"></div><button class="text-action" id="history-export">Exportar resultados filtrados ↓</button></div><div id="history-table" class="history-table"></div><div class="pager"><button id="history-prev" class="outline">← Anteriores</button><span id="history-page">—</span><button id="history-next" class="outline">Seguintes →</button></div></article></section>
    <section data-screen="estatisticas" class="screen hidden"><div class="page-title"><div class="eyebrow">DISTRIBUIÇÕES E FREQUÊNCIAS</div><h1>Estatísticas <em>interativas.</em></h1><p>Compara períodos sem misturar indevidamente as diferentes regras das estrelas.</p></div><article class="panel"><div class="filters"><div><label class="field-label" for="stats-period">Período</label><select id="stats-period"><option value="all">Todo o histórico</option><option value="2004-2011">2004–2011</option><option value="2011-2016">2011–2016</option><option value="2016-2026">2016–2026</option><option value="2026">Só 2026</option></select></div><div><label class="field-label" for="stats-sort">Ordenação</label><select id="stats-sort"><option value="freq">Mais frequentes</option><option value="asc">Menos frequentes</option><option value="num">Ordem numérica</option></select></div></div><div class="inline-stat"><b id="stats-size">—</b><span>sorteios no período selecionado</span><span class="pill" id="stats-starsmax">— estrelas disponíveis</span></div><div class="panel-head"><h2>Frequência dos 50 números</h2><small class="muted">Participações / sorteios</small></div><div class="freq-grid" id="main-frequency"></div><div class="separator"></div><div class="panel-head"><h2>Frequência das estrelas</h2><small class="muted">Regime correto para cada data</small></div><div class="freq-grid stars-grid" id="star-frequency"></div><p class="muted tiny" id="stats-disclaimer"></p></article></section>
