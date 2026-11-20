@@ -18,7 +18,11 @@
  function validSet(v,n,max){
    return Array.isArray(v)&&v.length===n&&v.every(x=>Number.isInteger(x)&&x>=1&&x<=max)&&new Set(v).size===n;
  }
- function randomUnit(randomIndex){return randomIndex(RNG_SCALE)/RNG_SCALE;}
+ function randomUnit(randomIndex){
+   const idx=randomIndex(RNG_SCALE);
+   if(!Number.isInteger(idx)||idx<0||idx>=RNG_SCALE)throw Error('Fonte aleatória inválida.');
+   return idx/RNG_SCALE;
+ }
  function weightedPick(pool,count,weights,randomIndex){
    if(!Array.isArray(pool)||!Array.isArray(weights)||pool.length!==weights.length||
       count<1||count>pool.length||weights.some(w=>!Number.isFinite(w)||w<=0))
