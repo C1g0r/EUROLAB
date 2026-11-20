@@ -15,7 +15,7 @@
     <header class="header">
       <a class="brand" href="./" aria-label="EUROLAB — Página inicial">
         <span class="brand-mark" aria-hidden="true">✳</span>
-        <span><strong>EURO<span>LAB</span></strong><small>GERADOR 2 × 5+2</small></span>
+        <span><strong>EURO<span>LAB</span></strong><small>MODELOS ESTATÍSTICOS · V1.6</small></span>
       </a>
       <span class="header-caption">EUROMILHÕES · PORTUGAL</span>
     </header>
@@ -23,15 +23,15 @@
       <section class="intro" aria-labelledby="intro-title">
         <div class="eyebrow"><span class="pulse"></span> DOIS MÉTODOS · DUAS COMBINAÇÕES</div>
         <h1 id="intro-title">Duas chaves.<br><em>Sem complicações.</em></h1>
-        <p>O EUROLAB entrega duas chaves válidas do Euromilhões, construídas com métodos diferentes. Não pretende prever o sorteio.</p>
+        <p>O EUROLAB usa dois modelos estatísticos desenvolvidos na nossa investigação para gerar duas chaves diferentes. Nenhum deles prevê o resultado do sorteio.</p>
       </section>
       <section class="ticket-grid" aria-label="As duas chaves do Euromilhões">
         <article class="ticket" aria-labelledby="method-one-title">
           <div class="ticket-head">
-            <div><span class="ticket-number">01 / 02</span><h2 id="method-one-title">Aleatório uniforme</h2></div>
+            <div><span class="ticket-number">01 / 02</span><h2 id="method-one-title">Frequências históricas</h2></div>
             <span class="method-pill">MÉTODO 01</span>
           </div>
-          <p class="method-desc">Cinco números e duas estrelas escolhidos sem favorecer nenhuma combinação.</p>
+          <p class="method-desc">Modelo estatístico de frequências: os últimos 250 sorteios determinam os pesos dos números e das estrelas.</p>
           <div class="ticket-body">
             <div class="ball-label">NÚMEROS</div>
             <div id="key1-numbers" class="ball-line" aria-label="Números principais da primeira chave"><span class="placeholder">A gerar…</span></div>
@@ -39,24 +39,25 @@
             <div id="key1-stars" class="ball-line star-line" aria-label="Estrelas da primeira chave"></div>
           </div>
           <div class="ticket-foot">
-            <span class="ticket-note">Referência estatística neutra</span>
+            <span class="ticket-note" id="model1-info">A carregar o histórico…</span>
             <button id="copy-1" class="copy-button" type="button" disabled>Copiar <span aria-hidden="true">↗</span></button>
           </div>
         </article>
         <article class="ticket ticket-accent" aria-labelledby="method-two-title">
           <div class="ticket-head">
-            <div><span class="ticket-number">02 / 02</span><h2 id="method-two-title">Diversificação</h2></div>
+            <div><span class="ticket-number">02 / 02</span><h2 id="method-two-title">Crowd Intelligence</h2></div>
             <span class="method-pill">MÉTODO 02</span>
           </div>
-          <p class="method-desc">Dois números entre 1–31 e três entre 32–50; sem repetir números ou estrelas da primeira chave.</p>
+          <p class="method-desc">O modelo de comportamento dos jogadores pondera combinações pela quantidade de números entre 1 e 31, usando dados agregados dos vencedores.</p>
           <div class="ticket-body">
             <div class="ball-label">NÚMEROS</div>
             <div id="key2-numbers" class="ball-line" aria-label="Números principais da segunda chave"><span class="placeholder">A gerar…</span></div>
             <div class="star-label">ESTRELAS</div>
             <div id="key2-stars" class="ball-line star-line" aria-label="Estrelas da segunda chave"></div>
           </div>
+          <p class="model-signal" id="model2-signal" aria-live="polite">O indicador é experimental, não uma previsão da popularidade individual.</p>
           <div class="ticket-foot">
-            <span class="ticket-note">Critério anti-datas experimental</span>
+            <span class="ticket-note" id="model2-info">A carregar o modelo Crowd…</span>
             <button id="copy-2" class="copy-button" type="button" disabled>Copiar <span aria-hidden="true">↗</span></button>
           </div>
         </article>
@@ -64,15 +65,15 @@
       <section class="actions" aria-label="Controlos do gerador">
         <button class="generate-button" id="generate" type="button"><span aria-hidden="true">✳</span> Gerar outras duas chaves</button>
         <button class="secondary-button" id="copy-both" type="button" disabled>Copiar as duas chaves</button>
-        <p class="saved-info" id="saved-info">As combinações ficam guardadas neste navegador até gerarmos outras.</p>
+        <p class="saved-info" id="saved-info">A carregar o histórico e os dois modelos…</p>
         <p id="status" class="status" aria-live="polite" role="status"></p>
       </section>
       <section class="methodology" aria-labelledby="methodology-heading">
         <details>
           <summary id="methodology-heading">Como funciona e quais são as limitações? <span class="summary-icon" aria-hidden="true">+</span></summary>
           <div class="details-content">
-            <p><strong>Método 1:</strong> amostragem uniforme sem reposição, usando <code>crypto.getRandomValues</code> e rejeição para evitar viés na seleção dos índices.</p>
-            <p><strong>Método 2:</strong> amostragem aleatória dentro de duas restrições: exatamente dois números de 1 a 31 e três de 32 a 50, sem sobreposição de números ou estrelas com a primeira chave. O critério é inspirado no estudo das preferências dos jogadores, mas não provou reduzir a partilha de prémios.</p>
+            <p><strong>Método 1 — Frequências históricas:</strong> utiliza o modelo «frequentes» desenvolvido na versão 1.1, com uma janela dos 250 últimos concursos do regime de 12 estrelas. Para cada número ou estrela, conta as ocorrências e converte-as num peso entre 1 e 5. A seleção é aleatória ponderada, sem reposição, utilizando <code>crypto.getRandomValues</code>. O peso altera as preferências do gerador, não a probabilidade de extração das bolas.</p>
+            <p><strong>Método 2 — Crowd Intelligence:</strong> consulta o modelo experimental Crowd v1.4, calibrado com 757 sorteios e avaliado em 301 concursos posteriores. Usa o coeficiente de associação entre a contagem de números de calendário (1–31) e uma razão agregada de vencedores, ponderando os grupos de combinações segundo esse índice. Só utiliza grupos com pelo menos 80 observações; não repete números ou estrelas da primeira chave. As estrelas não são classificadas pelo modelo Crowd, sendo sorteadas entre as disponíveis.</p><p><strong>Transparência:</strong> o indicador Crowd não estima quantas pessoas escolheram uma chave específica nem demonstra que a combinação terá menor probabilidade de dividir prémios. Não usamos um modelo de frequências para prever resultados futuros nem uma taxa de 44,3% como se fosse vantagem de acerto. Se os ficheiros de ambos os modelos não estiverem disponíveis, não há geração de chaves.</p>
             <p>Num sorteio justo, qualquer chave simples tem uma probabilidade de <strong>1 em 139 838 160</strong> de acertar o jackpot. Duas chaves distintas têm uma probabilidade conjunta de <strong>1 em 69 919 080</strong>, independentemente destes métodos.</p>
             <p>O gerador não faz apostas e não envia as chaves para o servidor. As combinações são guardadas apenas no armazenamento deste navegador. Joga de forma responsável.</p>
           </div>
