@@ -1,4 +1,4 @@
-# EUROLAB v1.4 — Crowd Intelligence e atualização controlada FDJ
+# EUROLAB v1.5 — Duas chaves, dois métodos
 
 Aplicação web **local e online**, em português de Portugal, que reúne o histórico de **1 999 sorteios** (13/02/2004 a 17/11/2026) dos seis arquivos ZIP fornecidos pelo utilizador. O histórico inicial termina em 17/11/2026; a v1.4 acrescenta atualização programada com validação rigorosa. Consulta o painel para confirmar a última data incluída.
 
