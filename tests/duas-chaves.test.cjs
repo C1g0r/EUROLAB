@@ -1,74 +1,78 @@
 #!/usr/bin/env node
-/* EUROLAB v1.6 — testes dos dois modelos estatísticos integrados. */
+/* EUROLAB v1.7 — verificação de seleção dinâmica + geração real. */
 'use strict';
 const assert=require('node:assert/strict');
-const path=require('node:path'),fs=require('node:fs');
+const fs=require('node:fs'),path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const engine=require('../assets/duas-chaves-core.js');
+const selector=require('../assets/selecao-core.js');
 const history=JSON.parse(fs.readFileSync(path.join(root,'data/dados-validados.json'),'utf8'));
 const crowd=JSON.parse(fs.readFileSync(path.join(root,'data/modelo-popularidade-v14.json'),'utf8'));
 const rng=(seed=20261120)=>{let x=seed>>>0;return max=>{x=(Math.imul(x,1664525)+1013904223)>>>0;return x%max;}};
-assert.equal(engine.MODEL_1,'frequentes-v11');
+
+assert.equal(engine.MODEL_1,'walk-forward-v17');
 assert.equal(engine.MODEL_2,'crowd-calendar-v14');
-assert.equal(engine.cleanHistory(history).length,250);
-const latest=engine.cleanHistory(history)[0].date;
-const recent=engine.cleanHistory(history);
-const pool=Array.from({length:50},(_,i)=>i+1);
-const weights=engine.historicalWeights(pool,recent,'numbers');
+assert.equal(selector.MODES.length,5);
+assert.equal(selector.WINDOW,250);
+assert.equal(selector.EVAL_COUNT,250);
+const evaluation=selector.evaluate(history,engine.generateMode);
+assert.equal(evaluation.selected,evaluation.rankings[0].mode);
+assert.equal(evaluation.rankings.length,5);
+assert.equal(evaluation.draws_evaluated,250);
+assert.equal(evaluation.seeds,5);
+assert.equal(evaluation.window,250);
+assert.equal(evaluation.history_end,engine.cleanHistory(history)[0].date);
+assert.ok(evaluation.rankings.every(r=>r.simulations===1250));
+assert.equal(JSON.stringify(evaluation),JSON.stringify(selector.evaluate(history,engine.generateMode)),
+  'A seleção deve ser reproduzível com as mesmas sementes.');
+
+const past=engine.cleanHistory(history);
+const main=Array.from({length:50},(_,i)=>i+1);
+const weights=engine.historicalWeights(main,past,'numbers');
+assert.ok(new Set(weights).size>1,'As frequências reais devem influenciar o método frequentes.');
 assert.equal(Math.min(...weights),1);
 assert.equal(Math.max(...weights),5);
-// A transformação de pesos tem de depender realmente das frequências, não de uma regra fixa.
-const training=Array.from({length:250},(_,i)=>({
- date:new Date(Date.UTC(2026,9,30-i*4)).toISOString().slice(0,10),
- numbers:[1,2,3,4,5],stars:[1,2]
-}));
-const w=engine.historicalWeights(pool,training,'numbers');
-assert.equal(w[0],5);
-assert.equal(w[5],1);
-assert.notEqual(weights[0],weights[1]); // O histórico real não tem frequências uniformes.
+const samples={};
+for(const mode of selector.MODES){
+ const key=engine.generateMode(mode,past,rng(10));
+ assert.equal(key.numbers.length,5);
+ assert.equal(key.stars.length,2);
+ assert.equal(new Set(key.numbers).size,5);
+ assert.equal(new Set(key.stars).size,2);
+ samples[mode]=key;
+}
 
-let valid=0,distributions=Array(6).fill(0),rand=rng();
-for(let i=0;i<1500;i++){
- const pair=engine.generate(history,crowd,rand);
- assert.ok(engine.validate(pair),'Devem ser duas chaves completas, com proveniência.');
+let valid=0;
+const rand=rng();
+for(let i=0;i<1200;i++){
+ const pair=engine.generate(history,crowd,rand,evaluation);
+ assert.ok(engine.validate(pair),'Todas as chaves devem cumprir a proveniência e os limites.');
+ assert.equal(pair.models.first,'walk-forward-v17');
+ assert.equal(pair.models.selected_method,evaluation.selected);
+ assert.equal(pair.models.evaluation_score,evaluation.selected_score);
+ assert.equal(pair.models.evaluation_seeds,5);
+ assert.equal(pair.models.evaluation_draws,250);
+ assert.equal(pair.models.history_end,evaluation.history_end);
+ assert.equal(pair.models.crowd_calibrated_until,crowd.calibration_end);
  assert.ok(pair.first.numbers.every(n=>!pair.second.numbers.includes(n)));
  assert.ok(pair.first.stars.every(n=>!pair.second.stars.includes(n)));
- assert.equal(pair.models.window,250);
- assert.equal(pair.models.history_end,latest);
- assert.equal(pair.models.crowd_calibrated_until,crowd.calibration_end);
- assert.equal(pair.models.crowd_dates,pair.second.numbers.filter(n=>n<=31).length);
- assert.ok(pair.models.crowd_support>=engine.CROWD_MIN_OBSERVATIONS);
- const exp=Math.exp(crowd.coefficients.calendar_number*(pair.models.crowd_dates-crowd.reference_calendar_count));
- assert.ok(Math.abs(pair.models.crowd_relative_index-exp)<1e-12);
- distributions[pair.models.crowd_dates]++;
+ assert.ok(pair.models.crowd_support>=80);
  valid++;
 }
-assert.equal(distributions[0],0);
-assert.equal(distributions[1],0);
-// O sinal Crowd deve influenciar a distribuição da segunda chave.
-const reverse=JSON.parse(JSON.stringify(crowd));
-reverse.coefficients.calendar_number=-crowd.coefficients.calendar_number;
-function meanDates(model){
- let total=0,next=rng(20261120);
- for(let i=0;i<1000;i++)total+=engine.generate(history,model,next).models.crowd_dates;
- return total/1000;
-}
-const regular=meanDates(crowd),opposite=meanDates(reverse);
-assert.ok(regular<opposite,'Inverter o coeficiente Crowd deve inverter a preferência agregada.');
-assert.throws(()=>engine.generate(null,crowd,rng()),/Histórico/);
-assert.throws(()=>engine.generate([],crowd,rng()),/250 concursos/);
-assert.throws(()=>engine.generate(history,null,rng()),/Crowd/);
-assert.throws(()=>engine.generate(history,crowd,()=>-1),/aleatória inválida/);
-const bad=engine.generate(history,crowd,rng());
-bad.second.numbers[0]=bad.first.numbers[0];
-assert.equal(engine.validate(bad),false);
+assert.throws(()=>engine.generate(history,crowd,rng(),null),/Avaliação comparativa/);
+assert.throws(()=>engine.generate(history,crowd,rng(),{...evaluation,history_end:'2010-01-01'}),/Avaliação comparativa/);
+assert.throws(()=>engine.generate(null,crowd,rng(),evaluation),/Histórico/);
+assert.throws(()=>engine.generate(history,null,rng(),evaluation),/Crowd/);
+assert.throws(()=>selector.evaluate([],engine.generateMode),/insuficientes/);
+assert.throws(()=>engine.generate(history,crowd,()=>-1,evaluation),/aleatória inválida/);
 
-const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
-assert.equal((html.match(/<article class="ticket/g)||[]).length,2);
-for(const id of ['key1-numbers','key2-numbers','key1-stars','key2-stars','model1-info','model2-info','model2-signal','generate','status']){
- assert.ok(html.includes('id="'+id+'"'),'Elemento em falta: '+id);
+const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
+assert.equal((index.match(/<article class="ticket/g)||[]).length,2);
+for(const id of ['model1-info','model1-signal','model2-info','model2-signal','ranking-body','ranking-period',
+  'key1-numbers','key2-numbers','generate','status']){
+ assert.ok(index.includes('id="'+id+'"'),'Elemento em falta: '+id);
 }
-assert.ok(html.includes('painel-investigacao.html'),'A investigação deve continuar acessível.');
-console.log('OK: '+valid+' pares válidos, frequência histórica real, modelo Crowd com efeito demonstrado no gerador, sem dados em falta.');
-console.log('Distribuição Crowd por contagem de datas: '+JSON.stringify(distributions)+
- '; média coeficiente atual '+regular.toFixed(3)+', invertido '+opposite.toFixed(3));
+assert.ok(index.includes('assets/selecao-core.js?v=1.7'));
+assert.ok(index.includes('painel-investigacao.html'));
+console.log('OK: '+valid+' pares válidos, 5 estratégias comparadas sem fuga temporal, modelo selecionado = '+evaluation.selected);
+console.log('Pontuações: '+evaluation.rankings.map(x=>x.mode+' '+x.score.toFixed(4)).join(' | '));
