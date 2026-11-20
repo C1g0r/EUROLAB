@@ -1,0 +1,34 @@
+{
+  "summary": {
+    "source": "ZIP/CSV fornecidos pelo utilizador (origem declarada: FDJ)",
+    "files": [
+      "euromillions.zip/euromillions.csv",
+      "euromillions_2.zip/euromillions_2.csv",
+      "euromillions_3.zip/euromillions_3.csv",
+      "euromillions_4.zip/euromillions_4.csv",
+      "euromillions_201902.zip/euromillions_201902.csv",
+      "euromillions_202002.zip/euromillions_202002.csv"
+    ],
+    "imported": 1999,
+    "rejected": 0,
+    "duplicates": 0,
+    "conflicts": 0,
+    "cutoff": "2026-11-20",
+    "validation": "Validação estrutural + deteção de conflitos; proveniência depende dos arquivos fornecidos",
+    "expected_through": "2026-11-17",
+    "missing_scheduled_draw_dates": 0,
+    "schedule_check": "Sex a partir de 13/02/2004; Ter e Sex a partir de 10/05/2011, até 17/11/2026",
+    "checked_at": "2026-11-20"
+  },
+  "errors": [],
+  "conflicts": [],
+  "schedule_missing_dates": [],
+  "source_sha256": {
+    "euromillions.zip": "c8cd66ae98864000cfee02e47021b96896095b5971657fcae582bf752cbdb152",
+    "euromillions_2.zip": "fe7a4bad4fdadc86776e8a88c45057a9977e85521a3580607beec83a8e2e25cd",
+    "euromillions_201902.zip": "90036089e5eedbf86c6298105134c8fe80f5a80d29c76e5fbcc20eaeaadd6c82",
+    "euromillions_202002.zip": "e88c8074378519f65f33415ca9ad089186f7030ecf47b58c6b9464d1fb98361f",
+    "euromillions_3.zip": "bd35c6fed317f0dbb8487c7aeda0d3a40a5754ebbbf5a92e4670f1cb1ee80101",
+    "euromillions_4.zip": "6d84073487efa6691d61aa1781b0cc45d329c03fdb7d775a3ce77e2a337dcf55"
+  }
+}

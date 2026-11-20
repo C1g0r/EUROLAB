@@ -1,0 +1,88 @@
+{
+  "version": "v0.4",
+  "date": "2026-11-20",
+  "method": "Holm-Bonferroni on seven exploratory Monte Carlo frequency goodness-of-fit p-values; MC uses 1000 simulations each and +1 correction; low precision near significance threshold.",
+  "tests": [
+    {
+      "id": "overall_main",
+      "period": "overall",
+      "quantity": "main",
+      "p_mc": 0.17382617382617382,
+      "replications": 1000,
+      "holm_p": 0.9230769230769231,
+      "family_size": 7
+    },
+    {
+      "id": "2004-2011_main",
+      "period": "2004-2011",
+      "quantity": "main",
+      "p_mc": 0.8131868131868132,
+      "replications": 1000,
+      "holm_p": 1,
+      "family_size": 7
+    },
+    {
+      "id": "2004-2011_stars",
+      "period": "2004-2011",
+      "quantity": "stars",
+      "p_mc": 0.6593406593406593,
+      "replications": 1000,
+      "holm_p": 1,
+      "family_size": 7
+    },
+    {
+      "id": "2011-2016_main",
+      "period": "2011-2016",
+      "quantity": "main",
+      "p_mc": 0.15984015984015984,
+      "replications": 1000,
+      "holm_p": 0.9230769230769231,
+      "family_size": 7
+    },
+    {
+      "id": "2011-2016_stars",
+      "period": "2011-2016",
+      "quantity": "stars",
+      "p_mc": 0.026973026973026972,
+      "replications": 1000,
+      "holm_p": 0.1888111888111888,
+      "family_size": 7
+    },
+    {
+      "id": "2016-2026_main",
+      "period": "2016-2026",
+      "quantity": "main",
+      "p_mc": 0.2727272727272727,
+      "replications": 1000,
+      "holm_p": 0.9230769230769231,
+      "family_size": 7
+    },
+    {
+      "id": "2016-2026_stars",
+      "period": "2016-2026",
+      "quantity": "stars",
+      "p_mc": 0.15384615384615385,
+      "replications": 1000,
+      "holm_p": 0.9230769230769231,
+      "family_size": 7
+    }
+  ],
+  "lowest_raw": {
+    "id": "2011-2016_stars",
+    "period": "2011-2016",
+    "quantity": "stars",
+    "p_mc": 0.026973026973026972,
+    "replications": 1000,
+    "holm_p": 0.1888111888111888,
+    "family_size": 7
+  },
+  "lowest_adjusted": 0.1888111888111888,
+  "null_rejected_at_005": 0,
+  "limitations": [
+    "Os 7 testes escolhidos nao esgotam todas as análises exploratórias feitas antes; resultados ajustados permanecem exploratórios.",
+    "Não temos identificação por sorteio de máquina e lote de bolas.",
+    "Os arquivos originais foram fornecidos pelo utilizador; a autenticação contra o servidor oficial não foi estabelecida.",
+    "A ordem física de extração não é preservada no histórico normalizado.",
+    "Precisão de p limitada por 1000 simulações; repetir com maior orçamento para inferência confirmatória."
+  ]
+}

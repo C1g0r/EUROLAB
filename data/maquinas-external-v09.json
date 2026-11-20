@@ -1,0 +1,134 @@
+{
+  "meta": {
+    "project": "EUROLAB",
+    "version": "0.9",
+    "evidence_warning": "Registos oriundos de um site independente Euro-Millions.com. Os identificadores não são certificações oficiais da FDJ, nem provam modelo de máquina, número de série ou lote físico inequívoco.",
+    "video_audited": false
+  },
+  "rows": [
+    {
+      "date": "2004-02-13",
+      "machine": "Machine 1",
+      "ball_set": "E1",
+      "source": "https://www.euro-millions.com/fr/resultats/13-02-2004",
+      "confidence": "secundaria_nao_auditada",
+      "notes": "Nomenclatura histórica do fornecedor de resultados; não comparável automaticamente com a nomenclatura moderna.",
+      "numbers": [
+        16,
+        29,
+        32,
+        36,
+        41
+      ],
+      "stars": [
+        7,
+        9
+      ],
+      "numbers_csv_order": [
+        32,
+        16,
+        29,
+        41,
+        36
+      ],
+      "stars_csv_order": [
+        9,
+        7
+      ],
+      "source_archive": "euromillions.zip"
+    },
+    {
+      "date": "2016-09-16",
+      "machine": "3",
+      "ball_set": "4",
+      "source": "https://www.euro-millions.com/fr/resultats/16-09-2016",
+      "confidence": "secundaria_nao_auditada",
+      "notes": "Sem certificado primário de correspondência com o equipamento físico.",
+      "numbers": [
+        5,
+        8,
+        14,
+        22,
+        32
+      ],
+      "stars": [
+        2,
+        11
+      ],
+      "numbers_csv_order": [
+        32,
+        5,
+        22,
+        8,
+        14
+      ],
+      "stars_csv_order": [
+        2,
+        11
+      ],
+      "source_archive": "euromillions_3.zip"
+    },
+    {
+      "date": "2020-01-31",
+      "machine": "1",
+      "ball_set": "19",
+      "source": "https://www.euro-millions.com/fr/resultats/31-01-2020",
+      "confidence": "secundaria_nao_auditada",
+      "notes": "Neste mesmo concurso, o arquivo FDJ fornecido tem 12 inconsistências de vencedores europeus.",
+      "numbers": [
+        13,
+        18,
+        20,
+        23,
+        30
+      ],
+      "stars": [
+        2,
+        4
+      ],
+      "numbers_csv_order": [
+        20,
+        23,
+        13,
+        30,
+        18
+      ],
+      "stars_csv_order": [
+        2,
+        4
+      ],
+      "source_archive": "euromillions_201902.zip"
+    },
+    {
+      "date": "2026-11-17",
+      "machine": "13",
+      "ball_set": "21",
+      "source": "https://www.euro-millions.com/fr/resultats/17-11-2026",
+      "confidence": "secundaria_nao_auditada",
+      "notes": "Conjunto de bolas da fonte independente; composição exata e definição técnica a confirmar.",
+      "numbers": [
+        35,
+        37,
+        38,
+        46,
+        48
+      ],
+      "stars": [
+        1,
+        2
+      ],
+      "numbers_csv_order": [
+        48,
+        35,
+        37,
+        38,
+        46
+      ],
+      "stars_csv_order": [
+        2,
+        1
+      ],
+      "source_archive": "euromillions_202002.zip"
+    }
+  ]
+}

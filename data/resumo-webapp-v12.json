@@ -1,0 +1,23 @@
+{
+  "app": "EUROLAB",
+  "version": "1.2",
+  "draws": 1999,
+  "first": "2004-02-13",
+  "last": "2026-11-17",
+  "features": [
+    "estrategia personalizada",
+    "backtest cronologico configuravel",
+    "diario local de evidencias"
+  ],
+  "default_test": {
+    "mode": "quentes",
+    "window": 250,
+    "count": 120,
+    "seed": 20261120,
+    "number_hits": 67,
+    "star_hits": 38,
+    "expected_number_hits": 60,
+    "expected_star_hits": 40
+  },
+  "interpretation": "exploratorio, sem beneficio preditivo demonstrado"
+}

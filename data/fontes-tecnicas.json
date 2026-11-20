@@ -1,0 +1,79 @@
+[
+  {
+    "id": "fdj-draw",
+    "title": "FDJ — bastidores do sorteio EuroMillions",
+    "url": "https://www.fdj.fr/mag/coulisses/article-coulisses-tirage-euromillions",
+    "strength": "Oficial — aplicável ao Euromilhões",
+    "fact": "Ensaios com bolas separadas, cofre e mala selada, presença de comissário de justiça; 50 bolas principais e 12 estrelas nas regras atuais."
+  },
+  {
+    "id": "fdj-ryo",
+    "title": "FDJ UNITED — visita à Ryo-Catteau (set. 2026)",
+    "url": "https://www.fdjunited.com/fr/2026/09/ryo-catteau-dans-les-coulisses-dun-partenaire-historique-des-jeux-de-tirages/",
+    "strength": "Oficial — não comprova bola específica do Euromilhões",
+    "fact": "Descreve bolas em borracha natural, diâmetro 50 mm, aproximadamente 25 g, inscrições repetidas e verificações individuais; contexto de equipamentos apresentados para o LOTO."
+  },
+  {
+    "id": "stresa",
+    "title": "Ryo-Catteau — Stresa",
+    "url": "https://www.ryo-catteau.com/en/stresa.htm",
+    "strength": "Fabricante — características do modelo, não instalação atual",
+    "fact": "Máquina de esfera de 700 mm, mistura por dupla rotação inversa, capacidade anunciada até 100 bolas."
+  },
+  {
+    "id": "paquerette",
+    "title": "Ryo-Catteau — Pâquerette",
+    "url": "https://www.ryo-catteau.com/en/paquerette.htm",
+    "strength": "Fabricante — características do modelo, não instalação atual",
+    "fact": "Máquina para extrações complementares, mistura por pás e referência comercial a bolas de 40 mm; não extrapolar para as estrelas usadas atualmente."
+  },
+  {
+    "id": "studio",
+    "title": "FDJ UNITED — estúdios LOTO (set. 2026)",
+    "url": "https://www.fdjunited.com/fr/2026/09/dans-les-coulisses-des-studios-fdj-united-lenvers-du-decor-du-loto/",
+    "strength": "Oficial — estúdios LOTO, não procedimento Euromilhões",
+    "fact": "Relata estúdios, ensaios e controlo por comissário de justiça, mas o horário descrito é do LOTO."
+  },
+  {
+    "id": "history",
+    "title": "FDJ — arquivo histórico EuroMillions",
+    "url": "https://www.fdj.fr/jeux-de-tirage/euromillions-my-million/historique",
+    "strength": "Oficial — fonte de arquivos",
+    "fact": "Página pública de acesso aos arquivos de resultados, em ZIP."
+  },
+  {
+    "id": "2020",
+    "title": "DNA — reportagem Euromillions (fev. 2020)",
+    "url": "https://www.dna.fr/culture-loisirs/2020/02/09/dans-les-coulisses-d-euromillions",
+    "strength": "Reportagem — fotografia histórica, não garantia 2026",
+    "fact": "Reportagem sobre segurança e organização dos bastidores em Boulogne-Billancourt."
+  },
+  {
+    "id": "fdj-hours",
+    "title": "FDJ — horários de tiragem e de difusão EuroMillions",
+    "url": "https://www.fdj.fr/mag/questions/euromillions-my-million-heure",
+    "strength": "Oficial — separa extração real de divulgação televisiva",
+    "fact": "A FDJ informa que a extração do EuroMillions é realizada por volta das 21h05 (hora francesa) e que os resultados são difundidos na TF1 por volta das 21h50. A hora de transmissão não deve ser tratada como a hora física da extração."
+  },
+  {
+    "id": "france-reglement-2020",
+    "title": "Légifrance — alteração regulamentar de 12/05/2020",
+    "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041865593",
+    "strength": "Oficial — possibilidade regulamentar, não registo operacional",
+    "fact": "O regulamento francês contempla a realização do sorteio completo, A ou B, por meio informático ou mecânico, com fiscalização; não confirma qual foi utilizado em cada sorteio."
+  },
+  {
+    "id": "fdj-production-tech",
+    "title": "FDJ UNITED — processo de fabrico Ryo-Catteau (09/2026)",
+    "url": "https://www.fdjunited.com/fr/2026/09/ryo-catteau-dans-les-coulisses-dun-partenaire-historique-des-jeux-de-tirages/",
+    "strength": "Oficial — descrição de fabrico e ensaios de equipamento, não configuração EuroMillions",
+    "fact": "Documenta modelação digital, usinagem, polimento de esferas de plexiglas, armação de alumínio, montagem elétrica e ensaios. Não associa número de série ao Euromilhões."
+  },
+  {
+    "id": "reg-2026",
+    "title": "Regulamento EuroMillions aplicável desde 30/03/2026",
+    "url": "https://www.pdj.pf/wp-content/uploads/2025/05/Reglement-EuroMillions-applicable-a-partir-du-30.03.26.pdf",
+    "strength": "Regulamento publicado — não identifica equipamentos por concurso",
+    "fact": "O regulamento prevê cinco números extraídos de 50 e duas estrelas extraídas de 12; admite processos mecânicos ou informáticos conforme as regras de supervisão. Não comprova uso de um método alternativo num sorteio específico."
+  }
+]

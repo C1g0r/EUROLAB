@@ -1,0 +1,697 @@
+{
+  "meta": {
+    "created": "2026-11-20",
+    "range": "2004-02-13 through 2026-11-17",
+    "method": "Pearson goodness-of-fit (marginal counts), hypergeometric 5/50 overlap, each era tested separately; 1000 Monte Carlo uniform-without-replacement replicates for main and era star frequencies",
+    "warnings": [
+      "Exploratory tests; p-values unadjusted for multiple analyses and model-selection.",
+      "Counts in one draw are not independent, but Pearson marginal goodness-of-fit provides an approximate diagnostic; Monte Carlo draw-level null simulation should be preferred for confirmatory inference.",
+      "Era star ranges and expected counts must not be merged.",
+      "Consecutive-overlap analysis only within same selected era.",
+      "A statistically significant result would not automatically imply predictability or physical bias.",
+      "Monte Carlo results based on 1000 replicates (resolution approximately 0.001), exploratory; not adjusted for multiple comparisons."
+    ]
+  },
+  "overall": {
+    "draws": 1999,
+    "main": {
+      "observed": [
+        187,
+        186,
+        195,
+        201,
+        204,
+        193,
+        207,
+        193,
+        187,
+        219,
+        194,
+        201,
+        206,
+        207,
+        205,
+        199,
+        219,
+        179,
+        220,
+        204,
+        215,
+        158,
+        225,
+        203,
+        209,
+        206,
+        207,
+        192,
+        219,
+        200,
+        190,
+        182,
+        175,
+        199,
+        212,
+        185,
+        217,
+        204,
+        199,
+        180,
+        184,
+        225,
+        181,
+        229,
+        211,
+        178,
+        190,
+        200,
+        201,
+        213
+      ],
+      "expected_per_number": 199.9,
+      "chi2": 53.75937968984493,
+      "p_value": 0.2970472304127883,
+      "top5": [
+        [
+          44,
+          229
+        ],
+        [
+          23,
+          225
+        ],
+        [
+          42,
+          225
+        ],
+        [
+          19,
+          220
+        ],
+        [
+          10,
+          219
+        ]
+      ],
+      "bottom5": [
+        [
+          22,
+          158
+        ],
+        [
+          33,
+          175
+        ],
+        [
+          46,
+          178
+        ],
+        [
+          18,
+          179
+        ],
+        [
+          40,
+          180
+        ]
+      ],
+      "montecarlo": {
+        "simulations": 1000,
+        "seed": 20261120,
+        "p_value": 0.17382617382617382,
+        "method": "1000 random draws sequences under uniformly chosen 5 distinct from 50; Pearson statistic; plus-one p"
+      }
+    },
+    "stars": {
+      "max": 12,
+      "observed": [
+        343,
+        397,
+        389,
+        316,
+        356,
+        358,
+        352,
+        378,
+        365,
+        289,
+        271,
+        184
+      ],
+      "expected_per_star": 333.1666666666667,
+      "chi2": null,
+      "p_value": null,
+      "note": "Estrelas sem teste global: universos históricos distintos"
+    },
+    "consecutive_overlap": {
+      "sample_pairs": 1998,
+      "observed": [
+        1153,
+        709,
+        130,
+        6,
+        0,
+        0
+      ],
+      "expected": [
+        1152.1241112726311,
+        702.5147019955068,
+        133.81232418962034,
+        9.335743548113049,
+        0.212175989729842,
+        0.0009430043987992977
+      ],
+      "mean": 0.493993993993994,
+      "expected_mean": 0.5,
+      "chi2_bins_0_1_2_3plus": {
+        "observed": [
+          1153,
+          709,
+          130,
+          6
+        ],
+        "expected": [
+          1152.1241112726311,
+          702.5147019955068,
+          133.81232418962034,
+          9.54886254224169
+        ],
+        "chi2": 1.4880937415342952,
+        "p_value": 0.6850210024383883
+      }
+    }
+  },
+  "eras": {
+    "2004-2011": {
+      "draws": 378,
+      "main": {
+        "observed": [
+          40,
+          35,
+          39,
+          47,
+          36,
+          39,
+          39,
+          38,
+          45,
+          31,
+          44,
+          45,
+          35,
+          41,
+          40,
+          38,
+          36,
+          33,
+          46,
+          34,
+          47,
+          35,
+          37,
+          37,
+          38,
+          38,
+          30,
+          26,
+          42,
+          36,
+          35,
+          32,
+          32,
+          31,
+          38,
+          44,
+          44,
+          43,
+          31,
+          36,
+          38,
+          38,
+          34,
+          38,
+          39,
+          31,
+          36,
+          29,
+          40,
+          54
+        ],
+        "expected_per_number": 37.8,
+        "chi2": 37.67195767195767,
+        "p_value": 0.880581803482893,
+        "top5": [
+          [
+            50,
+            54
+          ],
+          [
+            4,
+            47
+          ],
+          [
+            21,
+            47
+          ],
+          [
+            19,
+            46
+          ],
+          [
+            9,
+            45
+          ]
+        ],
+        "bottom5": [
+          [
+            28,
+            26
+          ],
+          [
+            48,
+            29
+          ],
+          [
+            27,
+            30
+          ],
+          [
+            10,
+            31
+          ],
+          [
+            34,
+            31
+          ]
+        ],
+        "montecarlo": {
+          "simulations": 1000,
+          "seed": 20261120,
+          "p_value": 0.8131868131868132,
+          "method": "1000 random draws sequences under uniformly chosen 5 distinct from 50; Pearson statistic; plus-one p"
+        }
+      },
+      "stars": {
+        "max": 9,
+        "observed": [
+          87,
+          73,
+          92,
+          73,
+          90,
+          90,
+          90,
+          82,
+          79
+        ],
+        "expected_per_star": 84.0,
+        "chi2": 5.3809523809523805,
+        "p_value": 0.7161907442185182,
+        "montecarlo": {
+          "simulations": 1000,
+          "seed": 20261120,
+          "p_value": 0.6593406593406593
+        }
+      },
+      "consecutive_overlap": {
+        "sample_pairs": 377,
+        "observed": [
+          206,
+          140,
+          29,
+          2,
+          0,
+          0
+        ],
+        "expected": [
+          217.3927877626536,
+          132.5565779040571,
+          25.24887198172516,
+          1.761549208027337,
+          0.04003520927334856,
+          0.00017793426343710474
+        ],
+        "mean": 0.5411140583554377,
+        "expected_mean": 0.5,
+        "chi2_bins_0_1_2_3plus": {
+          "observed": [
+            206,
+            140,
+            29,
+            2
+          ],
+          "expected": [
+            217.3927877626536,
+            132.5565779040571,
+            25.24887198172516,
+            1.8017623515641226
+          ],
+          "chi2": 1.5941263408190898,
+          "p_value": 0.6607223647438965
+        }
+      }
+    },
+    "2011-2016": {
+      "draws": 562,
+      "main": {
+        "observed": [
+          57,
+          45,
+          52,
+          60,
+          63,
+          55,
+          57,
+          49,
+          39,
+          70,
+          54,
+          47,
+          60,
+          60,
+          57,
+          53,
+          60,
+          54,
+          62,
+          53,
+          51,
+          47,
+          68,
+          60,
+          64,
+          67,
+          64,
+          67,
+          58,
+          66,
+          52,
+          51,
+          47,
+          56,
+          55,
+          48,
+          63,
+          62,
+          58,
+          58,
+          38,
+          62,
+          58,
+          70,
+          59,
+          39,
+          43,
+          51,
+          61,
+          60
+        ],
+        "expected_per_number": 56.2,
+        "chi2": 54.12811387900356,
+        "p_value": 0.2850795266174515,
+        "top5": [
+          [
+            10,
+            70
+          ],
+          [
+            44,
+            70
+          ],
+          [
+            23,
+            68
+          ],
+          [
+            26,
+            67
+          ],
+          [
+            28,
+            67
+          ]
+        ],
+        "bottom5": [
+          [
+            41,
+            38
+          ],
+          [
+            9,
+            39
+          ],
+          [
+            46,
+            39
+          ],
+          [
+            47,
+            43
+          ],
+          [
+            2,
+            45
+          ]
+        ],
+        "montecarlo": {
+          "simulations": 1000,
+          "seed": 20261120,
+          "p_value": 0.15984015984015984,
+          "method": "1000 random draws sequences under uniformly chosen 5 distinct from 50; Pearson statistic; plus-one p"
+        }
+      },
+      "stars": {
+        "max": 11,
+        "observed": [
+          97,
+          118,
+          99,
+          84,
+          101,
+          80,
+          94,
+          119,
+          110,
+          121,
+          101
+        ],
+        "expected_per_star": 102.18181818181819,
+        "chi2": 18.37544483985765,
+        "p_value": 0.04895116148007064,
+        "montecarlo": {
+          "simulations": 1000,
+          "seed": 20261120,
+          "p_value": 0.026973026973026972
+        }
+      },
+      "consecutive_overlap": {
+        "sample_pairs": 561,
+        "observed": [
+          328,
+          199,
+          31,
+          3,
+          0,
+          0
+        ],
+        "expected": [
+          323.4943075194925,
+          197.25262653627595,
+          37.57192886405256,
+          2.6212973626083182,
+          0.059574940059279956,
+          0.0002647775113745776
+        ],
+        "mean": 0.48128342245989303,
+        "expected_mean": 0.5,
+        "chi2_bins_0_1_2_3plus": {
+          "observed": [
+            328,
+            199,
+            31,
+            3
+          ],
+          "expected": [
+            323.4943075194925,
+            197.25262653627595,
+            37.57192886405256,
+            2.681137080178973
+          ],
+          "chi2": 1.2656922319511714,
+          "p_value": 0.7372954618351356
+        }
+      }
+    },
+    "2016-2026": {
+      "draws": 1059,
+      "main": {
+        "observed": [
+          90,
+          106,
+          104,
+          94,
+          105,
+          99,
+          111,
+          106,
+          103,
+          118,
+          96,
+          109,
+          111,
+          106,
+          108,
+          108,
+          123,
+          92,
+          112,
+          117,
+          117,
+          76,
+          120,
+          106,
+          107,
+          101,
+          113,
+          99,
+          119,
+          98,
+          103,
+          99,
+          96,
+          112,
+          119,
+          93,
+          110,
+          99,
+          110,
+          86,
+          108,
+          125,
+          89,
+          121,
+          113,
+          108,
+          111,
+          120,
+          100,
+          99
+        ],
+        "expected_per_number": 105.9,
+        "chi2": 49.48536355051937,
+        "p_value": 0.45373854209101633,
+        "top5": [
+          [
+            42,
+            125
+          ],
+          [
+            17,
+            123
+          ],
+          [
+            44,
+            121
+          ],
+          [
+            23,
+            120
+          ],
+          [
+            48,
+            120
+          ]
+        ],
+        "bottom5": [
+          [
+            22,
+            76
+          ],
+          [
+            40,
+            86
+          ],
+          [
+            43,
+            89
+          ],
+          [
+            1,
+            90
+          ],
+          [
+            18,
+            92
+          ]
+        ],
+        "montecarlo": {
+          "simulations": 1000,
+          "seed": 20261120,
+          "p_value": 0.2727272727272727,
+          "method": "1000 random draws sequences under uniformly chosen 5 distinct from 50; Pearson statistic; plus-one p"
+        }
+      },
+      "stars": {
+        "max": 12,
+        "observed": [
+          159,
+          206,
+          198,
+          159,
+          165,
+          188,
+          168,
+          177,
+          176,
+          168,
+          170,
+          184
+        ],
+        "expected_per_star": 176.5,
+        "chi2": 13.89801699716714,
+        "p_value": 0.23868808682181672,
+        "montecarlo": {
+          "simulations": 1000,
+          "seed": 20261120,
+          "p_value": 0.15384615384615385
+        }
+      },
+      "consecutive_overlap": {
+        "sample_pairs": 1058,
+        "observed": [
+          619,
+          368,
+          70,
+          1,
+          0,
+          0
+        ],
+        "expected": [
+          610.0837386018237,
+          372.0022796352584,
+          70.85757707338254,
+          4.943551888840643,
+          0.11235345201910552,
+          0.000499348675640469
+        ],
+        "mean": 0.4829867674858223,
+        "expected_mean": 0.5,
+        "chi2_bins_0_1_2_3plus": {
+          "observed": [
+            619,
+            368,
+            70,
+            1
+          ],
+          "expected": [
+            610.0837386018237,
+            372.0022796352584,
+            70.85757707338254,
+            5.056404689535389
+          ],
+          "chi2": 3.4379218220544243,
+          "p_value": 0.3289031511412206
+        }
+      }
+    }
+  }
+}

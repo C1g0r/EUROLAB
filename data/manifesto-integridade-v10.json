@@ -1,0 +1,243 @@
+{
+  "version": "1.0.0",
+  "reference_date": "2026-11-20",
+  "algorithm": "SHA-256",
+  "scope": "Integridade dos ficheiros distribuidos, nao autenticidade do operador",
+  "files": [
+    {
+      "file": "ARQUITETURA_FUTURA_WEBAPP.md",
+      "sha256": "468cf51163251009a65e00dff2578bb2c91d6de3ec001e53465de8a42ddda260",
+      "bytes": 2092
+    },
+    {
+      "file": "INICIAR-EUROLAB.command",
+      "sha256": "25e10daa60d8925a863677c0c6e9ffbf64bff22c92e3df4732b29a0407df71ca",
+      "bytes": 1109
+    },
+    {
+      "file": "PEDIDO_INFORMACAO_TECNICA.md",
+      "sha256": "e32a926bd2ce96ee98f6c58a5e34c94b278b2ccfa03584e63b163bfbaca7cccb",
+      "bytes": 3824
+    },
+    {
+      "file": "README-V09-ARQUIVO.md",
+      "sha256": "d254870a5d6da29236af719d4125a9abb88dc3ab74628ca6237d97a1d89c3b17",
+      "bytes": 13329
+    },
+    {
+      "file": "README.md",
+      "sha256": "365a69f0ac39b6b72fe54c18c7e508be74de92c1d823eeb7ad97952aae93ca1d",
+      "bytes": 4611
+    },
+    {
+      "file": "RELATORIO_V08.md",
+      "sha256": "29bfb0509bd198e640f8e09dc50792f9bb5d53682872b9249beb9e135e8c9e2a",
+      "bytes": 8263
+    },
+    {
+      "file": "RELATORIO_V09.md",
+      "sha256": "bc7f572806768014c71de79e7378786f297d8d8d0997959b6fc700a044bba216",
+      "bytes": 3700
+    },
+    {
+      "file": "RELATORIO_V10.md",
+      "sha256": "d4911145e9d72fdf2c5b3a1734e94027e2fc676bcbbea15813575d79819414da",
+      "bytes": 5045
+    },
+    {
+      "file": "assets/app.js",
+      "sha256": "7019a65e3e311061006379dee86c25aa330a6804949541ad05e2f2141a6d1316",
+      "bytes": 18698
+    },
+    {
+      "file": "assets/style.css",
+      "sha256": "98029d7cc716550e86af87a8ad9884334d0bf71b6340f37b3b95b4ea6c0525db",
+      "bytes": 15543
+    },
+    {
+      "file": "data/EXEMPLO_formato.json",
+      "sha256": "60719544e606974ff23bdf794ed9330c5af7b66a8a43ba5b3c7aba0515f2d532",
+      "bytes": 183
+    },
+    {
+      "file": "data/analise-dependencias-v07.json",
+      "sha256": "81793bd2277b419cae89943fba4d36db7005b6ad8d990f3c98d91d8ccd4a829a",
+      "bytes": 9249
+    },
+    {
+      "file": "data/analise-estatistica.json",
+      "sha256": "8a6fff830a79a4abe01bea9992fafc30899cbc4ef121c9834b72de8f6a8bcc79",
+      "bytes": 13208
+    },
+    {
+      "file": "data/analise-posicoes-v08.json",
+      "sha256": "313ad7d1ecec6cd16d3350d5d93e627681d3c996383cb2b6317dd42a4614cd67",
+      "bytes": 16387
+    },
+    {
+      "file": "data/analise-temporal-v06.json",
+      "sha256": "70d4f901814c86be0d5cea75c4bd5de7c41413707c55def09e4024e414072540",
+      "bytes": 7719
+    },
+    {
+      "file": "data/auditoria-financeira-v09.json",
+      "sha256": "790b8beaed0615c2d7c71c1761d3331e4a8a078d3e78c931ebe81cd220070437",
+      "bytes": 4668198
+    },
+    {
+      "file": "data/auditoria-ordens-v08.json",
+      "sha256": "d55b1bf0f9f5f3f2985f4dba3499eb30cf22e08f2c9a80591d3f84c174241546",
+      "bytes": 921
+    },
+    {
+      "file": "data/catalogo-videos-v08.json",
+      "sha256": "99837565c30c99b86a832734cb9c130d269b50aaafd8834244aa72a2c9df4588",
+      "bytes": 4424
+    },
+    {
+      "file": "data/correcao-multiplos-testes.json",
+      "sha256": "95df1f587c586bb233818b8b43af48396096dea2a3399bb1eae2fa5c75af4625",
+      "bytes": 2615
+    },
+    {
+      "file": "data/dados-validados.json",
+      "sha256": "28b9437dce3c27600acab62ef82244264e355dfb9f610b0c6a19e556d87390b1",
+      "bytes": 783946
+    },
+    {
+      "file": "data/estado-investigacao-fisica.json",
+      "sha256": "a2c18edf66e2414f095218338bd4b15f20279e25454e0c33a2b9944cad0c2ce5",
+      "bytes": 927
+    },
+    {
+      "file": "data/fontes-tecnicas.json",
+      "sha256": "ce663dd0e27a2ed50ae55d548d558805a4d2fa74bceb36d0b77bed69359235ea",
+      "bytes": 4189
+    },
+    {
+      "file": "data/historico-euromilhoes.csv",
+      "sha256": "9230259c0841cdea9cd03544878d33134a35115ffaf43e3ed611bafa9b0df7c2",
+      "bytes": 60990
+    },
+    {
+      "file": "data/linha-temporal-equipamentos-v08.json",
+      "sha256": "515897057d6ce36926408aeab6bc46066339e2700baa6678a8662105c9802cf5",
+      "bytes": 6008
+    },
+    {
+      "file": "data/manifesto-integridade-v09.json",
+      "sha256": "4b78ce8c933b1debb3874ce68bbcf8a76ab7400a35383d3f8bf1c34d3b103b34",
+      "bytes": 6557
+    },
+    {
+      "file": "data/manifesto-integridade.json",
+      "sha256": "194ef3a0694cb179ccf9b4c629894c1dc03c24046b7f772aa531f57080a543e6",
+      "bytes": 3708
+    },
+    {
+      "file": "data/maquinas-external-v09.json",
+      "sha256": "944ae2d313569d189cac8b60b11472efcb34be94736e768d1775f8dbaeed3908",
+      "bytes": 2961
+    },
+    {
+      "file": "data/protocolo-audiovisual.json",
+      "sha256": "7fc6b9a1ad116fedc54806640b501eec74effdd504d7f34da2fa51d3fe4a29a2",
+      "bytes": 1051
+    },
+    {
+      "file": "data/rastreabilidade-v07.json",
+      "sha256": "3703b566b8cb887dcce58af816d858b2b512d11768c1348b7a1f5062492699c8",
+      "bytes": 4029
+    },
+    {
+      "file": "data/relatorio-validacao.json",
+      "sha256": "03b94297ef227548c79cd38009aa3789a411c00b952b4fc4e10470eddaacca74",
+      "bytes": 1519
+    },
+    {
+      "file": "data/resumo-webapp-v10.json",
+      "sha256": "acd24da927907dcb46aa0979be7a9bc8f8139fe836916ffb90249f6d11149796",
+      "bytes": 2883
+    },
+    {
+      "file": "fontes/originais/euromillions.zip",
+      "sha256": "c8cd66ae98864000cfee02e47021b96896095b5971657fcae582bf752cbdb152",
+      "bytes": 43854
+    },
+    {
+      "file": "fontes/originais/euromillions_2.zip",
+      "sha256": "fe7a4bad4fdadc86776e8a88c45057a9977e85521a3580607beec83a8e2e25cd",
+      "bytes": 36220
+    },
+    {
+      "file": "fontes/originais/euromillions_201902.zip",
+      "sha256": "90036089e5eedbf86c6298105134c8fe80f5a80d29c76e5fbcc20eaeaadd6c82",
+      "bytes": 16972
+    },
+    {
+      "file": "fontes/originais/euromillions_202002.zip",
+      "sha256": "e88c8074378519f65f33415ca9ad089186f7030ecf47b58c6b9464d1fb98361f",
+      "bytes": 118635
+    },
+    {
+      "file": "fontes/originais/euromillions_3.zip",
+      "sha256": "bd35c6fed317f0dbb8487c7aeda0d3a40a5754ebbbf5a92e4670f1cb1ee80101",
+      "bytes": 35986
+    },
+    {
+      "file": "fontes/originais/euromillions_4.zip",
+      "sha256": "6d84073487efa6691d61aa1781b0cc45d329c03fdb7d775a3ce77e2a337dcf55",
+      "bytes": 42341
+    },
+    {
+      "file": "importar_fdj.py",
+      "sha256": "2affdf4283045f6ad6c9423b167a53be8cbba065784a84d37f3ad4dfbd595825",
+      "bytes": 5612
+    },
+    {
+      "file": "index.html",
+      "sha256": "5f7e1f195ea4c3e88e6cf661e7f61ade59881fb415a3775d80e9ff3f50474510",
+      "bytes": 19824
+    },
+    {
+      "file": "laboratorio-avancado.html",
+      "sha256": "0fee2cc88b4236b22be10fa6f7d6cd053db72aa249de7ecf7d0b6c1b8ae90ea1",
+      "bytes": 77664
+    },
+    {
+      "file": "scripts/analise_base.py",
+      "sha256": "f445ba33d3921bc86d5cb5e5da4d935ef28704f8ed50c11cc6d7f9310a1b3f84",
+      "bytes": 3249
+    },
+    {
+      "file": "scripts/dependency_lab.py",
+      "sha256": "0322630e75cfa1d845e2a9e3a2b0a7dc4fed7874d30fa65b8517b776ee192902",
+      "bytes": 6679
+    },
+    {
+      "file": "scripts/finance_lab.py",
+      "sha256": "1f723ce698c3615943087b675ef4e68483f5ded46e410a7fac3729696b93d28f",
+      "bytes": 8263
+    },
+    {
+      "file": "scripts/montecarlo.py",
+      "sha256": "f756e2699ae344a623231461679f82e0f9079c3515a1a1fee0388dc20cec80fb",
+      "bytes": 1633
+    },
+    {
+      "file": "scripts/order_lab.py",
+      "sha256": "0bf4526847f8dc9fa67b082bcd043bdb9b0cadc92ca6d38750cb5f94382be0af",
+      "bytes": 6300
+    },
+    {
+      "file": "scripts/recover_order.py",
+      "sha256": "1f581579b3cd3c7ab92d52269a2ff300c59f477b7417142c12300f9752ba7a04",
+      "bytes": 4046
+    },
+    {
+      "file": "scripts/temporal_lab.py",
+      "sha256": "025b7c193f539ffb3d5e266788c5ba5528fae2af827b18035bc6033f0c6f889f",
+      "bytes": 7345
+    }
+  ]
+}

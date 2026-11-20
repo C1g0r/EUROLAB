@@ -1,0 +1,193 @@
+{
+  "name": "EUROLAB Web App v1.0",
+  "reference_date": "2026-11-20",
+  "last_uploaded_draw": "2026-11-17",
+  "provenance": "Arquivos ZIP disponibilizados pelo utilizador, declarados como FDJ; validacao estrutural local. Nao foi realizada auditoria independente de autenticidade original.",
+  "draw_count": 1999,
+  "unique_dates": 1999,
+  "year_counts": {
+    "2004": 47,
+    "2005": 52,
+    "2006": 52,
+    "2007": 52,
+    "2008": 52,
+    "2009": 52,
+    "2010": 53,
+    "2011": 86,
+    "2012": 104,
+    "2013": 105,
+    "2014": 104,
+    "2015": 104,
+    "2016": 105,
+    "2017": 104,
+    "2018": 104,
+    "2019": 105,
+    "2020": 104,
+    "2021": 105,
+    "2022": 104,
+    "2023": 104,
+    "2024": 105,
+    "2025": 104,
+    "2026": 92
+  },
+  "regimes": [
+    {
+      "id": "2004-2011",
+      "start": "2004-02-13",
+      "end": "2011-05-06",
+      "stars": 9
+    },
+    {
+      "id": "2011-2016",
+      "start": "2011-05-10",
+      "end": "2016-09-23",
+      "stars": 11
+    },
+    {
+      "id": "2016-2026",
+      "start": "2016-09-27",
+      "end": "2026-11-17",
+      "stars": 12
+    }
+  ],
+  "era_counts": {
+    "2004-2011": 378,
+    "2011-2016": 562,
+    "2016-2026": 1059
+  },
+  "top5_numbers": [
+    [
+      44,
+      229
+    ],
+    [
+      23,
+      225
+    ],
+    [
+      42,
+      225
+    ],
+    [
+      19,
+      220
+    ],
+    [
+      17,
+      219
+    ]
+  ],
+  "bottom5_numbers": [
+    [
+      22,
+      158
+    ],
+    [
+      33,
+      175
+    ],
+    [
+      46,
+      178
+    ],
+    [
+      18,
+      179
+    ],
+    [
+      40,
+      180
+    ]
+  ],
+  "stars_current_era": [
+    [
+      1,
+      159
+    ],
+    [
+      2,
+      206
+    ],
+    [
+      3,
+      198
+    ],
+    [
+      4,
+      159
+    ],
+    [
+      5,
+      165
+    ],
+    [
+      6,
+      188
+    ],
+    [
+      7,
+      168
+    ],
+    [
+      8,
+      177
+    ],
+    [
+      9,
+      176
+    ],
+    [
+      10,
+      168
+    ],
+    [
+      11,
+      170
+    ],
+    [
+      12,
+      184
+    ]
+  ],
+  "latest_draw": {
+    "date": "2026-11-17",
+    "numbers": [
+      35,
+      37,
+      38,
+      46,
+      48
+    ],
+    "stars": [
+      1,
+      2
+    ],
+    "numbers_raw": [
+      48,
+      35,
+      37,
+      38,
+      46
+    ],
+    "stars_raw": [
+      2,
+      1
+    ],
+    "source_archive": "euromillions_202002.zip",
+    "source_csv_row": 2
+  },
+  "evidence_summary": {
+    "original_files": 6,
+    "finance_anomaly_dates": [
+      "2020-01-31"
+    ],
+    "machine_ids_2026_11_17": {
+      "machine": "13",
+      "ball_set": "21",
+      "source": "Euro-Millions.com; secundaria, nao certificado pela FDJ"
+    },
+    "video_verified_order_count": 0,
+    "machine_serial_certifications": 0
+  },
+  "generator_disclaimer": "Nenhum metodo baseado em frequencias historicas aumenta demonstravelmente a probabilidade de um bilhete individual ganhar. Os modos baseados em dados sao experimentais."
+}

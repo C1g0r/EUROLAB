@@ -1,0 +1,85 @@
+{
+  "title": "Rastreabilidade e classificação de evidências técnicas",
+  "as_of": "2026-11-20",
+  "records": [
+    {
+      "id": "f01",
+      "topic": "arquivo_historico",
+      "claim": "A FDJ disponibiliza seis arquivos ZIP do histórico a partir de fevereiro de 2004",
+      "status": "confirmado_fonte_primaria",
+      "url": "https://www.fdj.fr/jeux-de-tirage/euromillions-my-million/historique",
+      "applies_to": "Disponibilidade dos arquivos; não confirma independentemente o hash de cada ZIP fornecido."
+    },
+    {
+      "id": "f02",
+      "topic": "operacao_euromillions",
+      "claim": "Ensaios às 18h15, custódia em cofre e mala selada, comissário de justiça presente antes da extração",
+      "status": "confirmado_fonte_primaria",
+      "url": "https://www.fdj.fr/mag/coulisses/article-coulisses-tirage-euromillions",
+      "applies_to": "Procedimento publicado pela FDJ; não implica que cada sorteio histórico tenha igual cronograma."
+    },
+    {
+      "id": "f03",
+      "topic": "operacao_euromillions",
+      "claim": "Extração de 5 bolas entre 50 e 2 estrelas entre 12; ata assinada pelo comissário de justiça",
+      "status": "confirmado_fonte_primaria",
+      "url": "https://www.fdj.fr/mag/coulisses/article-coulisses-tirage-euromillions",
+      "applies_to": "Descrição contemporânea da FDJ."
+    },
+    {
+      "id": "f04",
+      "topic": "regulamento_historico",
+      "claim": "Texto regulamentar de 2011 prevê duas esferas físicas e presença de huissier e auditor independente",
+      "status": "confirmado_documento_legal_historico",
+      "url": "https://www.legifrance.gouv.fr/jorf/article_jo/JORFARTI000023800936",
+      "applies_to": "Texto histórico de 2011; não identifica equipamentos individuais de 2026."
+    },
+    {
+      "id": "f05",
+      "topic": "regulamento_2020",
+      "claim": "Regulamento francês de 12/05/2020 permite meios informáticos ou mecânicos, com observação de huissier e auditor independente",
+      "status": "confirmado_documento_legal",
+      "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041865593",
+      "applies_to": "Permissão normativa, não prova de método informático efetivamente aplicado."
+    },
+    {
+      "id": "f06",
+      "topic": "seguranca_loto",
+      "claim": "Sala sem janelas, videovigilância e controlo biométrico foram descritos pela FDJ PARA o LOTO",
+      "status": "confirmado_outro_jogo_nao_extrapolar",
+      "url": "https://www.fdj.fr/mag/coulisses/franc-jeux-loto-ranger-boules",
+      "applies_to": "Não confirma configuração de segurança Euromillions."
+    },
+    {
+      "id": "f07",
+      "topic": "bola_euromillions",
+      "claim": "Composição exata, massa, diâmetro, tolerâncias e lote por concurso",
+      "status": "nao_verificado",
+      "url": null,
+      "applies_to": "Não inferir medidas de bolas LOTO ou catálogo genérico de fabricante."
+    },
+    {
+      "id": "f08",
+      "topic": "maquina_por_sorteio",
+      "claim": "Modelo, fabricante, número de série, RPM e identificador da máquina por data",
+      "status": "nao_verificado",
+      "url": null,
+      "applies_to": "Ponto de bloqueio principal para correlacionar estatística e hardware."
+    },
+    {
+      "id": "f09",
+      "topic": "ambiente_por_sorteio",
+      "claim": "Humidade, temperatura e calibrações por concurso",
+      "status": "nao_verificado",
+      "url": null,
+      "applies_to": "Não estimar valores a partir de meteorologia exterior."
+    }
+  ],
+  "status_dictionary": {
+    "confirmado_fonte_primaria": "Página do operador descreve explicitamente a prática",
+    "confirmado_documento_legal_historico": "Texto legal aplicável à época e não necessariamente a procedimentos atuais",
+    "confirmado_documento_legal": "Permissão regulamentar; não equivale a uso efetivo",
+    "confirmado_outro_jogo_nao_extrapolar": "Informação de outro jogo, não transferível automaticamente",
+    "nao_verificado": "Sem prova suficiente para afirmar este parâmetro"
+  }
+}

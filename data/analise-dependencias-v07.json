@@ -1,0 +1,325 @@
+{
+  "version": "0.7.0",
+  "cutoff": "2026-11-20",
+  "draws": 1999,
+  "draws_through": "2026-11-17",
+  "source": "6 ZIP entregues pelo utilizador; origem declarada FDJ; validação estrutural, proveniência externa ainda não certificada",
+  "methodology": {
+    "overlap": "Em cada regime histórico, contar números repetidos entre sorteios adjacentes; não comparar transições que mudam o universo de estrelas. Probabilidade teórica de k elementos partilhados por dois subconjuntos independentes: C(r,k)*C(N-r,r-k)/C(N,r). Para números, agrupar em 0, 1, >=2; estrelas: 0,1,2.",
+    "overlap_calibration": "Valor-p de Pearson calibrado por simulação multinomial de 50 000 réplicas. Dentro de um regime, a distribuição de sobreposição entre sorteios sucessivos é constante e as contagens de sobreposição são independentes sob a hipótese nula de sorteios iid uniformes.",
+    "weekday": "Apenas nos dois regimes com Terça e Sexta. Permutar etiquetas de dia da semana entre sorteios INTEIROS; mantém a dependência sem reposição dos números de cada extração e os totais por dia.",
+    "multiple_testing": "Dez hipóteses desta versão (6 de sobreposição + 4 de dia da semana), corrigidas conjuntamente por Holm-Bonferroni. Não engloba exploração anterior: interpretações continuam exploratórias.",
+    "random_seed": 20261120,
+    "p_estimator": "(excedências+1)/(replicações+1)",
+    "scope_warning": "Diferenças por dia da semana não comprovam alterações ambientais, problemas das bolas, interferência ou vantagem de previsão. Rastreabilidade física por sorteio está ausente."
+  },
+  "eras": [
+    {
+      "name": "2004–2011",
+      "n": 378,
+      "from": "2004-02-13",
+      "to": "2011-05-09",
+      "stars": 9
+    },
+    {
+      "name": "2011–2016",
+      "n": 562,
+      "from": "2011-05-10",
+      "to": "2016-09-26",
+      "stars": 11
+    },
+    {
+      "name": "2016–2026",
+      "n": 1059,
+      "from": "2016-09-27",
+      "to": "2026-11-20",
+      "stars": 12
+    }
+  ],
+  "overlap_tests": [
+    {
+      "id": "overlap-2004-02-13-numbers",
+      "family": "10 testes exploratórios v0.7",
+      "type": "sobreposicao",
+      "period": "2004–2011",
+      "variable": "Números",
+      "n_pairs": 377,
+      "star_pool": 9,
+      "bins": [
+        "0",
+        "1",
+        "2 ou mais"
+      ],
+      "observed": [
+        206,
+        140,
+        31
+      ],
+      "expected": [
+        217.393,
+        132.557,
+        27.051
+      ],
+      "probabilities": [
+        0.57663869,
+        0.35160896,
+        0.07175235
+      ],
+      "chi2_stat": 1.59163,
+      "mc_p": 0.44315113697726044,
+      "replications": 50000,
+      "simulation": "Multinomial calibrada com probabilidades hipergeométricas exatas",
+      "holm_p": 1,
+      "holm_significant_5pct": false
+    },
+    {
+      "id": "overlap-2004-02-13-stars",
+      "family": "10 testes exploratórios v0.7",
+      "type": "sobreposicao",
+      "period": "2004–2011",
+      "variable": "Estrelas",
+      "n_pairs": 377,
+      "star_pool": 9,
+      "bins": [
+        "0",
+        "1",
+        "2"
+      ],
+      "observed": [
+        217,
+        151,
+        9
+      ],
+      "expected": [
+        219.917,
+        146.611,
+        10.472
+      ],
+      "probabilities": [
+        0.58333333,
+        0.38888889,
+        0.02777778
+      ],
+      "chi2_stat": 0.37704,
+      "mc_p": 0.8271834563308734,
+      "replications": 50000,
+      "simulation": "Multinomial calibrada com probabilidades hipergeométricas exatas",
+      "holm_p": 1,
+      "holm_significant_5pct": false
+    },
+    {
+      "id": "overlap-2011-05-10-numbers",
+      "family": "10 testes exploratórios v0.7",
+      "type": "sobreposicao",
+      "period": "2011–2016",
+      "variable": "Números",
+      "n_pairs": 561,
+      "star_pool": 11,
+      "bins": [
+        "0",
+        "1",
+        "2 ou mais"
+      ],
+      "observed": [
+        328,
+        199,
+        34
+      ],
+      "expected": [
+        323.494,
+        197.253,
+        40.253
+      ],
+      "probabilities": [
+        0.57663869,
+        0.35160896,
+        0.07175235
+      ],
+      "chi2_stat": 1.04961,
+      "mc_p": 0.5945681086378273,
+      "replications": 50000,
+      "simulation": "Multinomial calibrada com probabilidades hipergeométricas exatas",
+      "holm_p": 1,
+      "holm_significant_5pct": false
+    },
+    {
+      "id": "overlap-2011-05-10-stars",
+      "family": "10 testes exploratórios v0.7",
+      "type": "sobreposicao",
+      "period": "2011–2016",
+      "variable": "Estrelas",
+      "n_pairs": 561,
+      "star_pool": 11,
+      "bins": [
+        "0",
+        "1",
+        "2"
+      ],
+      "observed": [
+        355,
+        192,
+        14
+      ],
+      "expected": [
+        367.2,
+        183.6,
+        10.2
+      ],
+      "probabilities": [
+        0.65454545,
+        0.32727273,
+        0.01818182
+      ],
+      "chi2_stat": 2.20534,
+      "mc_p": 0.3371532569348613,
+      "replications": 50000,
+      "simulation": "Multinomial calibrada com probabilidades hipergeométricas exatas",
+      "holm_p": 1,
+      "holm_significant_5pct": false
+    },
+    {
+      "id": "overlap-2016-09-27-numbers",
+      "family": "10 testes exploratórios v0.7",
+      "type": "sobreposicao",
+      "period": "2016–2026",
+      "variable": "Números",
+      "n_pairs": 1058,
+      "star_pool": 12,
+      "bins": [
+        "0",
+        "1",
+        "2 ou mais"
+      ],
+      "observed": [
+        619,
+        368,
+        71
+      ],
+      "expected": [
+        610.084,
+        372.002,
+        75.914
+      ],
+      "probabilities": [
+        0.57663869,
+        0.35160896,
+        0.07175235
+      ],
+      "chi2_stat": 0.49146,
+      "mc_p": 0.7860642787144257,
+      "replications": 50000,
+      "simulation": "Multinomial calibrada com probabilidades hipergeométricas exatas",
+      "holm_p": 1,
+      "holm_significant_5pct": false
+    },
+    {
+      "id": "overlap-2016-09-27-stars",
+      "family": "10 testes exploratórios v0.7",
+      "type": "sobreposicao",
+      "period": "2016–2026",
+      "variable": "Estrelas",
+      "n_pairs": 1058,
+      "star_pool": 12,
+      "bins": [
+        "0",
+        "1",
+        "2"
+      ],
+      "observed": [
+        714,
+        326,
+        18
+      ],
+      "expected": [
+        721.364,
+        320.606,
+        16.03
+      ],
+      "probabilities": [
+        0.68181818,
+        0.3030303,
+        0.01515152
+      ],
+      "chi2_stat": 0.40794,
+      "mc_p": 0.8146437071258574,
+      "replications": 50000,
+      "simulation": "Multinomial calibrada com probabilidades hipergeométricas exatas",
+      "holm_p": 1,
+      "holm_significant_5pct": false
+    }
+  ],
+  "weekday_tests": [
+    {
+      "id": "weekday-2011-05-10-numbers",
+      "family": "10 testes exploratórios v0.7",
+      "type": "dia_semana",
+      "period": "2011–2016",
+      "variable": "Números",
+      "tuesdays": 281,
+      "fridays": 281,
+      "chi2_stat": 46.04753,
+      "mc_p": 0.42492917847025496,
+      "replications": 6000,
+      "simulation": "Permutação das etiquetas Ter/Sex preservando sorteios completos e quantidades observadas",
+      "holm_p": 1,
+      "holm_significant_5pct": false
+    },
+    {
+      "id": "weekday-2011-05-10-stars",
+      "family": "10 testes exploratórios v0.7",
+      "type": "dia_semana",
+      "period": "2011–2016",
+      "variable": "Estrelas",
+      "tuesdays": 281,
+      "fridays": 281,
+      "chi2_stat": 4.82085,
+      "mc_p": 0.8676887185469089,
+      "replications": 6000,
+      "simulation": "Permutação das etiquetas Ter/Sex preservando sorteios completos e quantidades observadas",
+      "holm_p": 1,
+      "holm_significant_5pct": false
+    },
+    {
+      "id": "weekday-2016-09-27-numbers",
+      "family": "10 testes exploratórios v0.7",
+      "type": "dia_semana",
+      "period": "2016–2026",
+      "variable": "Números",
+      "tuesdays": 530,
+      "fridays": 529,
+      "chi2_stat": 34.60822,
+      "mc_p": 0.8731878020329945,
+      "replications": 6000,
+      "simulation": "Permutação das etiquetas Ter/Sex preservando sorteios completos e quantidades observadas",
+      "holm_p": 1,
+      "holm_significant_5pct": false
+    },
+    {
+      "id": "weekday-2016-09-27-stars",
+      "family": "10 testes exploratórios v0.7",
+      "type": "dia_semana",
+      "period": "2016–2026",
+      "variable": "Estrelas",
+      "tuesdays": 530,
+      "fridays": 529,
+      "chi2_stat": 5.41697,
+      "mc_p": 0.8808531911348109,
+      "replications": 6000,
+      "simulation": "Permutação das etiquetas Ter/Sex preservando sorteios completos e quantidades observadas",
+      "holm_p": 1,
+      "holm_significant_5pct": false
+    }
+  ],
+  "summary": {
+    "min_raw_p": 0.3371532569348613,
+    "min_adjusted_p": 1,
+    "holm_significant_count": 0,
+    "interpretation": "Os testes com correção Holm devem ser interpretados como exploração, não diagnóstico de manipulação nem previsão."
+  },
+  "source_verification": {
+    "zip_user_hashes_in": "data/relatorio-validacao.json",
+    "original_fdj_downloads_independent_match": false,
+    "individual_machine_or_ball_serial_links": 0,
+    "video_order_transcripts_verified_in_package": 0
+  }
+}

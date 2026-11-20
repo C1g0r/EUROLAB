@@ -1,0 +1,103 @@
+{
+  "as_of": "2026-11-20",
+  "scope": "Localização de recursos audiovisuais, NÃO análise visual do conteúdo",
+  "num_catalogued": 7,
+  "num_visual_reviews": 0,
+  "num_orders_visually_verified": 0,
+  "num_draws_with_confirmed_machine_serial": 0,
+  "background_videos": [
+    {
+      "title": "FDJ — bastidores do EuroMillions (2025)",
+      "url": "https://www.fdj.fr/mag/coulisses/article-coulisses-tirage-euromillions",
+      "kind": "página oficial sobre procedimentos",
+      "method": "descrição editorial confirmada; vídeo interno não transcrito"
+    }
+  ],
+  "videos": [
+    {
+      "date": "2020-02-04",
+      "title": "EuroMillions — resultado oficial 04/02/2020",
+      "url": "https://www.youtube.com/watch?v=RSJyAfdpf5o",
+      "channel": "FDJ",
+      "locator": "vídeo oficial localizado via pesquisa",
+      "visual_review": "nao_realizada",
+      "extraction_order_verified": false,
+      "machine_identified": false,
+      "note": "Metadados públicos identificam FDJ; sequências internas ainda não analisadas visualmente."
+    },
+    {
+      "date": "2021-05-11",
+      "title": "EuroMillions — resultado oficial 11/05/2021",
+      "url": "https://www.youtube.com/watch?v=WfHXjUJSPiA",
+      "channel": "FDJ",
+      "locator": "vídeo oficial localizado via pesquisa",
+      "visual_review": "nao_realizada",
+      "extraction_order_verified": false,
+      "machine_identified": false,
+      "note": "Não presumir que a gravação contém todas as extrações."
+    },
+    {
+      "date": "2026-02-06",
+      "title": "EuroMillions — resultado oficial 06/02/2026",
+      "url": "https://www.youtube.com/watch?v=x7mfEWHsVTw",
+      "channel": "FDJ",
+      "locator": "vídeo oficial localizado via pesquisa",
+      "visual_review": "nao_realizada",
+      "extraction_order_verified": false,
+      "machine_identified": false,
+      "note": "Metadados publicados pela FDJ, sem revisão quadro a quadro."
+    },
+    {
+      "date": "2026-09-08",
+      "title": "EuroMillions — resultado oficial 08/09/2026",
+      "url": "https://www.youtube.com/watch?v=kzGEFcAKUhM",
+      "channel": "FDJ",
+      "locator": "vídeo oficial localizado via pesquisa",
+      "visual_review": "nao_realizada",
+      "extraction_order_verified": false,
+      "machine_identified": false,
+      "note": "Verificar continuidade e correspondência com CSV."
+    },
+    {
+      "date": "2026-09-11",
+      "title": "EuroMillions — resultado oficial 11/09/2026",
+      "url": "https://www.youtube.com/watch?v=vjbJCmVk1kI",
+      "channel": "FDJ",
+      "locator": "vídeo oficial localizado via pesquisa",
+      "visual_review": "nao_realizada",
+      "extraction_order_verified": false,
+      "machine_identified": false,
+      "note": "Verificar continuidade e correspondência com CSV."
+    },
+    {
+      "date": "2026-11-13",
+      "title": "EuroMillions — resultado oficial 13/11/2026",
+      "url": "https://www.youtube.com/watch?v=LPu1NV8WpFU",
+      "channel": "FDJ (atribuído na página de replay)",
+      "locator": "vídeo YouTube identificado em página de republicação",
+      "visual_review": "nao_realizada",
+      "extraction_order_verified": false,
+      "machine_identified": false,
+      "note": "URL confirmada através do link de incorporação no arquivo tv-programme.com; autoria não verificada diretamente."
+    },
+    {
+      "date": "2026-11-17",
+      "title": "EuroMillions — replay anunciado 17/11/2026",
+      "url": "https://tv-programme.com/tirage-de-l-euro-millions-emission/replay/tirage-euromillions-my-million-du-17-novembre-2026-resultat-officiel-fdj-R6afcc23e41bbe",
+      "channel": "FDJ (atribuído pelo agregador)",
+      "locator": "página de replay de terceiro",
+      "visual_review": "nao_realizada",
+      "extraction_order_verified": false,
+      "machine_identified": false,
+      "note": "URL original YouTube não confirmada; página devolveu 403 na consulta."
+    }
+  ],
+  "protocol": [
+    "Confirmar que o identificador de vídeo corresponde à data do resultado",
+    "Rever visualmente se o vídeo mostra todas as extrações reais sem cortes",
+    "Comparar ordem observada com as colunas FDJ boule_1..5 e etoile_1..2",
+    "Registar segundos exatos de cada bola e qualquer corte/ocultação",
+    "Identificar hardware somente quando há prova específica e independente",
+    "Não inferir série ou lote apenas por semelhança visual"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "project": "EUROLAB",
+  "version": "0.6",
+  "reference_date": "2026-11-20",
+  "known": [
+    {
+      "claim": "Procedimentos de ensaio, segurança e fiscalização descritos para EuroMillions",
+      "source": "https://www.fdj.fr/mag/coulisses/article-coulisses-tirage-euromillions"
+    },
+    {
+      "claim": "Regulamento francês admite sorteio informático ou mecânico a partir de 2020",
+      "source": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041865593"
+    }
+  ],
+  "unverified_fields": [
+    "metodo_por_sorteio",
+    "modelo_da_maquina_por_sorteio",
+    "numero_serie_da_maquina",
+    "id_do_conjunto_de_bolas",
+    "massa_bolas",
+    "diametro_bolas",
+    "temperatura_sala",
+    "humidade_sala",
+    "manutencao_por_sorteio"
+  ],
+  "draw_method_records_verified": 0,
+  "warning": "Não inferir que o método alternativo legal foi usado; não extrapolar dados de bolas LOTO para bolas EuroMillions."
+}

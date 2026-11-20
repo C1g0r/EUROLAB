@@ -1,0 +1,28 @@
+{
+  "name": "EUROLAB v0.5 — protocolo de auditoria audiovisual",
+  "scope": "2004-02-13/2026-11-17",
+  "draws": 1999,
+  "video_records_verified": 0,
+  "technical_machine_links_verified": 0,
+  "distinction": "As colunas numéricas originais preservam uma sequência além da combinação crescente; falta comprovar se corresponde à ordem física.",
+  "acceptance": {
+    "official_announcement": "não prova ordem física",
+    "partial_video": "não prova sequência completa",
+    "continuous_draw_video": "sequência transcrita manualmente e comparada com conjunto oficial"
+  },
+  "required_fields": [
+    "date",
+    "url",
+    "type",
+    "numbers",
+    "stars",
+    "notes",
+    "status"
+  ],
+  "limitations": [
+    "Estado inicial sem gravações revistas manualmente",
+    "Vídeos completos não garantem identificação dos números de série ou das massas",
+    "Proveniência dos CSV declarada pelos arquivos do utilizador",
+    "Na v0.8, as sequências originais são recuperadas do CSV; não equivale a validação audiovisual."
+  ]
+}

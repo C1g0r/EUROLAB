@@ -1,0 +1,47 @@
+{
+  "app": "EUROLAB",
+  "version": "1.1",
+  "historico_inicio": "2004-02-13",
+  "historico_fim": "2026-11-17",
+  "total_sorteios": 1999,
+  "new_features": [
+    "backtest cronologico cinco modos (janelas 100/250)",
+    "cofre de chaves localStorage e importacao/exportacao JSON",
+    "diversificacao de chaves"
+  ],
+  "backtest_default": {
+    "test_draws": 959,
+    "window": 100,
+    "seed": 20261120,
+    "reference_number_hits": 479.5,
+    "reference_star_hits": 319.6666666666667,
+    "results": [
+      {
+        "mode": "aleatorio",
+        "numbers": 514,
+        "stars": 324
+      },
+      {
+        "mode": "frequentes",
+        "numbers": 488,
+        "stars": 332
+      },
+      {
+        "mode": "raros",
+        "numbers": 475,
+        "stars": 336
+      },
+      {
+        "mode": "equilibrado",
+        "numbers": 490,
+        "stars": 328
+      },
+      {
+        "mode": "antidatas",
+        "numbers": 492,
+        "stars": 300
+      }
+    ]
+  },
+  "note": "Resultados retrospetivos exploratorios; nao demonstram vantagem preditiva. Dados ate 17/11/2026."
+}

@@ -1,0 +1,316 @@
+{
+  "project": "EUROLAB",
+  "version": "0.6.0",
+  "generated": "2026-11-20",
+  "sources": "Arquivos CSV/ZIP fornecidos pelo utilizador com origem FDJ declarada; não autenticados por download independente",
+  "range": {
+    "from": "2004-02-13",
+    "to": "2026-11-17",
+    "draws": 1999
+  },
+  "methods": {
+    "temporal": "Teste de homogeneidade de contagens 2 x N para a primeira/segunda metade de cada período de regras, com embaralhamento de SORTEIOS inteiros para conservar as 5 e as 2 bolas sem reposição",
+    "samples_mc": 4000,
+    "p_formula": "(excedências+1)/(B+1)",
+    "family": "6 testes predefinidos (3 épocas × números/estrelas), ajuste Holm-Bonferroni",
+    "seed": 20261120,
+    "interpretation": "Testes exploratórios de mudança de distribuição; nenhuma associação causal a máquinas, lote de bolas ou ambiente sem registos técnicos por sorteio."
+  },
+  "groups": [
+    {
+      "period": "2004-2011",
+      "n": 378,
+      "stars_range": 9,
+      "first": "2004-02-13",
+      "last": "2011-05-06",
+      "end_first_half": "2007-09-21",
+      "start_second_half": "2007-09-28"
+    },
+    {
+      "period": "2011-2016",
+      "n": 562,
+      "stars_range": 11,
+      "first": "2011-05-10",
+      "last": "2016-09-23",
+      "end_first_half": "2014-01-14",
+      "start_second_half": "2014-01-17"
+    },
+    {
+      "period": "2016-2026",
+      "n": 1059,
+      "stars_range": 12,
+      "first": "2016-09-27",
+      "last": "2026-11-17",
+      "end_first_half": "2021-10-19",
+      "start_second_half": "2021-10-22"
+    }
+  ],
+  "temporal_tests": [
+    {
+      "period": "2004-2011",
+      "variable": "principais",
+      "universe": 50,
+      "statistic": 54.256216,
+      "mc_p": 0.16020994751312173,
+      "replications": 4000,
+      "seed": 20261120,
+      "n_early": 189,
+      "n_late": 189,
+      "holm_p": 0.9612596850787304
+    },
+    {
+      "period": "2004-2011",
+      "variable": "estrelas",
+      "universe": 9,
+      "statistic": 5.349015,
+      "mc_p": 0.6288427893026743,
+      "replications": 4000,
+      "seed": 20261120,
+      "n_early": 189,
+      "n_late": 189,
+      "holm_p": 1.0
+    },
+    {
+      "period": "2011-2016",
+      "variable": "principais",
+      "universe": 50,
+      "statistic": 46.339463,
+      "mc_p": 0.41914521369657587,
+      "replications": 4000,
+      "seed": 20261120,
+      "n_early": 281,
+      "n_late": 281,
+      "holm_p": 1.0
+    },
+    {
+      "period": "2011-2016",
+      "variable": "estrelas",
+      "universe": 11,
+      "statistic": 9.472155,
+      "mc_p": 0.4028992751812047,
+      "replications": 4000,
+      "seed": 20261120,
+      "n_early": 281,
+      "n_late": 281,
+      "holm_p": 1.0
+    },
+    {
+      "period": "2016-2026",
+      "variable": "principais",
+      "universe": 50,
+      "statistic": 44.533181,
+      "mc_p": 0.5033741564608848,
+      "replications": 4000,
+      "seed": 20261120,
+      "n_early": 529,
+      "n_late": 530,
+      "holm_p": 1.0
+    },
+    {
+      "period": "2016-2026",
+      "variable": "estrelas",
+      "universe": 12,
+      "statistic": 8.986536,
+      "mc_p": 0.5523619095226193,
+      "replications": 4000,
+      "seed": 20261120,
+      "n_early": 529,
+      "n_late": 530,
+      "holm_p": 1.0
+    }
+  ],
+  "backtest": {
+    "rule": "Em cada sorteio, escolher os 5 números e 2 estrelas mais frequentes nos 100 sorteios imediatamente anteriores DENTRO do mesmo regime. Empates: números menores.",
+    "lookback_draws": 100,
+    "evaluated_draws": 1699,
+    "first_evaluated": "2006-01-13",
+    "last_evaluated": "2026-11-17",
+    "total_number_hits": 871,
+    "expected_number_hits": 849.5,
+    "mean_number_hits": 0.5126545026486168,
+    "expected_mean_number_hits": 0.5,
+    "total_star_hits": 613,
+    "expected_star_hits": 611.22222,
+    "mean_star_hits": 0.36080047086521483,
+    "expected_mean_star_hits": 0.35975410372114314,
+    "null_p_two_sided_numbers": 0.42279810015832014,
+    "null_p_two_sided_stars": 0.9429214232147322,
+    "null_simulations": 12000,
+    "null_simulations_seed": 20261120,
+    "warning": "A escolha do método após observar o histórico é exploratória. Comparações com o acaso não demonstram previsibilidade. Para confirmação, bloquear o algoritmo e avaliar apenas sorteios FUTUROS ainda não conhecidos.",
+    "sample": [
+      {
+        "date": "2026-11-03",
+        "era": "2016-2026",
+        "stars_pool": 12,
+        "predicted_numbers": [
+          17,
+          44,
+          10,
+          14,
+          37
+        ],
+        "predicted_stars": [
+          10,
+          12
+        ],
+        "actual_numbers": [
+          13,
+          23,
+          38,
+          39,
+          48
+        ],
+        "actual_stars": [
+          5,
+          8
+        ],
+        "hits_numbers": 0,
+        "hits_stars": 0
+      },
+      {
+        "date": "2026-11-06",
+        "era": "2016-2026",
+        "stars_pool": 12,
+        "predicted_numbers": [
+          17,
+          44,
+          10,
+          14,
+          37
+        ],
+        "predicted_stars": [
+          10,
+          2
+        ],
+        "actual_numbers": [
+          7,
+          13,
+          37,
+          47,
+          49
+        ],
+        "actual_stars": [
+          7,
+          11
+        ],
+        "hits_numbers": 1,
+        "hits_stars": 0
+      },
+      {
+        "date": "2026-11-10",
+        "era": "2016-2026",
+        "stars_pool": 12,
+        "predicted_numbers": [
+          44,
+          10,
+          17,
+          14,
+          37
+        ],
+        "predicted_stars": [
+          10,
+          2
+        ],
+        "actual_numbers": [
+          15,
+          18,
+          31,
+          37,
+          41
+        ],
+        "actual_stars": [
+          1,
+          5
+        ],
+        "hits_numbers": 1,
+        "hits_stars": 0
+      },
+      {
+        "date": "2026-11-13",
+        "era": "2016-2026",
+        "stars_pool": 12,
+        "predicted_numbers": [
+          10,
+          37,
+          44,
+          14,
+          17
+        ],
+        "predicted_stars": [
+          10,
+          2
+        ],
+        "actual_numbers": [
+          16,
+          27,
+          32,
+          41,
+          45
+        ],
+        "actual_stars": [
+          2,
+          12
+        ],
+        "hits_numbers": 0,
+        "hits_stars": 1
+      },
+      {
+        "date": "2026-11-17",
+        "era": "2016-2026",
+        "stars_pool": 12,
+        "predicted_numbers": [
+          10,
+          37,
+          44,
+          14,
+          17
+        ],
+        "predicted_stars": [
+          10,
+          2
+        ],
+        "actual_numbers": [
+          35,
+          37,
+          38,
+          46,
+          48
+        ],
+        "actual_stars": [
+          1,
+          2
+        ],
+        "hits_numbers": 1,
+        "hits_stars": 1
+      }
+    ],
+    "by_era": [
+      {
+        "era": "2004-2011",
+        "n": 278,
+        "mean_number_hits": 0.49280575539568344,
+        "expected_number_hits": 0.5,
+        "mean_star_hits": 0.39928057553956836,
+        "expected_star_hits": 0.4444444444444444
+      },
+      {
+        "era": "2011-2016",
+        "n": 462,
+        "mean_number_hits": 0.4935064935064935,
+        "expected_number_hits": 0.5,
+        "mean_star_hits": 0.3874458874458874,
+        "expected_star_hits": 0.36363636363636365
+      },
+      {
+        "era": "2016-2026",
+        "n": 959,
+        "mean_number_hits": 0.5276329509906152,
+        "expected_number_hits": 0.5,
+        "mean_star_hits": 0.3368091762252346,
+        "expected_star_hits": 0.3333333333333333
+      }
+    ]
+  },
+  "technical_conclusion": "Máquinas/lotes de bolas não ligados individualmente aos sorteios: comparação com equipamento é impossível neste estado."
+}

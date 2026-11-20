@@ -1,0 +1,114 @@
+{
+  "as_of": "2026-11-20",
+  "conclusion": "Não foi encontrada data confirmada de substituição de máquina identificável por número de série; alterações de regras e de cenário televisivo não provam troca de equipamento.",
+  "confirmed_machine_replacements": 0,
+  "events": [
+    {
+      "date": "2004-02-13",
+      "kind": "regra",
+      "title": "Início do EuroMillions",
+      "detail": "Início do histórico FDJ; cinco números de 1–50 e duas estrelas de 1–9. Não há número de série ou lote por concurso.",
+      "evidence": "arquivo de dados FDJ fornecido pelo utilizador",
+      "url": "https://www.fdj.fr/jeux-de-tirage/euromillions-my-million/historique",
+      "scope": "regras e histórico, não hardware",
+      "confidence": "fonte-oficial-publica"
+    },
+    {
+      "date": "2010-02-05",
+      "kind": "observacao-historica",
+      "title": "Duas esferas, bolas de borracha e conjuntos alternados",
+      "detail": "Reportagem presencial descreve duas máquinas, conjuntos de bolas trocados aproximadamente mensalmente e controlo de massa, diâmetro e ressalto duas vezes por ano. Declarações históricas, não especificações de 2026.",
+      "evidence": "Le Parisien, 05/02/2010",
+      "url": "https://www.leparisien.fr/archives/les-secrets-du-tirage-05-02-2010-804292.php",
+      "scope": "prática descrita em 2010",
+      "confidence": "reportagem-presencial"
+    },
+    {
+      "date": "2011-05-10",
+      "kind": "regra",
+      "title": "Introdução de sorteios às terças e 11 estrelas",
+      "detail": "Mudança nas regras do jogo: duas extrações semanais e universo de 11 estrelas. Não é prova de alteração física de máquina.",
+      "evidence": "histórico FDJ + regulamentação francesa da época",
+      "url": "https://www.fdj.fr/jeux-de-tirage/euromillions-my-million/historique",
+      "scope": "regra, não hardware",
+      "confidence": "dados-e-regulacao"
+    },
+    {
+      "date": "2016-09-27",
+      "kind": "regra",
+      "title": "Universo passa para 12 estrelas",
+      "detail": "Passagem de 11 para 12 estrelas; pode exigir outro conjunto de bolas, mas não identifica máquina, série nem lote concreto.",
+      "evidence": "regulamento de 2016 e CSV FDJ",
+      "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000033080085",
+      "scope": "regra, não troca identificada de equipamento",
+      "confidence": "documento-oficial"
+    },
+    {
+      "date": "2020-02-07",
+      "kind": "observacao-historica",
+      "title": "Máquinas de reserva e rotação de conjuntos",
+      "detail": "Reportagem de 07/02/2020 publicada a 09/02 confirma várias máquinas disponíveis, malas seladas, identificação gravada de bolas e verificações por amostragem.",
+      "evidence": "Dernières Nouvelles d’Alsace, 09/02/2020",
+      "url": "https://www.dna.fr/culture-loisirs/2020/02/09/dans-les-coulisses-d-euromillions",
+      "scope": "visita presencial naquele sorteio",
+      "confidence": "reportagem-presencial"
+    },
+    {
+      "date": "2020-05-12",
+      "kind": "norma",
+      "title": "Regulamento permite métodos informáticos",
+      "detail": "Alteração publicada a 12/05/2020 prevê meios informáticos ou mecânicos sob fiscalização; não demonstra que algum concurso tenha utilizado o meio informático.",
+      "evidence": "Légifrance, JORFTEXT000041865593",
+      "url": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000041865593",
+      "scope": "faculdade jurídica, não modalidade empregada por concurso",
+      "confidence": "norma-oficial"
+    },
+    {
+      "date": "2025-09-24",
+      "kind": "procedimento",
+      "title": "FDJ documenta os bastidores contemporâneos",
+      "detail": "O operador descreve ensaios com bolas próprias, guarda em cofre, mala selada e intervenção do comissário de justiça. Sem identificação de séries, rotações ou lotes.",
+      "evidence": "FDJ, artigo oficial atualizado a 24/09/2025",
+      "url": "https://www.fdj.fr/mag/coulisses/article-coulisses-tirage-euromillions",
+      "scope": "procedimento geral divulgado em 2025",
+      "confidence": "fonte-oficial"
+    },
+    {
+      "date": "2026-11-17",
+      "kind": "estado-investigacao",
+      "title": "1 999 concursos; identificação individual pendente",
+      "detail": "Colunas de posição recuperadas em todos os concursos; nenhuma máquina ou conjunto de bolas ligado documentalmente a uma data específica.",
+      "evidence": "arquivos FDJ fornecidos + pesquisa atual",
+      "url": null,
+      "scope": "limitação do conhecimento atual",
+      "confidence": "limite-documental"
+    }
+  ],
+  "candidate_models": [
+    {
+      "name": "Stresa",
+      "manufacturer": "Ryo-Catteau",
+      "catalog_spec": "Esfera 700 mm e mistura por dupla rotação contrária; até 100 bolas",
+      "url": "https://www.ryo-catteau.com/en/stresa.htm",
+      "euromillions_specific_confirmed": false,
+      "reason": "Características genéricas do produto, sem prova de unidade específica usada pela FDJ num determinado sorteio."
+    },
+    {
+      "name": "Pâquerette",
+      "manufacturer": "Ryo-Catteau",
+      "catalog_spec": "Mistura por pás; produto comercial usa bolas de 40 mm",
+      "url": "https://www.ryo-catteau.com/en/paquerette.htm",
+      "euromillions_specific_confirmed": false,
+      "reason": "Referência de catálogo não confirma dimensão ou modelo do conjunto de estrelas EuroMillions de 2026."
+    }
+  ],
+  "unresolved": [
+    "Número de série da máquina A por concurso",
+    "Número de série da máquina B por concurso",
+    "Identificador do conjunto de 50 bolas e das estrelas",
+    "Certificados periódicos de massa, diâmetro, ressalto e calibração",
+    "Se e quando o meio informático foi efetivamente utilizado",
+    "Confirmação oficial de que boule_1..5 representa ordem física de saída"
+  ],
+  "causality_rule": "Não executar comparações antes/depois atribuídas a hardware sem data de troca verificável e identificação do equipamento."
+}
