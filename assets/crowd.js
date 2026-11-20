@@ -42,7 +42,7 @@ async function crowdInit(){
    const response=await fetch('data/modelo-popularidade-v14.json',{cache:'no-cache'});
    if(!response.ok)throw Error('HTTP '+response.status);
    crowdModel=await response.json();
-   if(crowdModel.version!=='1.4.0'||crowdModel.validation.validation_draws===0)throw Error('Estrutura do modelo incompatível.');
+   if(crowdModel.version!=='1.4.0'||!Number.isInteger(crowdModel.validation_draws)||crowdModel.validation_draws<100)throw Error('Estrutura do modelo incompatível.');
    status.textContent='Modelo experimental carregado · '+crowdModel.usable_draws+' sorteios · calibração até '+normalDate(crowdModel.calibration_end)+'.';
    document.getElementById('crowd-training').textContent=crowdModel.training_draws.toLocaleString('pt-PT');
    document.getElementById('crowd-validation').textContent=crowdModel.validation_draws.toLocaleString('pt-PT');
