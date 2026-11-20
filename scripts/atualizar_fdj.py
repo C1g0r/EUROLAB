@@ -121,6 +121,14 @@ def rows_from_zip(data: bytes):
         if (len(set(nraw)) != 5 or any(x < 1 or x > 50 for x in nraw)
                 or len(set(sraw)) != 2 or any(x < 1 or x > 12 for x in sraw)):
             raise ValueError("Combinação FDJ inválida: " + ds)
+        # O próprio arquivo FDJ fornece também a combinação por ordem crescente.
+        for field, expected in (("boules_gagnantes_en_ordre_croissant", sorted(nraw)),
+                                ("etoiles_gagnantes_en_ordre_croissant", sorted(sraw))):
+            value = row.get(field)
+            if value:
+                from_csv = sorted(map(int, re.findall(r"\d+", value)))
+                if from_csv != expected:
+                    raise ValueError("Sequência ordenada não corresponde às bolas: " + ds)
         parsed[ds] = (nraw, sraw, row, lineno)
     return parsed, len(reader.fieldnames)
 
