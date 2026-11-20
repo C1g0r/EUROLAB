@@ -17,3 +17,17 @@
 .strategy-layout .panel{min-width:0}.strategy-slider{padding:15px 0;border-bottom:1px solid #284948}.strategy-slider>div{display:flex;justify-content:space-between;gap:10px;color:#e3f7f0;font-size:12px;font-weight:650}.strategy-slider output{color:#78e5c0}.strategy-slider input{width:100%;accent-color:#56dbb6;margin:14px 0 7px}.strategy-slider small{color:#91b2b0;font-size:10px;line-height:1.4;display:block}
 .strategy-layout input[type=number],.strategy-layout input[type=text],.evidence-form input,.panel>input[id^="ev-"]{width:100%}.strategy-layout .field-grid{margin:16px 0}.strategy-layout .inline-actions{margin-top:20px}.strategy-layout .generated-entry{margin-top:12px}.strategy-layout .generated-entry .balls{gap:8px}.strategy-layout .generated-entry .ball{height:38px;width:38px;font-size:14px}.strategy-layout .generated-entry .ball.sep{width:15px}.lab-report{margin-top:20px}.lab-report .status-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.status-tile{padding:13px;border:1px solid #31504b;border-radius:9px;background:#152a2c}.status-tile small,.status-tile strong{display:block}.status-tile small{font-size:9px;color:#8da9a5}.status-tile strong{font-size:23px;color:#e5f8f2;margin-top:8px}.lab-report p{margin-top:13px}.ev-record{border-top:1px solid #2b4846;padding:14px 0;font-size:12px}.ev-record b{color:#c6f3e3}.ev-record small{color:#8fb3ab;display:block;margin-top:5px}.evidence-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0}.evidence-form input,.evidence-form select{min-width:0}.panel textarea{display:block;width:100%;min-height:70px;background:#112426;border:1px solid #365352;border-radius:7px;color:#e5f7f0;padding:11px;font:inherit;margin:8px 0}
 @media(max-width:1050px){.strategy-layout{grid-template-columns:1fr}}@media(max-width:560px){.evidence-form,.lab-report .status-grid{grid-template-columns:1fr}.strategy-layout .generated-entry .ball{height:31px;width:31px;font-size:11px}.strategy-layout .generated-entry .balls{gap:4px}}
+
+/* EUROLAB v1.3 — comparação de estratégias */
+.cmp-filters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.cmp-filters>div{min-width:0}
+.cmp-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 18px}
+.cmp-kpi{border:1px solid #254745;border-radius:10px;padding:18px;background:#102325;min-width:0}
+.cmp-kpi small{color:#91b1b0;font-size:10px;letter-spacing:.6px;display:block;line-height:1.4}
+.cmp-kpi strong{display:block;color:#eafff8;font-size:25px;padding-top:8px;font-variant-numeric:tabular-nums}
+.cmp-table th,.cmp-table td{white-space:nowrap}
+.cmp-table td small{font-size:10px;display:block;color:#94aeae;padding-top:4px;font-weight:400}
+.cmp-chart-wrap{background:#0e1f22;border-radius:12px;padding:14px;margin:14px 0 24px;border:1px solid #244347}
+.cmp-linechart{width:100%;display:block;max-height:360px}
+@media(max-width:900px){.cmp-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.cmp-filters{grid-template-columns:1fr}.cmp-kpi{padding:13px}.cmp-kpi strong{font-size:20px}.cmp-chart-wrap{padding:6px}}
