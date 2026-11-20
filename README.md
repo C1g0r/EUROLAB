@@ -20,7 +20,7 @@ A Chave 2 não está incluída no ranking de acertos da Chave 1, porque foi dese
 
 **Limites científicos:** nenhuma abordagem mostrou vantagem confirmada para acertar ou para ganhar dinheiro; a melhor pontuação num backtest não significa maior probabilidade futura. O indicador Crowd não é uma probabilidade individual de partilha de prémio e a melhoria de 44,3% referida na investigação é relativa ao erro de uma razão agregada de vencedores, não às hipóteses de ganhar.
 
-**Verificação:** `node tests/duas-chaves.test.cjs`, `node --check assets/selecao-core.js`.
+**Verificação:** `node tests/duas-chaves.test.cjs`, `node --check assets/selecao-core.js`. Relatório técnico e resultados reproduzíveis: [RELATORIO_V17.md](RELATORIO_V17.md).
 
 **Investigação anterior:** [painel-investigacao.html](painel-investigacao.html).
 
