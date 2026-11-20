@@ -7,11 +7,13 @@
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/app.js" defer></script>
 <script src="assets/strategy.js" defer></script>
+<script src="assets/comparacao-core.js" defer></script>
+<script src="assets/comparacao.js" defer></script>
 </head>
 <body>
 <div class="shell">
  <aside class="sidebar">
-  <div class="brand"><div class="brand-symbol">✳</div><div><strong>EURO<span>LAB</span></strong><small>LABORATÓRIO · V1.2</small></div></div>
+  <div class="brand"><div class="brand-symbol">✳</div><div><strong>EURO<span>LAB</span></strong><small>LABORATÓRIO · V1.3</small></div></div>
   <div class="nav-title">INVESTIGAÇÃO</div>
   <nav class="nav" aria-label="Navegação principal">
    <button class="nav-link active" data-route="inicio"><span>◫</span> Visão geral</button>
@@ -19,6 +21,7 @@
    <button class="nav-link" data-route="cofre"><span>▣</span> Cofre de chaves <em>NOVO</em></button>
    <button class="nav-link" data-route="validacao"><span>◈</span> Testar métodos</button>
    <button class="nav-link" data-route="estrategia"><span>◎</span> Estratégia personalizada <em>NOVO</em></button>
+   <button class="nav-link" data-route="comparacao"><span>≋</span> Comparar estratégias <em>NOVO</em></button>
    <button class="nav-link" data-route="historico"><span>▤</span> Histórico</button>
    <button class="nav-link" data-route="estatisticas"><span>▥</span> Estatísticas</button>
    <button class="nav-link" data-route="ciencia"><span>⌁</span> Testes científicos</button>
@@ -86,6 +89,32 @@
      </article>
     </div>
     <article class="panel"><div class="eyebrow">METODOLOGIA E LIMITAÇÕES</div><h2>Como interpretar os resultados</h2><div class="method-grid"><div><b>Sem fuga de dados</b><small>Janelas anteriores a cada sorteio; sem utilizar a combinação que está a ser avaliada.</small></div><div><b>Referência simulada</b><small>500 sequências aleatórias de resultados independentes confrontadas com as chaves previstas. Valores exploratórios, não prova de vantagem.</small></div><div><b>Evitar sobreajuste</b><small>Se ajustares os parâmetros depois de observar o teste, o resultado deixa de ser uma confirmação independente. Reserva um período futuro.</small></div><div><b>Jogo responsável</b><small>O laboratório não compra apostas, não prevê números vencedores e não justifica aumentar gastos em jogos de sorte.</small></div></div></article>
+   </section>
+
+   <section data-screen="comparacao" class="screen hidden">
+    <div class="page-title"><div class="eyebrow">EUROLAB · V1.3 · AVALIAÇÃO COMPARATIVA</div><h1>Comparar <em>estratégias.</em></h1><p>Os cinco métodos do gerador, avaliados nas mesmas datas e com a mesma janela histórica, sem conhecer o sorteio futuro.</p></div>
+    <div class="notice"><strong>Importante:</strong> o método com mais acertos nesta amostra não é necessariamente melhor no próximo sorteio. Comparação exploratória; não há vantagem preditiva demonstrada.</div>
+    <article class="panel"><div class="panel-head"><h2>Configurar comparação</h2><span class="pill">REGIME 12 ESTRELAS</span></div>
+      <div class="filters cmp-filters">
+       <div><label class="field-label" for="cmp-window">Janela histórica anterior</label><select id="cmp-window"><option value="100">100 sorteios</option><option value="250" selected>250 sorteios</option><option value="500">500 sorteios</option></select></div>
+       <div><label class="field-label" for="cmp-count">Período avaliado</label><select id="cmp-count"><option value="120">Últimos 120</option><option value="250" selected>Últimos 250</option><option value="500">Últimos 500</option></select></div>
+       <div><label class="field-label" for="cmp-seed">Semente reproduzível</label><input id="cmp-seed" type="number" min="0" max="4294967295" step="1" value="20261120"></div>
+      </div>
+      <div class="inline-actions"><button class="primary big" id="cmp-run">◈ Comparar cinco estratégias</button><button class="outline" id="cmp-export-json" disabled>Exportar JSON</button><button class="outline" id="cmp-export-csv" disabled>Exportar CSV</button></div>
+    </article>
+    <article class="panel"><div class="panel-head"><h2>Resultados comparáveis</h2><span class="pill">SEM PREVISÃO</span></div><div id="cmp-results" aria-live="polite" class="muted">Escolhe os parâmetros e prime «Comparar cinco estratégias».</div></article>
+    <article class="panel hidden" id="cmp-chart-panel">
+      <div class="panel-head"><div><div class="eyebrow">ANÁLISE TEMPORAL</div><h2>Acertos acumulados vs. acaso</h2></div><div><label class="field-label" for="cmp-chart-mode">Estratégia</label><select id="cmp-chart-mode" aria-label="Selecionar método para o gráfico"></select></div></div>
+      <p class="muted tiny">Diferença acumulada entre acertos individuais e 0,5 números esperados por concurso. A variabilidade é normal em processos aleatórios.</p>
+      <div id="cmp-chart" class="cmp-chart-wrap"></div>
+      <h2>Comparação por ano</h2><div id="cmp-year-table" class="bt-table-wrap"></div>
+    </article>
+    <article class="panel"><h2>Como interpretar</h2><div class="method-grid">
+      <div><b>Sem fuga temporal</b><small>Cada escolha usa exclusivamente os concursos anteriores à data avaliada.</small></div>
+      <div><b>Mesma amostra</b><small>Os cinco métodos usam datas e janelas iguais.</small></div>
+      <div><b>Acertos não são prémios</b><small>O número de correspondências não equivale a lucro ou acerto do jackpot.</small></div>
+      <div><b>Evitar sobreajuste</b><small>Repetir testes e escolher depois o método melhor não prova capacidade preditiva; é necessário validar em sorteios futuros.</small></div>
+    </div></article>
    </section>
    <section data-screen="historico" class="screen hidden"><div class="page-title"><div class="eyebrow">ARQUIVO · 2004—2026</div><h1>Todos os <em>sorteios.</em></h1><p>Consulta os 1 999 resultados, incluindo a sequência original registada no CSV.</p></div><article class="panel"><div class="filters"><div><label class="field-label" for="history-year">Ano</label><select id="history-year"><option value="all">Todos os anos</option></select></div><div><label class="field-label" for="history-search">Pesquisar por data ou número</label><input id="history-search" placeholder="Ex.: 17/11/2026 ou 44"></div><div><label class="field-label" for="history-order">Ordem</label><select id="history-order"><option value="new">Mais recentes</option><option value="old">Mais antigos</option></select></div></div><div class="panel-head compact"><div class="muted tiny" id="history-count"></div><button class="text-action" id="history-export">Exportar resultados filtrados ↓</button></div><div id="history-table" class="history-table"></div><div class="pager"><button id="history-prev" class="outline">← Anteriores</button><span id="history-page">—</span><button id="history-next" class="outline">Seguintes →</button></div></article></section>
    <section data-screen="estatisticas" class="screen hidden"><div class="page-title"><div class="eyebrow">DISTRIBUIÇÕES E FREQUÊNCIAS</div><h1>Estatísticas <em>interativas.</em></h1><p>Compara períodos sem misturar indevidamente as diferentes regras das estrelas.</p></div><article class="panel"><div class="filters"><div><label class="field-label" for="stats-period">Período</label><select id="stats-period"><option value="all">Todo o histórico</option><option value="2004-2011">2004–2011</option><option value="2011-2016">2011–2016</option><option value="2016-2026">2016–2026</option><option value="2026">Só 2026</option></select></div><div><label class="field-label" for="stats-sort">Ordenação</label><select id="stats-sort"><option value="freq">Mais frequentes</option><option value="asc">Menos frequentes</option><option value="num">Ordem numérica</option></select></div></div><div class="inline-stat"><b id="stats-size">—</b><span>sorteios no período selecionado</span><span class="pill" id="stats-starsmax">— estrelas disponíveis</span></div><div class="panel-head"><h2>Frequência dos 50 números</h2><small class="muted">Participações / sorteios</small></div><div class="freq-grid" id="main-frequency"></div><div class="separator"></div><div class="panel-head"><h2>Frequência das estrelas</h2><small class="muted">Regime correto para cada data</small></div><div class="freq-grid stars-grid" id="star-frequency"></div><p class="muted tiny" id="stats-disclaimer"></p></article></section>
