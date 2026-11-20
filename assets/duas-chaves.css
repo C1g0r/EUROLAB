@@ -75,3 +75,14 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #f5
 .ticket-note{line-height:1.45;max-width:275px}
 .method-desc{min-height:67px}
 @media(max-width:700px){.method-desc{min-height:0}.ticket-note{max-width:none}}
+
+/* EUROLAB v1.7 — classificação visível apenas a pedido. */
+.ranking-scroll{width:100%;overflow-x:auto;margin:16px 0 14px;border:1px solid #2b4c43;border-radius:9px}
+.ranking-table{width:100%;border-collapse:collapse;text-align:left;font-size:12px;min-width:420px;font-variant-numeric:tabular-nums}
+.ranking-table th,.ranking-table td{padding:11px 12px;border-bottom:1px solid #27453e}
+.ranking-table th{color:#a5cabc;background:#15352c;font-size:11px}
+.ranking-table tbody tr:last-child td{border-bottom:0}
+.ranking-table td:not(:first-child){text-align:right}
+.ranking-table th:not(:first-child){text-align:right}
+.ranking-selected{background:#1b4034;color:#91ffcc;font-weight:750}
+.ranking-summary{color:#91d8c0;font-weight:700;margin-top:14px}
