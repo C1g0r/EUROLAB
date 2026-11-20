@@ -24,7 +24,15 @@ jobs:
           node --check assets/strategy.js
           node --check assets/comparacao-core.js
           node --check assets/comparacao.js
+          node --check assets/crowd-core.js
+          node --check assets/crowd.js
       - name: Testes da comparação
         run: node tests/comparacao.test.cjs
+      - name: Testes do indicador de popularidade
+        run: node tests/crowd.test.cjs
+      - name: Reproduzir calibração das contagens de vencedores
+        run: python3 scripts/popularidade_lab.py
+      - name: Testar atualizador FDJ sem rede
+        run: python3 tests/test_atualizador_fdj.py
       - name: Verificar histórico e JSON
         run: python3 tests/verificar_dados.py
