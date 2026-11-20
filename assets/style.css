@@ -31,3 +31,16 @@
 .cmp-linechart{width:100%;display:block;max-height:360px}
 @media(max-width:900px){.cmp-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.cmp-filters{grid-template-columns:1fr}.cmp-kpi{padding:13px}.cmp-kpi strong{font-size:20px}.cmp-chart-wrap{padding:6px}}
+
+/* EUROLAB v1.4 — Crowd Intelligence */
+.crowd-card{margin-top:22px;padding:18px;background:#102627;border:1px solid #2b5450;border-radius:13px}
+.crowd-result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:17px 0}
+.crowd-result-grid>div{background:#0d1b20;border:1px solid #244340;border-radius:8px;padding:13px;min-width:0}
+.crowd-result-grid small{display:block;color:#96b7b3;font-size:10px;line-height:1.4;letter-spacing:.5px}
+.crowd-result-grid strong{display:block;font-size:20px;padding-top:7px}
+.crowd-vault-list{display:grid;gap:9px;margin:15px 0}
+.crowd-vault-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px;background:#102426;border:1px solid #294846;border-radius:10px}
+.crowd-vault-row .ball{width:30px;height:30px;font-size:11px}
+.crowd-vault-row .balls{flex:1;min-width:225px;gap:5px}
+.crowd-vault-row>span{font-size:11px;color:#9fd6c9;white-space:nowrap}
+@media(max-width:520px){.crowd-result-grid{grid-template-columns:1fr 1fr;gap:7px}.crowd-result-grid>div{padding:9px}.crowd-result-grid strong{font-size:16px}.crowd-vault-row .balls{min-width:0}}
