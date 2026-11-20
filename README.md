@@ -1,7 +1,24 @@
-# EUROLAB v1.5 — Duas chaves, dois métodos
+# EUROLAB v1.6 — Duas chaves geradas por modelos estatísticos
 
 Aplicação web **local e online**, em português de Portugal, que reúne o histórico de **1 999 sorteios** (13/02/2004 a 17/11/2026) dos seis arquivos ZIP fornecidos pelo utilizador. O histórico inicial termina em 17/11/2026; a v1.4 acrescenta atualização programada com validação rigorosa. Consulta o painel para confirmar a última data incluída.
 
+## Regra principal — os dois geradores utilizam modelos do EUROLAB
+
+**Página principal:** https://c1g0r.github.io/EUROLAB/
+
+**Chave 1: Frequências históricas (modelo «frequentes», desenvolvido na v1.1).** Lê os 250 concursos mais recentes do regime das 12 estrelas em `data/dados-validados.json`. Para cada número principal e estrela, conta ocorrências e atribui pesos entre 1 e 5 pela transformação `1 + 4 × (frequência − mínima)/(máxima − mínima)`. Com todas as frequências iguais, todos os pesos são 1. Amostragem aleatória ponderada sem reposição. Não é previsão do sorteio.
+
+**Chave 2: Crowd Intelligence (modelo v1.4).** Lê diretamente `data/modelo-popularidade-v14.json`. Usa o coeficiente de calendário (aproximadamente +0,0462588) derivado de uma razão agregada entre escalões de vencedores. Para cada grupo com `d` números entre 1 e 31, pondera `C(N_1_31,d) × C(N_32_50,5-d) × exp(−coeficiente × (d − 3))`, sendo `N` as quantidades ainda disponíveis depois da Chave 1. Admite apenas grupos com pelo menos 80 observações na calibração. Sorteia cinco números e duas estrelas que não constem da primeira chave. As estrelas não recebem pesos Crowd, porque esse modelo não contém dados sobre preferências por estrelas.
+
+Ambas utilizam `crypto.getRandomValues` no navegador. O histórico e o modelo Crowd são **obrigatórios**: caso falhem, a aplicação não apresenta chaves supostamente científicas nem substitui o método por aleatoriedade uniforme. As chaves guardadas na versão anterior não são reutilizadas automaticamente. A página mostra a data do histórico, a categoria Crowd e o respetivo índice agregado.
+
+**Limitações:** nenhum dos modelos demonstrou vantagem para prever os números vencedores. O indicador Crowd é uma associação de vencedores por categoria, não mede popularidade individual nem prova redução no risco de partilha de prémios. O fator 44,3% é uma melhoria de erro num modelo agregado, não de probabilidade de ganhar.
+
+**Testes automáticos:** `node tests/duas-chaves.test.cjs`, incluindo dependência real dos pesos históricos, sensibilidade ao coeficiente Crowd, 1 500 pares válidos, rejeição de fontes em falta e ausência de repetições.
+
+**Investigação anterior preservada:** [painel-investigacao.html](painel-investigacao.html).
+
+---
 ## Iniciar no Mac
 
 1. Descompactar este ZIP na pasta Downloads.
