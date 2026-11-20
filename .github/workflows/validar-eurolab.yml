@@ -1,0 +1,30 @@
+name: Validar EUROLAB
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obter código
+        uses: actions/checkout@v4
+      - name: Preparar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Sintaxe JavaScript
+        run: |
+          node --check assets/app.js
+          node --check assets/strategy.js
+          node --check assets/comparacao-core.js
+          node --check assets/comparacao.js
+      - name: Testes da comparação
+        run: node tests/comparacao.test.cjs
+      - name: Verificar histórico e JSON
+        run: python3 tests/verificar_dados.py
