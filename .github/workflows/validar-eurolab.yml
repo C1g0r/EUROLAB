@@ -26,6 +26,10 @@ jobs:
           node --check assets/comparacao.js
           node --check assets/crowd-core.js
           node --check assets/crowd.js
+          node --check assets/duas-chaves-core.js
+          node --check assets/duas-chaves.js
+      - name: Testar a geração de duas chaves
+        run: node tests/duas-chaves.test.cjs
       - name: Testes da comparação
         run: node tests/comparacao.test.cjs
       - name: Testes do indicador de popularidade
