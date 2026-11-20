@@ -26,6 +26,7 @@ jobs:
           node --check assets/comparacao.js
           node --check assets/crowd-core.js
           node --check assets/crowd.js
+          node --check assets/selecao-core.js
           node --check assets/duas-chaves-core.js
           node --check assets/duas-chaves.js
       - name: Testar a geração de duas chaves
