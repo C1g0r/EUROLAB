@@ -1,6 +1,5 @@
-/* EUROLAB v1.6 — duas chaves diretamente ligadas aos modelos científicos.
-   Modelo 1: getW(frequentes) v1.1; modelo 2: crowd-calendar v1.4.
-   Ambos exploratórios. Não predizem o sorteio nem a partilha de prémios. */
+/* EUROLAB v1.7 — Chave 1 usa o modelo vencedor de backtests reproduzíveis;
+   Chave 2 usa modelo Crowd experimental. Não provam capacidade preditiva. */
 (function(root,factory){
  'use strict';
  const api=factory();
@@ -13,7 +12,8 @@
  const HIST_WINDOW=250;
  const CROWD_MIN_OBSERVATIONS=80;
  const RNG_SCALE=16777216; // 2^24 sorteios discretos, fonte criptográfica no navegador.
- const firstId='frequentes-v11',secondId='crowd-calendar-v14';
+ const methods=['aleatorio','frequentes','raros','equilibrado','antidatas'];
+ const firstId='walk-forward-v17',secondId='crowd-calendar-v14';
 
  function validSet(v,n,max){
    return Array.isArray(v)&&v.length===n&&v.every(x=>Number.isInteger(x)&&x>=1&&x<=max)&&new Set(v).size===n;
@@ -53,6 +53,28 @@
    const vals=pool.map(x=>counts[x]),lo=Math.min(...vals),hi=Math.max(...vals),spread=hi-lo||1;
    return pool.map(x=>1+4*(counts[x]-lo)/spread);
  }
+ function generateMode(mode,past,randomIndex){
+   if(!methods.includes(mode)||!Array.isArray(past)||past.length!==HIST_WINDOW)
+     throw Error('Estratégia ou janela histórica inválida.');
+   const numbersWeights=mode==='frequentes'?historicalWeights(MAIN,past,'numbers'):
+      mode==='raros'?historicalWeights(MAIN,past,'numbers').map(x=>6-x):
+      mode==='antidatas'?MAIN.map(x=>x>31?2.8:0.6):MAIN.map(()=>1);
+   const starsWeights=mode==='frequentes'?historicalWeights(STARS,past,'stars'):
+      mode==='raros'?historicalWeights(STARS,past,'stars').map(x=>6-x):STARS.map(()=>1);
+   const attempt=()=>({numbers:weightedPick(MAIN,5,numbersWeights,randomIndex),
+                        stars:weightedPick(STARS,2,starsWeights,randomIndex)});
+   for(let i=0;i<700;i++){
+     const candidate=attempt(),ns=candidate.numbers;
+     if(mode==='equilibrado'){
+       const odd=ns.filter(x=>x%2!==0).length,span=ns[4]-ns[0];
+       const decades=new Set(ns.map(x=>Math.floor((x-1)/10))).size;
+       if(!([2,3].includes(odd)&&span>=20&&decades>=3))continue;
+     }
+     if(mode==='antidatas'&&ns.filter(x=>x>31).length<3)continue;
+     return candidate;
+   }
+   return attempt(); // mesma salvaguarda do gerador v1.1
+ }
  function cleanHistory(history){
    const draws=Array.isArray(history)?history:history?.draws;
    if(!Array.isArray(draws))throw Error('Histórico validado indisponível.');
@@ -85,10 +107,8 @@
    let dates=numbers.filter(x=>x<=31).length;
    return Math.exp(model.coefficients.calendar_number*(dates-model.reference_calendar_count));
  }
- function makeFirst(past,randomIndex){
-   const numbers=weightedPick(MAIN,5,historicalWeights(MAIN,past,'numbers'),randomIndex);
-   const stars=weightedPick(STARS,2,historicalWeights(STARS,past,'stars'),randomIndex);
-   return {numbers,stars};
+ function makeFirst(past,randomIndex,selectedMethod){
+   return generateMode(selectedMethod,past,randomIndex);
  }
  function makeSecond(first,model,randomIndex){
    const used=new Set(first.numbers),low=MAIN.filter(x=>x<=31&&!used.has(x)),
@@ -115,20 +135,35 @@
    if(!validSet(a.numbers,5,50)||!validSet(a.stars,2,12)||
       !validSet(b.numbers,5,50)||!validSet(b.stars,2,12))return false;
    if(a.numbers.some(x=>b.numbers.includes(x))||a.stars.some(x=>b.stars.includes(x)))return false;
-   if(m.first!==firstId||m.second!==secondId||m.window!==HIST_WINDOW||
+   if(m.first!==firstId||!methods.includes(m.selected_method)||m.selector_version!=='1.7'||
+      m.evaluation_draws!==250||m.evaluation_seeds!==5||
+      !Number.isFinite(m.evaluation_score)||!Number.isFinite(m.baseline_score)||
+      typeof m.evaluation_from!=='string'||m.evaluation_until!==m.history_end||
+      m.second!==secondId||m.window!==HIST_WINDOW||
       typeof m.history_end!=='string'||typeof m.crowd_calibrated_until!=='string'||
       !Number.isFinite(m.crowd_relative_index)||m.crowd_relative_index<=0||
       !Number.isInteger(m.crowd_dates)||m.crowd_dates!==b.numbers.filter(x=>x<=31).length||
       m.crowd_support<CROWD_MIN_OBSERVATIONS)return false;
    return true;
  }
- function generate(history,crowdModel,randomIndex){
+ function generate(history,crowdModel,randomIndex,selection){
    if(typeof randomIndex!=='function')throw Error('Fonte aleatória criptográfica indisponível.');
    const past=cleanHistory(history),model=checkCrowd(crowdModel);
-   const first=makeFirst(past,randomIndex),second=makeSecond(first,model,randomIndex);
+   if(!selection||selection.version!=='1.7'||!methods.includes(selection.selected)||
+      selection.window!==HIST_WINDOW||selection.draws_evaluated!==250||
+      selection.seeds!==5||selection.history_end!==past[0].date||
+      selection.eval_until!==past[0].date||
+      !Number.isFinite(selection.selected_score)||!Number.isFinite(selection.baseline_score))
+      throw Error('Avaliação comparativa dos métodos indisponível ou desatualizada.');
+   const first=makeFirst(past,randomIndex,selection.selected),
+         second=makeSecond(first,model,randomIndex);
    const dates=second.numbers.filter(x=>x<=31).length;
    const pair={first,second,models:{
-     first:firstId,second:secondId,window:HIST_WINDOW,
+     first:firstId,selected_method:selection.selected,selector_version:selection.version,
+     evaluation_draws:selection.draws_evaluated,evaluation_seeds:selection.seeds,
+     evaluation_score:selection.selected_score,baseline_score:selection.baseline_score,
+     evaluation_from:selection.eval_from,evaluation_until:selection.eval_until,
+     second:secondId,window:HIST_WINDOW,
      history_end:past[0].date,
      crowd_calibrated_until:model.calibration_end,
      crowd_dates:dates,
@@ -143,6 +178,6 @@
    return key.numbers.map(n=>String(n).padStart(2,'0')).join(' · ')+'   +   '+
      key.stars.map(n=>String(n).padStart(2,'0')).join(' · ');
  }
- return {generate,validate,format,historicalWeights,crowdIndex,cleanHistory,
-         MODEL_1:firstId,MODEL_2:secondId,HIST_WINDOW,CROWD_MIN_OBSERVATIONS};
+ return {generate,generateMode,validate,format,historicalWeights,crowdIndex,cleanHistory,
+         MODEL_1:firstId,MODEL_2:secondId,HIST_WINDOW,CROWD_MIN_OBSERVATIONS,methods};
 });
