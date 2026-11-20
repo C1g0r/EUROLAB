@@ -63,3 +63,14 @@ python3 tests/verificar_dados.py
 ```
 
 A publicação no GitHub foi efetuada no repositório privado `C1g0r/EUROLAB`. A aplicação continua local, via `INICIAR-EUROLAB.command` e `http://127.0.0.1:8765`; ainda não está publicada em GitHub Pages.
+
+
+## Abrir o EUROLAB diretamente no navegador — GitHub Pages
+
+Foi criado o workflow `.github/workflows/publicar-pages.yml` para preparar e publicar a web app sempre que a branch `main` recebe alterações. O endereço previsto é **https://c1g0r.github.io/EUROLAB/**, mas só passa a funcionar após ativação no GitHub.
+
+**Ativação manual necessária:** no repositório, abrir **Settings → Pages → Build and deployment → Source → GitHub Actions**. Em seguida, consultar **Actions → Publicar EUROLAB no GitHub Pages**; se não iniciar automaticamente, escolher **Run workflow**.
+
+**Atenção à visibilidade:** o repositório é privado. No plano GitHub Free, o Pages exige repositório público; para manter o repositório privado é necessário um plano GitHub compatível (por exemplo, Pro). O site de GitHub Pages, quando publicado com configuração normal, fica acessível publicamente mesmo com o código privado.
+
+O workflow publica apenas os ficheiros HTML, CSS e JavaScript da interface, os JSON e CSV necessários ao funcionamento e a documentação explicitamente referenciada. Os seis ZIP originais, scripts de manutenção e pastas internas não são enviados como ficheiros públicos do Pages. **Nunca colocar credenciais ou dados pessoais em ficheiros que a aplicação disponibilize publicamente.**
