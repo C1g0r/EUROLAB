@@ -68,3 +68,10 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #f5
 @media(max-width:700px){.site{padding:0 17px}.header{height:90px}.header-caption{display:none}.intro{padding:40px 0 28px}h1{letter-spacing:-2px}.ticket-grid{grid-template-columns:1fr;gap:15px}.ticket{padding:24px 20px}.method-desc{min-height:unset}.ticket-body{padding:20px 0 25px}.ticket-foot{padding-top:16px}.actions{margin-top:23px}.methodology{margin-top:29px;margin-bottom:35px}.footer{align-items:flex-start;flex-direction:column;padding:22px 0 28px}}
 @media(max-width:370px){.ticket{padding:21px 15px}.ball{flex-basis:40px;height:40px;font-size:14px}.ball-line{gap:6px}.method-pill{font-size:8px;padding:7px 8px}h2{font-size:21px}.intro p{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.generate-button{transition:none}}
+
+/* v1.6 — nomes e evidência dos modelos. */
+.model-signal{margin:0 0 17px;padding:11px 13px;background:#152e2a;
+ color:#abd7c6;border:1px solid #34594e;border-radius:9px;font-size:11px;line-height:1.5}
+.ticket-note{line-height:1.45;max-width:275px}
+.method-desc{min-height:67px}
+@media(max-width:700px){.method-desc{min-height:0}.ticket-note{max-width:none}}
