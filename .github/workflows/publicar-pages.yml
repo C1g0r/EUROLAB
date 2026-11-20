@@ -32,6 +32,7 @@ jobs:
           cp index.html laboratorio-avancado.html _site/
           cp assets/*.js assets/*.css _site/assets/
           cp data/*.json data/*.csv _site/data/
+          cp ARQUITETURA_FUTURA_WEBAPP.md RELATORIO_V08.md _site/
           touch _site/.nojekyll
           # Não publicar ZIP originais, scripts internos, testes, diários locais nem ficheiros Git.
           test -s _site/index.html
