@@ -1,6 +1,6 @@
-# EUROLAB v1.3 — Investigação, geração e comparação de estratégias
+# EUROLAB v1.4 — Crowd Intelligence e atualização controlada FDJ
 
-Aplicação web **local**, em português de Portugal, que reúne o histórico de **1 999 sorteios** (13/02/2004 a 17/11/2026) dos seis arquivos ZIP fornecidos pelo utilizador. **Não** inclui o sorteio de 20/11/2026 e **não** se atualiza automaticamente.
+Aplicação web **local e online**, em português de Portugal, que reúne o histórico de **1 999 sorteios** (13/02/2004 a 17/11/2026) dos seis arquivos ZIP fornecidos pelo utilizador. O histórico inicial termina em 17/11/2026; a v1.4 acrescenta atualização programada com validação rigorosa. Consulta o painel para confirmar a última data incluída.
 
 ## Iniciar no Mac
 
@@ -12,6 +12,20 @@ Aplicação web **local**, em português de Portugal, que reúne o histórico de
 Se o macOS bloquear o atalho: no Terminal escrever `bash ` (incluindo espaço), arrastar o ficheiro `.command` para a janela e premir Enter. **Não** executar `python3 -m http.server` na pasta pessoal (`~`), porque o servidor tem de iniciar na pasta que contém `index.html`.
 
 Se a porta 8765 estiver ocupada por uma versão anterior, fecha o respetivo Terminal e volta a executar o atalho. A porta fixa é importante para preservar o Cofre e as configurações guardadas no navegador.
+
+## Novidades da v1.4
+
+- **Popularidade experimental:** nova secção para analisar uma chave ou comparar o Cofre pelo indicador associado à quantidade de números entre 1–31. Não é a popularidade individual da chave nem a probabilidade de dividir prémios.
+- **Validação temporal:** 1 058 concursos elegíveis, 757 de treino e 301 de validação (2024–2026). Redução relativa do erro quadrático médio: 44,3% face a um modelo constante.
+- **Reprodutibilidade:** modelo publicado em data/modelo-popularidade-v14.json e script scripts/popularidade_lab.py.
+- **Atualizador FDJ:** scripts/atualizar_fdj.py acrescenta exclusivamente concursos novos após verificar a fonte, sobreposição histórica, combinações, datas e contagens financeiras.
+- **Agendamento:** .github/workflows/atualizar-fdj.yml procura atualizações nas noites dos sorteios e nas manhãs seguintes. Se existirem dados validados, faz commit e pede nova publicação Pages.
+- **Arquivos originais preservados:** os seis ZIP antigos não são modificados; os novos ficam separados em fontes/atualizacoes.
+- **Testes automáticos:** verificação cronológica, chaves, modelo e importação simulada em GitHub Actions.
+
+**Site público:** https://c1g0r.github.io/EUROLAB/
+
+**Importante:** nenhuma estratégia demonstrou prever as bolas. A atualização depende da disponibilidade do arquivo FDJ e da aprovação automática de todos os testes. Consulta o painel para confirmar a última data efetivamente incorporada. O indicador de popularidade permanece calibrado até 17/11/2026, mesmo que o histórico avance.
 
 ## Novidades da v1.3
 
@@ -50,7 +64,7 @@ Relatórios técnicos: `RELATORIO_V12.md` e `RELATORIO_V13.md`. Sem dependência
 
 ## Código-fonte e atualizações no GitHub
 
-Ver [`GUIA-GITHUB.md`](GUIA-GITHUB.md) para publicar este projeto no repositório privado `C1g0r/EUROLAB`, executar testes de integridade e enviar as próximas alterações. O projeto inclui histórico de commits, tag `v1.2.0` e workflow de validação.
+Ver [`GUIA-GITHUB.md`](GUIA-GITHUB.md) para publicar este projeto no repositório público `C1g0r/EUROLAB`, executar testes de integridade e enviar as próximas alterações. O projeto inclui histórico Git e workflows de validação, atualização FDJ e publicação Pages.
 
 
 ## Verificar a versão 1.3
@@ -62,15 +76,28 @@ node tests/comparacao.test.cjs
 python3 tests/verificar_dados.py
 ```
 
-A publicação no GitHub foi efetuada no repositório privado `C1g0r/EUROLAB`. A aplicação continua local, via `INICIAR-EUROLAB.command` e `http://127.0.0.1:8765`; ainda não está publicada em GitHub Pages.
+A aplicação está disponível no GitHub Pages e pode também ser aberta localmente com `INICIAR-EUROLAB.command`.
 
 
 ## Abrir o EUROLAB diretamente no navegador — GitHub Pages
 
-Foi criado o workflow `.github/workflows/publicar-pages.yml` para preparar e publicar a web app sempre que a branch `main` recebe alterações. O endereço previsto é **https://c1g0r.github.io/EUROLAB/**, mas só passa a funcionar após ativação no GitHub.
+Foi criado o workflow `.github/workflows/publicar-pages.yml` para preparar e publicar a web app sempre que a branch `main` recebe alterações. O endereço público é **https://c1g0r.github.io/EUROLAB/**.
 
 **Ativação manual necessária:** no repositório, abrir **Settings → Pages → Build and deployment → Source → GitHub Actions**. Em seguida, consultar **Actions → Publicar EUROLAB no GitHub Pages**; se não iniciar automaticamente, escolher **Run workflow**.
 
-**Atenção à visibilidade:** o repositório é privado. No plano GitHub Free, o Pages exige repositório público; para manter o repositório privado é necessário um plano GitHub compatível (por exemplo, Pro). O site de GitHub Pages, quando publicado com configuração normal, fica acessível publicamente mesmo com o código privado.
+**Atenção à visibilidade:** o repositório é público. No plano GitHub Free, o Pages exige repositório público; para manter o repositório privado é necessário um plano GitHub compatível (por exemplo, Pro). O site de GitHub Pages, quando publicado com configuração normal, fica acessível publicamente mesmo com o código privado.
 
 O workflow publica apenas os ficheiros HTML, CSS e JavaScript da interface, os JSON e CSV necessários ao funcionamento e a documentação explicitamente referenciada. Os seis ZIP originais, scripts de manutenção e pastas internas não são enviados como ficheiros públicos do Pages. **Nunca colocar credenciais ou dados pessoais em ficheiros que a aplicação disponibilize publicamente.**
+
+## Verificação da v1.4
+
+```bash
+node --check assets/crowd-core.js
+node --check assets/crowd.js
+node tests/crowd.test.cjs
+python3 scripts/popularidade_lab.py
+python3 tests/test_atualizador_fdj.py
+python3 tests/verificar_dados.py
+```
+
+Relatório técnico: RELATORIO_V14.md.
