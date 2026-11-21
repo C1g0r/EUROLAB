@@ -1,0 +1,11 @@
+{
+  "source_url": "https://www.fdj.fr/jeux-de-tirage/euromillions-my-million/historique",
+  "archive_name": "fdj-2026-11-20-58a6f42c5a.zip",
+  "archive_sha256": "58a6f42c5a65a16d2d54829335fe896147a6b0b8924c35914c48163002bf71d7",
+  "dates_added": [
+    "2026-11-20"
+  ],
+  "last_validated": "2026-11-20",
+  "checked_at": "2026-11-21",
+  "mode": "append-only; source FDJ; overlap and weekday validation"
+}

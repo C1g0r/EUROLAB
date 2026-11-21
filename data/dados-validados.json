@@ -7,18 +7,19 @@
       "euromillions_3.zip/euromillions_3.csv",
       "euromillions_4.zip/euromillions_4.csv",
       "euromillions_201902.zip/euromillions_201902.csv",
-      "euromillions_202002.zip/euromillions_202002.csv"
+      "euromillions_202002.zip/euromillions_202002.csv",
+      "fontes/atualizacoes/fdj-2026-11-20-58a6f42c5a.zip"
     ],
-    "imported": 1999,
+    "imported": 2000,
     "rejected": 0,
     "duplicates": 0,
     "conflicts": 0,
     "cutoff": "2026-11-20",
     "validation": "Validação estrutural + deteção de conflitos; proveniência depende dos arquivos fornecidos",
-    "expected_through": "2026-11-17",
+    "expected_through": "2026-11-20",
     "missing_scheduled_draw_dates": 0,
     "schedule_check": "Sex a partir de 13/02/2004; Ter e Sex a partir de 10/05/2011, até 17/11/2026",
-    "checked_at": "2026-11-20",
+    "checked_at": "2026-11-21",
     "original_column_sequences_preserved": true,
     "original_order_semantics": "colunas_boule_1_a_5_e_etoile_1_a_2;_nao_certificada_ordem_fisica",
     "ascending_check_mismatches": 0,
@@ -28,11 +29,39 @@
       "euromillions_3.zip": "bd35c6fed317f0dbb8487c7aeda0d3a40a5754ebbbf5a92e4670f1cb1ee80101",
       "euromillions_4.zip": "6d84073487efa6691d61aa1781b0cc45d329c03fdb7d775a3ce77e2a337dcf55",
       "euromillions_201902.zip": "90036089e5eedbf86c6298105134c8fe80f5a80d29c76e5fbcc20eaeaadd6c82",
-      "euromillions_202002.zip": "e88c8074378519f65f33415ca9ad089186f7030ecf47b58c6b9464d1fb98361f"
+      "euromillions_202002.zip": "e88c8074378519f65f33415ca9ad089186f7030ecf47b58c6b9464d1fb98361f",
+      "fdj-2026-11-20-58a6f42c5a.zip": "58a6f42c5a65a16d2d54829335fe896147a6b0b8924c35914c48163002bf71d7"
     },
-    "original_order_checked_records": 1999
+    "original_order_checked_records": 2000
   },
   "draws": [
+    {
+      "date": "2026-11-20",
+      "numbers": [
+        8,
+        21,
+        24,
+        36,
+        49
+      ],
+      "stars": [
+        1,
+        8
+      ],
+      "numbers_raw": [
+        49,
+        24,
+        8,
+        21,
+        36
+      ],
+      "stars_raw": [
+        1,
+        8
+      ],
+      "source_archive": "fdj-2026-11-20-58a6f42c5a.zip",
+      "source_csv_row": 2
+    },
     {
       "date": "2026-11-17",
       "numbers": [

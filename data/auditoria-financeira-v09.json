@@ -8,10 +8,10 @@
     "readme": "RELATORIO_V09.md"
   },
   "summary": {
-    "draws": 1999,
+    "draws": 2000,
     "date_start": "2004-02-13",
-    "date_end": "2026-11-17",
-    "checked_pairs": 25609,
+    "date_end": "2026-11-20",
+    "checked_pairs": 25622,
     "rows_with_issues": 1,
     "failed_pairs": 12,
     "invalid_formats": 0,
@@ -53,6 +53,12 @@
         "csv_rows": 253,
         "paying_ranks_in_schema": 13,
         "csv_columns": 75
+      },
+      {
+        "archive": "fdj-2026-11-20-58a6f42c5a.zip",
+        "csv_rows": 1,
+        "paying_ranks_in_schema": 13,
+        "csv_columns": 76
       }
     ]
   },
@@ -126,6 +132,107 @@
     }
   ],
   "records": [
+    {
+      "date": "2026-11-20",
+      "draw_number": "26093",
+      "archive": "fdj-2026-11-20-58a6f42c5a.zip",
+      "csv_row": 2,
+      "rank_count": 13,
+      "tiers": [
+        {
+          "rank": 1,
+          "france": 0,
+          "europe_raw": 0,
+          "payout_eur_raw": 0.0,
+          "europe_reliable": true
+        },
+        {
+          "rank": 2,
+          "france": 0,
+          "europe_raw": 2,
+          "payout_eur_raw": 312267.0,
+          "europe_reliable": true
+        },
+        {
+          "rank": 3,
+          "france": 1,
+          "europe_raw": 13,
+          "payout_eur_raw": 11227.9,
+          "europe_reliable": true
+        },
+        {
+          "rank": 4,
+          "france": 5,
+          "europe_raw": 33,
+          "payout_eur_raw": 1377.7,
+          "europe_reliable": true
+        },
+        {
+          "rank": 5,
+          "france": 151,
+          "europe_raw": 665,
+          "payout_eur_raw": 125.9,
+          "europe_reliable": true
+        },
+        {
+          "rank": 6,
+          "france": 344,
+          "europe_raw": 1430,
+          "payout_eur_raw": 61.9,
+          "europe_reliable": true
+        },
+        {
+          "rank": 7,
+          "france": 368,
+          "europe_raw": 1603,
+          "payout_eur_raw": 38.8,
+          "europe_reliable": true
+        },
+        {
+          "rank": 8,
+          "france": 4955,
+          "europe_raw": 20722,
+          "payout_eur_raw": 15.0,
+          "europe_reliable": true
+        },
+        {
+          "rank": 9,
+          "france": 6752,
+          "europe_raw": 29279,
+          "payout_eur_raw": 11.8,
+          "europe_reliable": true
+        },
+        {
+          "rank": 10,
+          "france": 15142,
+          "europe_raw": 66220,
+          "payout_eur_raw": 9.7,
+          "europe_reliable": true
+        },
+        {
+          "rank": 11,
+          "france": 26373,
+          "europe_raw": 109013,
+          "payout_eur_raw": 7.1,
+          "europe_reliable": true
+        },
+        {
+          "rank": 12,
+          "france": 99086,
+          "europe_raw": 426509,
+          "payout_eur_raw": 5.7,
+          "europe_reliable": true
+        },
+        {
+          "rank": 13,
+          "france": 223344,
+          "europe_raw": 967097,
+          "payout_eur_raw": 4.1,
+          "europe_reliable": true
+        }
+      ],
+      "issues": []
+    },
     {
       "date": "2026-11-17",
       "draw_number": "26092",
