@@ -215,10 +215,43 @@
       coefficient:model.coefficients.calendar_number
    }};
  }
+ function fingerprint(key){
+   return key.numbers.join('-')+'|'+key.stars.join('-');
+ }
+ function validBatch(keys){
+   return Array.isArray(keys)&&keys.length<=5&&keys.length>=0&&
+     keys.every(validKey)&&new Set(keys.map(fingerprint)).size===keys.length;
+ }
+ function generateBatch(method,count,history,crowdModel,selection,randomIndex,opposite=[]){
+   if(![1,2].includes(method)||!Number.isInteger(count)||count<1||count>5)
+     throw Error('O número de apostas deve estar entre 1 e 5.');
+   if(!validBatch(opposite))throw Error('As apostas do outro método são inválidas.');
+   // Só é garantida ausência total de números/estrelas repetidos no caso de 1+1.
+   // Para até 10 apostas, a ausência de estrelas em comum seria impossível.
+   const strictOther=count===1&&opposite.length===1?opposite[0]:null;
+   const used=new Set(opposite.map(fingerprint));
+   const keys=[],studies=[];
+   for(let i=0;i<count;i++){
+     let generated=null;
+     for(let attempt=0;attempt<3000;attempt++){
+       const result=method===1?
+         {key:generateFirst(history,randomIndex,selection,strictOther)}:
+         generateSecond(crowdModel,randomIndex,strictOther);
+       if(used.has(fingerprint(result.key)))continue;
+       generated=result;break;
+     }
+     if(!generated)throw Error('Não foi possível obter apostas distintas.');
+     keys.push(generated.key);
+     studies.push(method===2?generated.study:null);
+     used.add(fingerprint(generated.key));
+   }
+   if(!validBatch(keys))throw Error('O gerador produziu apostas repetidas ou inválidas.');
+   return {keys,studies};
+ }
  function format(key){
    return key.numbers.map(n=>String(n).padStart(2,'0')).join(' · ')+'   +   '+
      key.stars.map(n=>String(n).padStart(2,'0')).join(' · ');
  }
- return {generate,generateFirst,generateSecond,generateMode,validKey,disjoint,validate,format,historicalWeights,crowdIndex,cleanHistory,
+ return {generate,generateFirst,generateSecond,generateBatch,validBatch,fingerprint,generateMode,validKey,disjoint,validate,format,historicalWeights,crowdIndex,cleanHistory,
          MODEL_1:firstId,MODEL_2:secondId,HIST_WINDOW,CROWD_MIN_OBSERVATIONS,methods};
 });
