@@ -174,10 +174,51 @@
    if(!validate(pair))throw Error('Falha na verificação dos modelos e das chaves.');
    return pair;
  }
+ function validKey(key){
+   return !!key&&validSet(key.numbers,5,50)&&validSet(key.stars,2,12);
+ }
+ function disjoint(a,b){
+   return !a.numbers.some(n=>b.numbers.includes(n))&&
+          !a.stars.some(n=>b.stars.includes(n));
+ }
+ function assertSelection(past,selection){
+   if(!selection||selection.version!=='1.7'||!methods.includes(selection.selected)||
+      selection.window!==HIST_WINDOW||selection.draws_evaluated!==250||
+      selection.seeds!==5||selection.history_end!==past[0].date||
+      selection.eval_until!==past[0].date||
+      !Number.isFinite(selection.selected_score)||!Number.isFinite(selection.baseline_score))
+      throw Error('Avaliação comparativa dos métodos indisponível ou desatualizada.');
+ }
+ function generateFirst(history,randomIndex,selection,other=null){
+   if(typeof randomIndex!=='function')throw Error('Fonte aleatória indisponível.');
+   const past=cleanHistory(history);
+   assertSelection(past,selection);
+   if(other!==null&&!validKey(other))throw Error('Chave 2 existente inválida.');
+   for(let i=0;i<3000;i++){
+     const candidate=makeFirst(past,randomIndex,selection.selected);
+     if(other===null||disjoint(candidate,other))return candidate;
+   }
+   throw Error('Não foi possível gerar uma chave independente da Chave 2.');
+ }
+ function generateSecond(crowdModel,randomIndex,other=null){
+   if(typeof randomIndex!=='function')throw Error('Fonte aleatória indisponível.');
+   const model=checkCrowd(crowdModel);
+   if(other!==null&&!validKey(other))throw Error('Chave 1 existente inválida.');
+   const candidate=makeSecond(other||{numbers:[],stars:[]},model,randomIndex);
+   const dates=candidate.numbers.filter(n=>n<=31).length;
+   if(!validKey(candidate)||other!==null&&!disjoint(other,candidate))
+     throw Error('Falha na validação da Chave 2.');
+   return {key:candidate,study:{
+      model:secondId,calibrated_until:model.calibration_end,
+      dates,observations:Number(model.coverage_by_calendar_numbers[String(dates)]),
+      relative_index:crowdIndex(candidate.numbers,model),
+      coefficient:model.coefficients.calendar_number
+   }};
+ }
  function format(key){
    return key.numbers.map(n=>String(n).padStart(2,'0')).join(' · ')+'   +   '+
      key.stars.map(n=>String(n).padStart(2,'0')).join(' · ');
  }
- return {generate,generateMode,validate,format,historicalWeights,crowdIndex,cleanHistory,
+ return {generate,generateFirst,generateSecond,generateMode,validKey,disjoint,validate,format,historicalWeights,crowdIndex,cleanHistory,
          MODEL_1:firstId,MODEL_2:secondId,HIST_WINDOW,CROWD_MIN_OBSERVATIONS,methods};
 });
