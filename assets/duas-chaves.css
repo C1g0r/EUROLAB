@@ -86,3 +86,23 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #f5
 .ranking-table th:not(:first-child){text-align:right}
 .ranking-selected{background:#1b4034;color:#91ffcc;font-weight:750}
 .ranking-summary{color:#91d8c0;font-weight:700;margin-top:14px}
+
+/* EUROLAB v1.8 — dois manómetros de estudos e geração por cartão */
+.study-gauge{margin:6px 0 15px;padding:14px 16px 12px;background:#0b2623;border:1px solid #31584c;border-radius:14px}
+.study-gauge[hidden]{display:none!important}
+.gauge-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.gauge-head strong{font-size:12px;color:#c5e6d9}
+.gauge-head span{font-size:14px;color:#6eebbd;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dial{display:block;width:100%;max-width:240px;height:auto;margin:0 auto -1px;overflow:visible}
+.dial-track,.dial-progress{fill:none;stroke-width:15;stroke-linecap:round}
+.dial-track{stroke:#294e44}
+.dial-progress{stroke:#57dfb0}
+.dial-needle{stroke:#e9f6ec;stroke-width:3;stroke-linecap:round;transform-origin:120px 112px;transition:transform .35s ease}
+.dial-hub{fill:#e9f6ec}
+.dial-mark{font-size:10px;fill:#9ebeb2}
+.gauge-caption{margin:3px 0 0;color:#95c3b2;font-size:11px;line-height:1.5}
+.card-generate{margin-bottom:15px;border:1px solid #6bcea5;border-radius:11px;padding:13px 12px;background:#52dab0;color:#062a1c;font-size:14px;font-weight:800;width:100%}
+.card-generate:not(:disabled):hover{background:#8bf1cb}
+.jackpot-fact{margin:15px 0;color:#b0d4c4;font-size:12px;line-height:1.55}
+.jackpot-fact strong{color:#d7f7e8}
+@media(prefers-reduced-motion:reduce){.dial-needle{transition:none}}
