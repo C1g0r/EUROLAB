@@ -1,160 +1,198 @@
-/* EUROLAB v1.7 — melhor método histórico na Chave 1; Crowd v1.4 na Chave 2. */
+/* EUROLAB v1.8 — geração individual com manómetros de estudos não preditivos. */
 'use strict';
-const STORAGE_KEY='eurolab-v17-duas-chaves-selecao';
-let activePair=null,activeData=null,activeModel=null,activeSelection=null;
-const get=id=>document.getElementById(id);
-
-function secureRandomIndex(max){
+const STORAGE_KEY='eurolab-v18-chaves-individuais';
+let first=null,second=null,secondStudy=null,activeData=null,activeModel=null,activeSelection=null;
+const el=id=>document.getElementById(id);
+const validKey=x=>EuroDuasChaves.validKey(x);
+function randIndex(max){
  if(!Number.isSafeInteger(max)||max<1||max>4294967296)throw Error('Limite aleatório inválido.');
- if(!globalThis.crypto||typeof crypto.getRandomValues!=='function')throw Error('Fonte criptográfica indisponível.');
- const range=4294967296,limit=range-range%max,buf=new Uint32Array(1);
- do{crypto.getRandomValues(buf);}while(buf[0]>=limit);
+ if(!globalThis.crypto?.getRandomValues)throw Error('Aleatoriedade criptográfica indisponível.');
+ const range=4294967296,lim=range-range%max,buf=new Uint32Array(1);
+ do{crypto.getRandomValues(buf);}while(buf[0]>=lim);
  return buf[0]%max;
 }
-function showStatus(message,isError){
- const e=get('status');e.textContent=message;e.classList.toggle('error',!!isError);
+function status(message,error=false){
+ el('status').textContent=message;el('status').classList.toggle('error',error);
 }
-function formatDate(date){
- return String(date).split('-').reverse().join('/');
-}
-function renderBalls(id,numbers,stars){
- const el=get(id);el.replaceChildren();
- for(const n of numbers){
-   const span=document.createElement('span');
-   span.className='ball'+(stars?' star':'');
-   span.textContent=String(n).padStart(2,'0');el.append(span);
+function formatDate(iso){return String(iso).split('-').reverse().join('/');}
+function fmt(v,d=4){return Number(v).toFixed(d).replace('.',',');}
+function balls(id,values,star){
+ const target=el(id);target.replaceChildren();
+ if(!values){
+   const label=document.createElement('span');label.className='placeholder';
+   label.textContent='Por gerar';target.append(label);return;
  }
+ for(const n of values){const item=document.createElement('span');item.className='ball'+(star?' star':'');
+   item.textContent=String(n).padStart(2,'0');target.append(item);}
 }
-function renderRanking(){
- const area=get('ranking-body');area.replaceChildren();
- if(!activeSelection){area.textContent='Comparação indisponível.';return;}
+function meter(id,value,min,max,label){
+ const gauge=el('gauge'+id);
+ const ratio=Math.max(0,Math.min(1,(value-min)/(max-min)));
+ const angle=Math.PI*(1-ratio),x=120+96*Math.cos(angle),y=112-96*Math.sin(angle);
+ const point=[x,y].map(n=>n.toFixed(2));
+ gauge.hidden=false;
+ el('gauge'+id+'-progress').setAttribute('d',
+   'M 24 112 A 96 96 0 0 1 '+point[0]+' '+point[1]);
+ el('gauge'+id+'-needle').setAttribute('transform',
+   'rotate('+(-90+ratio*180).toFixed(2)+' 120 112)');
+ el('gauge'+id+'-value').textContent=label;
+}
+function ranking(){
+ const place=el('ranking-body');place.replaceChildren();
+ if(!activeSelection)return;
  const table=document.createElement('table');table.className='ranking-table';
- const thead=document.createElement('thead'),headRow=document.createElement('tr');
+ const head=document.createElement('thead'),tr=document.createElement('tr');
  for(const title of ['Modelo','Pontuação','Números','Estrelas']){
-   const th=document.createElement('th');th.textContent=title;headRow.append(th);
+   const th=document.createElement('th');th.textContent=title;tr.append(th);
  }
- thead.append(headRow);table.append(thead);
- const tbody=document.createElement('tbody');
- const fmt=n=>n.toFixed(4).replace('.',',');
- for(const row of activeSelection.rankings){
-   const tr=document.createElement('tr');if(row.mode===activeSelection.selected)tr.className='ranking-selected';
-   for(const text of [row.label,fmt(row.score),fmt(row.number_hits_per_draw),fmt(row.star_hits_per_draw)]){
-     const td=document.createElement('td');td.textContent=text;tr.append(td);
+ head.append(tr);table.append(head);
+ const body=document.createElement('tbody');
+ for(const item of activeSelection.rankings){
+   const line=document.createElement('tr');
+   if(item.mode===activeSelection.selected)line.className='ranking-selected';
+   for(const text of [item.label,fmt(item.score),fmt(item.number_hits_per_draw),fmt(item.star_hits_per_draw)]){
+      const td=document.createElement('td');td.textContent=text;line.append(td);
    }
-   tbody.append(tr);
+   body.append(line);
  }
- table.append(tbody);area.append(table);
- get('ranking-period').textContent='De '+formatDate(activeSelection.eval_from)+' a '+
-   formatDate(activeSelection.eval_until)+' · '+activeSelection.draws_evaluated+
-   ' concursos · '+activeSelection.seeds+
-   ' sementes. Pontuação = números acertados + 0,5 × estrelas.';
+ table.append(body);place.append(table);
+ el('ranking-period').textContent='De '+formatDate(activeSelection.eval_from)+
+   ' a '+formatDate(activeSelection.eval_until)+' · '+activeSelection.draws_evaluated+
+   ' concursos × '+activeSelection.seeds+' sementes; acertos ponderados por chave.';
 }
-function render(pair,restored){
- if(!EuroDuasChaves.validate(pair)||!activeSelection)throw Error('Chaves ou seleção sem proveniência válida.');
- activePair=pair;
- renderBalls('key1-numbers',pair.first.numbers,false);
- renderBalls('key1-stars',pair.first.stars,true);
- renderBalls('key2-numbers',pair.second.numbers,false);
- renderBalls('key2-stars',pair.second.stars,true);
- ['copy-1','copy-2','copy-both'].forEach(id=>get(id).disabled=false);
- get('method-one-title').textContent=EuroSeletor.LABELS[pair.models.selected_method];
- get('model1-info').textContent='Escolhido entre 5 métodos · '+pair.models.evaluation_draws+
-   ' concursos · até '+formatDate(pair.models.history_end)+'.';
- get('model1-signal').textContent='Pontuação histórica '+pair.models.evaluation_score.toFixed(4).replace('.',',')+
-   ' (aleatório: '+pair.models.baseline_score.toFixed(4).replace('.',',')+
-   '). Não comprova vantagem futura.';
- const delta=(pair.models.crowd_relative_index-1)*100;
- get('model2-info').textContent='Crowd v1.4 · '+pair.models.crowd_dates+
-   ' números de calendário · '+pair.models.crowd_support+' observações.';
- get('model2-signal').textContent='Índice relativo '+(delta>=0?'+':'')+
-   delta.toFixed(1).replace('.',',')+
-   '% face a três números de calendário. Não é a probabilidade de partilha.';
- renderRanking();
- get('saved-info').textContent='Guardadas neste navegador com o modelo escolhido e a data do histórico.';
- showStatus(restored?'Recuperámos as chaves deste modelo selecionado.':
-   'Duas chaves geradas: o melhor método histórico observado + Crowd Intelligence.',false);
-}
-function save(pair){
- try{localStorage.setItem(STORAGE_KEY,JSON.stringify({version:3,pair,generated_at:new Date().toISOString()}));}
- catch(e){get('saved-info').textContent='O navegador não permitiu guardar. Copia as chaves antes de sair.';}
-}
-function generatePair(){
- if(!activeData||!activeModel||!activeSelection){
-   showStatus('É necessário avaliar os métodos e carregar o Crowd Intelligence.',true);return;
+function render(){
+ balls('key1-numbers',first?.numbers,false);balls('key1-stars',first?.stars,true);
+ balls('key2-numbers',second?.numbers,false);balls('key2-stars',second?.stars,true);
+ el('copy-1').disabled=!first;el('copy-2').disabled=!second;el('copy-both').disabled=!(first&&second);
+ if(activeSelection){
+   el('method-one-title').textContent=EuroSeletor.LABELS[activeSelection.selected];
+   el('model1-info').textContent='Selecionado entre 5 métodos · '+activeSelection.draws_evaluated+
+     ' concursos · até '+formatDate(activeSelection.history_end)+'.';
+   el('model1-signal').textContent='Média histórica '+fmt(activeSelection.selected_score)+
+     ' · aleatório '+fmt(activeSelection.baseline_score)+
+     ' · expectativa teórica '+fmt(activeSelection.expected_score)+
+     '. O melhor histórico pode não ser melhor no próximo sorteio.';
+   if(first)meter(1,activeSelection.selected_score,0,1.5,fmt(activeSelection.selected_score)+' acertos');
  }
+ el('gauge1').hidden=!first;
+ if(activeModel&&second&&secondStudy){
+   const delta=(secondStudy.relative_index-1)*100;
+   el('model2-info').textContent='Crowd v1.4 · '+secondStudy.dates+
+     ' números de 1–31 · '+secondStudy.observations+' observações.';
+   el('model2-signal').textContent='Índice relativo '+(delta>=0?'+':'')+fmt(delta,1)+
+     '% face ao grupo com três números de calendário. Não é probabilidade de partilha.';
+   meter(2,secondStudy.relative_index,0.85,1.15,fmt(secondStudy.relative_index,4)+' índice');
+ }else{
+   el('model2-info').textContent=activeModel?'Modelo Crowd carregado · por gerar.':'A carregar o modelo Crowd…';
+   el('model2-signal').textContent='O indicador é experimental e só aparecerá depois de gerar a Chave 2.';
+ }
+ el('gauge2').hidden=!second;
+ ranking();
+}
+function save(){
  try{
-   const pair=EuroDuasChaves.generate(activeData,activeModel,secureRandomIndex,activeSelection);
-   render(pair,false);save(pair);
- }catch(e){showStatus('Erro ao gerar as chaves: '+e.message,true);}
+   localStorage.setItem(STORAGE_KEY,JSON.stringify({
+     version:4,first,second,secondStudy,
+     history_end:activeSelection.history_end,
+     selection_method:activeSelection.selected,
+     selected_score:activeSelection.selected_score,
+     calibration_end:activeModel.calibration_end,
+     coefficient:activeModel.coefficients.calendar_number,
+     updated_at:new Date().toISOString()
+   }));
+   el('saved-info').textContent='Chaves guardadas neste navegador; podes gerar novamente cada uma sem alterar a outra.';
+ }catch(e){el('saved-info').textContent='Não foi possível guardar neste navegador; copia as chaves.';}
 }
 function restore(){
  try{
    const raw=localStorage.getItem(STORAGE_KEY);
    if(!raw)return false;
-   const saved=JSON.parse(raw),m=saved?.pair?.models;
-   if(saved?.version!==3||!EuroDuasChaves.validate(saved.pair))return false;
-   if(m.selected_method!==activeSelection.selected||
-      m.selector_version!==activeSelection.version||
-      m.evaluation_from!==activeSelection.eval_from||
-      m.evaluation_score!==activeSelection.selected_score||
-      m.history_end!==activeSelection.history_end||
-      m.crowd_calibrated_until!==activeModel.calibration_end||
-      m.crowd_coefficient!==activeModel.coefficients.calendar_number)return false;
-   render(saved.pair,true);return true;
+   const obj=JSON.parse(raw);
+   if(obj.version!==4||obj.history_end!==activeSelection.history_end||
+     obj.selection_method!==activeSelection.selected||
+     obj.selected_score!==activeSelection.selected_score||
+     obj.calibration_end!==activeModel.calibration_end||
+     obj.coefficient!==activeModel.coefficients.calendar_number)return false;
+   if(obj.first!==null&&!validKey(obj.first))return false;
+   if(obj.second!==null&&!validKey(obj.second))return false;
+   if(obj.second!==null){
+     const d=obj.second.numbers.filter(n=>n<=31).length,observ=Number(activeModel.coverage_by_calendar_numbers[String(d)]);
+     const ratio=EuroDuasChaves.crowdIndex(obj.second.numbers,activeModel);
+     if(!obj.secondStudy||obj.secondStudy.model!=='crowd-calendar-v14'||
+       obj.secondStudy.dates!==d||obj.secondStudy.observations!==observ||
+       Math.abs(obj.secondStudy.relative_index-ratio)>1e-10||
+       observ<EuroDuasChaves.CROWD_MIN_OBSERVATIONS)return false;
+   }
+   if(obj.first&&obj.second&&!EuroDuasChaves.disjoint(obj.first,obj.second))return false;
+   first=obj.first;second=obj.second;secondStudy=obj.secondStudy;
+   return true;
  }catch(e){return false;}
 }
-async function copyText(text){
- if(navigator.clipboard&&typeof navigator.clipboard.writeText==='function'){
-   await navigator.clipboard.writeText(text);return;
- }
- const temp=document.createElement('textarea');temp.value=text;
- temp.style.position='fixed';temp.style.left='-200vw';
+function generateOne(which){
+ if(!activeData||!activeModel||!activeSelection){status('Os estudos ainda não estão disponíveis.',true);return;}
+ try{
+   if(which===1){
+     const value=EuroDuasChaves.generateFirst(activeData,randIndex,activeSelection,second);
+     first=value;
+   }else if(which===2){
+     const result=EuroDuasChaves.generateSecond(activeModel,randIndex,first);
+     second=result.key;secondStudy=result.study;
+   }else{
+     const candidate=EuroDuasChaves.generateFirst(activeData,randIndex,activeSelection);
+     const result=EuroDuasChaves.generateSecond(activeModel,randIndex,candidate);
+     first=candidate;second=result.key;secondStudy=result.study;
+   }
+   render();save();
+   status(which===1?'Chave 1 atualizada; Chave 2 preservada.':
+     which===2?'Chave 2 atualizada; Chave 1 preservada.':'Duas chaves geradas através dos modelos.');
+ }catch(e){status('Não foi possível gerar: '+e.message,true);}
+}
+async function clipboard(text){
+ if(navigator.clipboard?.writeText)return navigator.clipboard.writeText(text);
+ const temp=document.createElement('textarea');temp.value=text;temp.style.position='fixed';temp.style.left='-200vw';
  document.body.append(temp);temp.select();
- try{if(!document.execCommand('copy'))throw Error('Cópia não suportada.');}
+ try{if(!document.execCommand('copy'))throw Error('Cópia indisponível.');}
  finally{temp.remove();}
 }
-async function copySelection(which){
- if(!activePair)return;
- const label=EuroSeletor.LABELS[activePair.models.selected_method];
- const fmt=EuroDuasChaves.format;
- let message;
- if(which==='first')message='EUROLAB · Chave 1 — '+label+'\n'+fmt(activePair.first);
- else if(which==='second')message='EUROLAB · Chave 2 — Crowd Intelligence\n'+fmt(activePair.second);
- else message='EUROLAB · DUAS CHAVES\n1 · '+label+': '+fmt(activePair.first)+
-    '\n2 · Crowd Intelligence: '+fmt(activePair.second);
- try{await copyText(message);showStatus('Chave(s) copiada(s).',false);}
- catch(e){showStatus('Não foi possível copiar automaticamente.',true);}
+async function copy(which){
+ const part=which===1?first:which===2?second:null;
+ if(which!==3&&!part||which===3&&(!first||!second))return;
+ const label=EuroSeletor.LABELS[activeSelection.selected];
+ const text=which===1?'EUROLAB · Chave 1 — '+label+'\n'+EuroDuasChaves.format(first):
+  which===2?'EUROLAB · Chave 2 — Crowd Intelligence\n'+EuroDuasChaves.format(second):
+  'EUROLAB · DUAS CHAVES\n1 · '+label+': '+EuroDuasChaves.format(first)+
+  '\n2 · Crowd Intelligence: '+EuroDuasChaves.format(second);
+ try{await clipboard(text);status('Chave(s) copiadas.');}
+ catch(e){status('Falha ao copiar automaticamente.',true);}
 }
-async function fetchJson(path){
- const res=await fetch(path,{cache:'no-store'});
- if(!res.ok)throw Error('Falhou '+path+': HTTP '+res.status);
- return res.json();
+async function loadJson(path){
+ const r=await fetch(path,{cache:'no-store'});
+ if(!r.ok)throw Error(path+': HTTP '+r.status);
+ return r.json();
 }
 async function init(){
- get('generate').disabled=true;
- ['copy-1','copy-2','copy-both'].forEach(id=>get(id).disabled=true);
- showStatus('A carregar o histórico e a comparar os cinco modelos estatísticos…',false);
+ ['generate','generate-1','generate-2','copy-1','copy-2','copy-both'].forEach(id=>el(id).disabled=true);
+ status('A carregar o histórico, selecionar o melhor modelo e preparar Crowd Intelligence…');
  try{
-   const [data,model]=await Promise.all([
-     fetchJson('data/dados-validados.json'),fetchJson('data/modelo-popularidade-v14.json')]);
-   if(!Array.isArray(data.draws))throw Error('Formato de histórico inválido.');
-   if(model.id!=='eurolab-crowd-calendar-v1'||model.version!=='1.4.0')
-      throw Error('O modelo Crowd não corresponde à versão esperada.');
+   const [data,model]=await Promise.all([loadJson('data/dados-validados.json'),loadJson('data/modelo-popularidade-v14.json')]);
+   if(!Array.isArray(data.draws)||model?.id!=='eurolab-crowd-calendar-v1'||model.version!=='1.4.0')
+      throw Error('Dados ou calibração incompatíveis.');
    EuroDuasChaves.cleanHistory(data);
-   if(!globalThis.EuroSeletor||typeof EuroSeletor.evaluate!=='function')
-      throw Error('O comparador estatístico não foi carregado.');
-   const evaluation=EuroSeletor.evaluate(data,EuroDuasChaves.generateMode);
-   activeData=data;activeModel=model;activeSelection=evaluation;
-   get('generate').disabled=false;
-   if(!restore())generatePair();
+   const selection=EuroSeletor.evaluate(data,EuroDuasChaves.generateMode);
+   activeData=data;activeModel=model;activeSelection=selection;
+   ['generate','generate-1','generate-2'].forEach(id=>el(id).disabled=false);
+   const restored=restore();render();
+   status(restored?'Chaves anteriores recuperadas; podes gerar cada uma separadamente.':
+     'Estudos carregados. Escolhe qual das chaves queres gerar primeiro.');
  }catch(e){
-   activeData=null;activeModel=null;activeSelection=null;activePair=null;
-   showStatus('Modelos ou avaliação indisponíveis — nenhuma chave gerada: '+e.message,true);
-   get('saved-info').textContent='Atualiza a página depois de confirmar que o site está acessível.';
+   activeData=null;activeModel=null;activeSelection=null;
+   status('Não foi possível carregar os estudos: '+e.message,true);
  }
 }
-get('generate').addEventListener('click',generatePair);
-get('copy-1').addEventListener('click',()=>copySelection('first'));
-get('copy-2').addEventListener('click',()=>copySelection('second'));
-get('copy-both').addEventListener('click',()=>copySelection('both'));
+el('generate-1').addEventListener('click',()=>generateOne(1));
+el('generate-2').addEventListener('click',()=>generateOne(2));
+el('generate').addEventListener('click',()=>generateOne(3));
+el('copy-1').addEventListener('click',()=>copy(1));
+el('copy-2').addEventListener('click',()=>copy(2));
+el('copy-both').addEventListener('click',()=>copy(3));
 init();
