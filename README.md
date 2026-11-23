@@ -1,6 +1,21 @@
-# EUROLAB v1.7 — Chave 1 escolhe automaticamente o melhor método histórico
+# EUROLAB v1.8 — Duas chaves individuais e manómetros dos estudos
 
 Aplicação web **local e online**, em português de Portugal, que reúne o histórico de **1 999 sorteios** (13/02/2004 a 17/11/2026) dos seis arquivos ZIP fornecidos pelo utilizador. O histórico inicial termina em 17/11/2026; a v1.4 acrescenta atualização programada com validação rigorosa. Consulta o painel para confirmar a última data incluída.
+
+## v1.8 — Geração individual e manómetros científicos
+
+**Abrir:** https://c1g0r.github.io/EUROLAB/
+
+- **Gerar Chave 1:** utiliza o método vencedor do seletor `walk-forward v1.7`. É possível gerar a Chave 1 antes ou depois da Chave 2, sem modificar a outra. Se a outra chave existir, o motor rejeita novas combinações com números ou estrelas em comum.
+- **Gerar Chave 2:** utiliza diretamente o coeficiente e a cobertura histórica do modelo `Crowd Intelligence v1.4`; pode funcionar antes da Chave 1, sem necessitar de uma combinação provisória visível.
+- **Gerar ambas:** produz as duas combinações, mantendo a separação dos métodos.
+- **Manómetro da Chave 1:** pontuação média histórica **números acertados + 0,5 × estrelas acertadas por chave**, na escala explicitamente rotulada 0–1,5. A referência matemática esperada é 0,6667. Não é uma probabilidade.
+- **Manómetro da Chave 2:** índice de uma **razão agregada de vencedores**, com referência 1,00 e escala visível 0,85–1,15, calculado em função do número de valores entre 1 e 31. Não estima a probabilidade de um boletim ter sido escolhido nem o risco individual de dividir prémios.
+- **Probabilidade fixa de jackpot:** 1 em 139 838 160 por chave, igual para qualquer combinação válida. É apresentada à parte dos manómetros.
+- **Persistência:** podem existir zero, uma ou duas chaves guardadas no navegador; nova chave de armazenamento `eurolab-v18-chaves-individuais`, sem apagar as versões antigas.
+- **Testes:** `node tests/duas-chaves.test.cjs`, com validação de cada gerador isoladamente e preservação da outra chave.
+
+Os estudos são exploratórios. Um resultado acima da referência num backtest não demonstra vantagem futura; a escolha do melhor de cinco métodos sofre viés de seleção. Os manómetros **não devem ser interpretados como probabilidades de acertar o jackpot**.
 
 ## v1.7 — Seleção automática do método com melhor desempenho histórico
 
