@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* EUROLAB v1.8 — verificação de seleção dinâmica + geração real. */
+/* EUROLAB v1.9 — verificação de seleção dinâmica + geração real. */
 'use strict';
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path');
@@ -67,6 +67,23 @@ assert.throws(()=>selector.evaluate([],engine.generateMode),/insuficientes/);
 assert.throws(()=>engine.generate(history,crowd,()=>-1,evaluation),/aleatória inválida/);
 
 
+/* v1.9: combinações 1–5 por método, com seleção independente. */
+for(let a=1;a<=5;a++)for(let b=1;b<=5;b++){
+ const firstBatch=engine.generateBatch(1,a,history,crowd,evaluation,rng(100+a*50+b));
+ const secondBatch=engine.generateBatch(2,b,history,crowd,evaluation,rng(500+a*50+b),firstBatch.keys);
+ assert.equal(firstBatch.keys.length,a);
+ assert.equal(secondBatch.keys.length,b);
+ assert.equal(secondBatch.studies.length,b);
+ assert.ok(engine.validBatch(firstBatch.keys));
+ assert.ok(engine.validBatch(secondBatch.keys));
+ const combined=[...firstBatch.keys,...secondBatch.keys];
+ assert.equal(new Set(combined.map(engine.fingerprint)).size,combined.length);
+ if(a===1&&b===1)assert.ok(engine.disjoint(firstBatch.keys[0],secondBatch.keys[0]));
+}
+for(const invalid of [-1,0,6,1.2,'4']){
+ assert.throws(()=>engine.generateBatch(1,invalid,history,crowd,evaluation,rng()),/entre 1 e 5/);
+}
+
 /* v1.8: ambos os geradores podem funcionar individualmente em qualquer ordem. */
 const randFirst=rng(4096);
 const onlyFirst=engine.generateFirst(history,randFirst,evaluation);
@@ -97,11 +114,11 @@ const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
 assert.equal((index.match(/<article class="ticket/g)||[]).length,2);
 for(const id of ['model1-info','model1-signal','model2-info','model2-signal','ranking-body','ranking-period',
   'generate-1','generate-2','gauge1','gauge2','gauge1-needle','gauge2-needle',
-  'key1-numbers','key2-numbers','generate','status']){
+  'count-1','count-2','key1-list','key2-list','generate','status']){
  assert.ok(index.includes('id="'+id+'"'),'Elemento em falta: '+id);
 }
-assert.ok(index.includes('assets/selecao-core.js?v=1.8'));
-assert.ok(index.includes('assets/duas-chaves.js?v=1.8'));
+assert.ok(index.includes('assets/selecao-core.js?v=1.9'));
+assert.ok(index.includes('assets/duas-chaves.js?v=1.9'));
 assert.equal((index.match(/class="study-gauge"/g)||[]).length,2);
 assert.ok(index.includes('painel-investigacao.html'));
 console.log('OK: '+valid+' pares válidos, 5 estratégias comparadas sem fuga temporal, modelo selecionado = '+evaluation.selected);
