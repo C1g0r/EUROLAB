@@ -52,7 +52,7 @@ function harness(existingStorage={}){
  vm.createContext(context);
  vm.runInContext(appSource,context,{filename:'duas-chaves.js'});
  return {
-   async ready(){for(let i=0;i<6;i++)await Promise.resolve();},
+   async ready(){for(let i=0;i<30;i++)await Promise.resolve();},
    press(id){assert.equal(typeof events[id+':click'],'function','Sem ação do botão '+id);
      return events[id+':click']();},
    element(id){return document.getElementById(id);},
