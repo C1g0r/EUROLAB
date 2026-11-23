@@ -6,38 +6,43 @@
   <meta name="theme-color" content="#071315">
   <meta name="description" content="EUROLAB: gera duas chaves distintas do Euromilhões através de dois métodos transparentes.">
   <title>EUROLAB — As tuas duas chaves</title>
-  <link rel="stylesheet" href="assets/duas-chaves.css?v=1.8">
-  <script src="assets/selecao-core.js?v=1.8" defer></script>
-  <script src="assets/duas-chaves-core.js?v=1.8" defer></script>
-  <script src="assets/duas-chaves.js?v=1.8" defer></script>
+  <link rel="stylesheet" href="assets/duas-chaves.css?v=1.9">
+  <script src="assets/selecao-core.js?v=1.9" defer></script>
+  <script src="assets/duas-chaves-core.js?v=1.9" defer></script>
+  <script src="assets/duas-chaves.js?v=1.9" defer></script>
 </head>
 <body>
   <div class="site">
     <header class="header">
       <a class="brand" href="./" aria-label="EUROLAB — Página inicial">
         <span class="brand-mark" aria-hidden="true">✳</span>
-        <span><strong>EURO<span>LAB</span></strong><small>MODELOS ESTATÍSTICOS · V1.8</small></span>
+        <span><strong>EURO<span>LAB</span></strong><small>MODELOS ESTATÍSTICOS · V1.9</small></span>
       </a>
       <span class="header-caption">EUROMILHÕES · PORTUGAL</span>
     </header>
     <main>
       <section class="intro" aria-labelledby="intro-title">
-        <div class="eyebrow"><span class="pulse"></span> DOIS MÉTODOS · DUAS COMBINAÇÕES</div>
-        <h1 id="intro-title">Duas chaves.<br><em>Dois geradores.</em></h1>
-        <p>Gera cada chave individualmente: a primeira usa o modelo com melhor pontuação histórica; a segunda utiliza Crowd Intelligence. Os manómetros mostram indicadores dos estudos, não probabilidades de ganhar.</p>
+        <div class="eyebrow"><span class="pulse"></span> DOIS MÉTODOS · ATÉ DEZ APOSTAS</div>
+        <h1 id="intro-title">Dois métodos.<br><em>As tuas apostas.</em></h1>
+        <p>Escolhe de 1 a 5 apostas por método. O EUROLAB preenche automaticamente cada combinação segundo o modelo escolhido; os manómetros representam indicadores de estudo, não probabilidades de ganhar.</p>
       </section>
-      <section class="ticket-grid" aria-label="As duas chaves do Euromilhões">
+      <section class="ticket-grid" aria-label="Apostas do Euromilhões por método">
         <article class="ticket" aria-labelledby="method-one-title">
           <div class="ticket-head">
             <div><span class="ticket-number">01 / 02</span><h2 id="method-one-title">A avaliar os métodos…</h2></div>
             <span class="method-pill">MÉTODO 01</span>
           </div>
           <p class="method-desc">O método é escolhido automaticamente por uma comparação cronológica e reproduzível de cinco estratégias desenvolvidas no EUROLAB.</p>
-          <div class="ticket-body">
-            <div class="ball-label">NÚMEROS</div>
-            <div id="key1-numbers" class="ball-line" aria-label="Números principais da primeira chave"><span class="placeholder">Por gerar</span></div>
-            <div class="star-label">ESTRELAS</div>
-            <div id="key1-stars" class="ball-line star-line" aria-label="Estrelas da primeira chave"></div>
+          <div class="ticket-body ticket-results">
+            <label class="ticket-count-label" for="count-1">Quantas apostas queres?</label>
+            <select id="count-1" class="ticket-count" aria-label="Número de apostas do Método 1">
+              <option value="1">1 aposta</option>
+              <option value="2">2 apostas</option>
+              <option value="3">3 apostas</option>
+              <option value="4">4 apostas</option>
+              <option value="5">5 apostas</option>
+            </select>
+            <div id="key1-list" class="ticket-list" aria-live="polite"><p class="placeholder">Escolhe a quantidade e carrega em gerar.</p></div>
           </div>
           <section class="study-gauge" id="gauge1" aria-labelledby="gauge1-title" hidden>
             <div class="gauge-head"><strong id="gauge1-title">Desempenho histórico do método</strong><span id="gauge1-value">—</span></div>
@@ -51,7 +56,7 @@
             <p class="gauge-caption" id="gauge1-caption">Escala de 0 a 1,5 acertos ponderados/chave · Referência teórica: 0,6667. Não é probabilidade de ganhar.</p>
           </section>
           <p class="model-signal" id="model1-signal" aria-live="polite">A comparar os cinco métodos históricos…</p>
-          <button class="card-generate" id="generate-1" type="button" disabled>Gerar Chave 1</button>
+          <button class="card-generate" id="generate-1" type="button" disabled>Gerar apostas — Método 1</button>
           <div class="ticket-foot">
             <span class="ticket-note" id="model1-info">A carregar o histórico…</span>
             <button id="copy-1" class="copy-button" type="button" disabled>Copiar <span aria-hidden="true">↗</span></button>
@@ -63,11 +68,16 @@
             <span class="method-pill">MÉTODO 02</span>
           </div>
           <p class="method-desc">O modelo de comportamento dos jogadores pondera combinações pela quantidade de números entre 1 e 31, usando dados agregados dos vencedores.</p>
-          <div class="ticket-body">
-            <div class="ball-label">NÚMEROS</div>
-            <div id="key2-numbers" class="ball-line" aria-label="Números principais da segunda chave"><span class="placeholder">Por gerar</span></div>
-            <div class="star-label">ESTRELAS</div>
-            <div id="key2-stars" class="ball-line star-line" aria-label="Estrelas da segunda chave"></div>
+          <div class="ticket-body ticket-results">
+            <label class="ticket-count-label" for="count-2">Quantas apostas queres?</label>
+            <select id="count-2" class="ticket-count" aria-label="Número de apostas do Método 2">
+              <option value="1">1 aposta</option>
+              <option value="2">2 apostas</option>
+              <option value="3">3 apostas</option>
+              <option value="4">4 apostas</option>
+              <option value="5">5 apostas</option>
+            </select>
+            <div id="key2-list" class="ticket-list" aria-live="polite"><p class="placeholder">Escolhe a quantidade e carrega em gerar.</p></div>
           </div>
           <section class="study-gauge" id="gauge2" aria-labelledby="gauge2-title" hidden>
             <div class="gauge-head"><strong id="gauge2-title">Índice Crowd experimental</strong><span id="gauge2-value">—</span></div>
@@ -81,7 +91,7 @@
             <p class="gauge-caption" id="gauge2-caption">Escala de 0,85 a 1,15 · Referência: 1,00. Estudo de uma razão agregada de vencedores, não da popularidade desta chave.</p>
           </section>
           <p class="model-signal" id="model2-signal" aria-live="polite">O indicador é experimental, não uma previsão da popularidade individual.</p>
-          <button class="card-generate" id="generate-2" type="button" disabled>Gerar Chave 2</button>
+          <button class="card-generate" id="generate-2" type="button" disabled>Gerar apostas — Método 2</button>
           <div class="ticket-foot">
             <span class="ticket-note" id="model2-info">A carregar o modelo Crowd…</span>
             <button id="copy-2" class="copy-button" type="button" disabled>Copiar <span aria-hidden="true">↗</span></button>
@@ -89,10 +99,10 @@
         </article>
       </section>
       <section class="actions" aria-label="Controlos do gerador">
-        <button class="generate-button" id="generate" type="button" disabled><span aria-hidden="true">✳</span> Gerar ambas as chaves</button>
-        <button class="secondary-button" id="copy-both" type="button" disabled>Copiar as duas chaves</button>
+        <button class="generate-button" id="generate" type="button" disabled><span aria-hidden="true">✳</span> Gerar apostas dos dois métodos</button>
+        <button class="secondary-button" id="copy-both" type="button" disabled>Copiar todas as apostas</button>
         <p class="saved-info" id="saved-info">A carregar os modelos…</p>
-        <p class="jackpot-fact"><strong>Probabilidade real do jackpot por chave:</strong> 1 em 139 838 160 (aprox. 0,000000715%). Igual para ambas.</p>
+        <p class="jackpot-fact"><strong>Probabilidade real do jackpot por aposta:</strong> 1 em 139 838 160 (aprox. 0,000000715%). Igual para ambas.</p>
         <p id="status" class="status" aria-live="polite" role="status"></p>
       </section>
       <section class="methodology" aria-labelledby="ranking-heading">
@@ -111,8 +121,8 @@
           <summary id="methodology-heading">Como funciona e quais são as limitações? <span class="summary-icon" aria-hidden="true">+</span></summary>
           <div class="details-content">
             <p><strong>Método 1 — Seletor walk-forward v1.7:</strong> compara cinco métodos — aleatório uniforme, frequências altas, frequências baixas, equilibrado e anti-datas. Avalia os 250 concursos mais recentes utilizando, para cada previsão histórica, apenas a janela anterior de 250 concursos. Cada método é avaliado com cinco sementes fixas; a pontuação média corresponde a números acertados + 0,5 × estrelas. A primeira chave é gerada com o método de melhor pontuação observada. Pode mudar quando novos resultados oficiais entram no histórico. Os sorteios finais usam aleatoriedade criptográfica, não as sementes do teste.</p>
-            <p><strong>Método 2 — Crowd Intelligence:</strong> consulta o modelo experimental Crowd v1.4, calibrado com 757 sorteios e avaliado em 301 concursos posteriores. Usa o coeficiente de associação entre a contagem de números de calendário (1–31) e uma razão agregada de vencedores, ponderando os grupos de combinações segundo esse índice. Só utiliza grupos com pelo menos 80 observações; não repete números ou estrelas da primeira chave. As estrelas não são classificadas pelo modelo Crowd, sendo sorteadas entre as disponíveis.</p><p><strong>Transparência:</strong> o indicador Crowd não estima quantas pessoas escolheram uma chave específica nem demonstra que a combinação terá menor probabilidade de dividir prémios. Não usamos um modelo de frequências para prever resultados futuros nem uma taxa de 44,3% como se fosse vantagem de acerto. Se os ficheiros de ambos os modelos não estiverem disponíveis, não há geração de chaves.</p>
-            <p>Num sorteio justo, qualquer chave simples tem uma probabilidade de <strong>1 em 139 838 160</strong> de acertar o jackpot. Duas chaves distintas têm uma probabilidade conjunta de <strong>1 em 69 919 080</strong>, independentemente destes métodos.</p>
+            <p><strong>Método 2 — Crowd Intelligence:</strong> consulta o modelo experimental Crowd v1.4, calibrado com 757 sorteios e avaliado em 301 concursos posteriores. Usa o coeficiente de associação entre a contagem de números de calendário (1–31) e uma razão agregada de vencedores, ponderando os grupos de combinações segundo esse índice. Só utiliza grupos com pelo menos 80 observações; quando é gerada uma aposta por método, evita números ou estrelas em comum. Com várias apostas, garante combinações completas distintas, mas números e estrelas podem repetir-se entre apostas. As estrelas não são classificadas pelo modelo Crowd, sendo sorteadas entre as disponíveis.</p><p><strong>Transparência:</strong> o indicador Crowd não estima quantas pessoas escolheram uma chave específica nem demonstra que a combinação terá menor probabilidade de dividir prémios. Não usamos um modelo de frequências para prever resultados futuros nem uma taxa de 44,3% como se fosse vantagem de acerto. Se os ficheiros de ambos os modelos não estiverem disponíveis, não há geração de chaves.</p>
+            <p>Num sorteio justo, cada aposta simples válida tem uma probabilidade de <strong>1 em 139 838 160</strong> de acertar o jackpot. Com <em>N</em> apostas completas distintas, a probabilidade conjunta de jackpot é <em>N</em> em 139 838 160. Os indicadores dos manómetros não alteram esta probabilidade.</p>
             <p>O gerador não faz apostas. Os dados históricos e o modelo Crowd são carregados do site, mas as chaves geradas e guardadas permanecem neste navegador. Joga de forma responsável.</p>
           </div>
         </details>
