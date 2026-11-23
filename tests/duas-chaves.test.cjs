@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* EUROLAB v1.7 — verificação de seleção dinâmica + geração real. */
+/* EUROLAB v1.8 — verificação de seleção dinâmica + geração real. */
 'use strict';
 const assert=require('node:assert/strict');
 const fs=require('node:fs'),path=require('node:path');
@@ -66,13 +66,43 @@ assert.throws(()=>engine.generate(history,null,rng(),evaluation),/Crowd/);
 assert.throws(()=>selector.evaluate([],engine.generateMode),/insuficientes/);
 assert.throws(()=>engine.generate(history,crowd,()=>-1,evaluation),/aleatória inválida/);
 
+
+/* v1.8: ambos os geradores podem funcionar individualmente em qualquer ordem. */
+const randFirst=rng(4096);
+const onlyFirst=engine.generateFirst(history,randFirst,evaluation);
+assert.ok(engine.validKey(onlyFirst));
+const resultSecond=engine.generateSecond(crowd,rng(8192),null);
+assert.ok(engine.validKey(resultSecond.key));
+assert.ok(resultSecond.study.relative_index>0);
+assert.ok(resultSecond.study.observations>=80);
+const preservedSecond=JSON.stringify(resultSecond.key);
+const firstAfterSecond=engine.generateFirst(history,rng(2088),evaluation,resultSecond.key);
+assert.ok(engine.validKey(firstAfterSecond));
+assert.ok(engine.disjoint(firstAfterSecond,resultSecond.key));
+assert.equal(JSON.stringify(resultSecond.key),preservedSecond,'Gerar chave 1 não altera chave 2.');
+const secondAfterFirst=engine.generateSecond(crowd,rng(3018),onlyFirst);
+assert.ok(engine.disjoint(onlyFirst,secondAfterFirst.key));
+assert.equal(JSON.stringify(onlyFirst),JSON.stringify(onlyFirst));
+for(let i=0;i<250;i++){
+ const a=engine.generateFirst(history,rng(2026+i),evaluation,resultSecond.key);
+ assert.ok(engine.disjoint(a,resultSecond.key));
+ const b=engine.generateSecond(crowd,rng(3026+i),a).key;
+ assert.ok(engine.disjoint(a,b));
+}
+assert.throws(()=>engine.generateFirst(history,rng(),null),/Avaliação comparativa/);
+assert.throws(()=>engine.generateSecond(null,rng()),/Crowd/);
+assert.throws(()=>engine.generateFirst(history,rng(),evaluation,{numbers:[1,1,2,3,4],stars:[1,2]}),/Chave 2 existente inválida/);
+
 const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
 assert.equal((index.match(/<article class="ticket/g)||[]).length,2);
 for(const id of ['model1-info','model1-signal','model2-info','model2-signal','ranking-body','ranking-period',
+  'generate-1','generate-2','gauge1','gauge2','gauge1-needle','gauge2-needle',
   'key1-numbers','key2-numbers','generate','status']){
  assert.ok(index.includes('id="'+id+'"'),'Elemento em falta: '+id);
 }
-assert.ok(index.includes('assets/selecao-core.js?v=1.7'));
+assert.ok(index.includes('assets/selecao-core.js?v=1.8'));
+assert.ok(index.includes('assets/duas-chaves.js?v=1.8'));
+assert.equal((index.match(/class="study-gauge"/g)||[]).length,2);
 assert.ok(index.includes('painel-investigacao.html'));
 console.log('OK: '+valid+' pares válidos, 5 estratégias comparadas sem fuga temporal, modelo selecionado = '+evaluation.selected);
 console.log('Pontuações: '+evaluation.rankings.map(x=>x.mode+' '+x.score.toFixed(4)).join(' | '));
