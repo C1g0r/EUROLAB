@@ -13,7 +13,7 @@ Aplicação web **local e online**, em português de Portugal, que reúne o hist
 - **Manómetro da Chave 2:** índice de uma **razão agregada de vencedores**, com referência 1,00 e escala visível 0,85–1,15, calculado em função do número de valores entre 1 e 31. Não estima a probabilidade de um boletim ter sido escolhido nem o risco individual de dividir prémios.
 - **Probabilidade fixa de jackpot:** 1 em 139 838 160 por chave, igual para qualquer combinação válida. É apresentada à parte dos manómetros.
 - **Persistência:** podem existir zero, uma ou duas chaves guardadas no navegador; nova chave de armazenamento `eurolab-v18-chaves-individuais`, sem apagar as versões antigas.
-- **Testes:** `node tests/duas-chaves.test.cjs`, com validação de cada gerador isoladamente e preservação da outra chave. Metodologia detalhada: [RELATORIO_V18.md](RELATORIO_V18.md).
+- **Testes:** `node tests/duas-chaves.test.cjs` e `node tests/interface-v18.test.cjs`, com validação dos modelos, geração individual nas duas ordens, manómetros, recuperação das chaves e rejeição de armazenamento inválido. Metodologia detalhada: [RELATORIO_V18.md](RELATORIO_V18.md).
 
 Os estudos são exploratórios. Um resultado acima da referência num backtest não demonstra vantagem futura; a escolha do melhor de cinco métodos sofre viés de seleção. Os manómetros **não devem ser interpretados como probabilidades de acertar o jackpot**.
 
