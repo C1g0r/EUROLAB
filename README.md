@@ -1,6 +1,22 @@
-# EUROLAB v1.8 — Duas chaves individuais e manómetros dos estudos
+# EUROLAB v1.9 — 1 a 5 apostas por cada método
 
 Aplicação web **local e online**, em português de Portugal, que reúne o histórico de **1 999 sorteios** (13/02/2004 a 17/11/2026) dos seis arquivos ZIP fornecidos pelo utilizador. O histórico inicial termina em 17/11/2026; a v1.4 acrescenta atualização programada com validação rigorosa. Consulta o painel para confirmar a última data incluída.
+
+## v1.9 — Selecionar de 1 a 5 apostas por método
+
+**Página:** https://c1g0r.github.io/EUROLAB/
+
+Cada método dispõe de um seletor **Quantas apostas queres?** com as opções 1, 2, 3, 4 e 5. O botão de cada método gera exatamente o número escolhido e apresenta todas as apostas (cinco números e duas estrelas) automaticamente, numeradas. Podes selecionar, por exemplo, **3 apostas para o Método 1** e **5 apostas para o Método 2**.
+
+- **Método 1:** todas as apostas resultam do método que lidera a comparação walk-forward entre cinco estratégias; o manómetro indica a pontuação histórica do método, que é comum às apostas da mesma geração.
+- **Método 2:** todas as apostas seguem o modelo Crowd Intelligence. Cada aposta exibe o seu índice individual de calendário; o manómetro apresenta a **média aritmética dos índices agregados** das apostas produzidas.
+- **Gerar apostas dos dois métodos** utiliza as quantidades selecionadas em cada bloco.
+- **Copiar** permite copiar as apostas de um método ou todas as apostas geradas, mesmo que apenas um método tenha sido utilizado.
+- **Guardar** mantém até cinco apostas por método no navegador. As quantidades usadas são recuperadas no próximo acesso.
+- **Validação:** nenhuma aposta completa se repete dentro ou entre os métodos. Se houver apenas uma aposta de cada método, também não há números nem estrelas em comum. Quando existem múltiplas apostas, números e estrelas podem repetir-se entre bilhetes: eliminar todas as repetições seria impossível para 10 apostas, já que só existem 12 estrelas.
+- **Probabilidade:** por aposta simples, o jackpot continua a ter probabilidade 1 em 139 838 160. Com N apostas completas distintas, a probabilidade conjunta de jackpot é N em 139 838 160, num sorteio justo. Os manómetros não são probabilidades de ganhar.
+
+**Testes:** `node tests/duas-chaves.test.cjs` valida todos os 25 pares de quantidades possíveis. `node tests/interface-v18.test.cjs` (nome histórico do ficheiro) verifica a interface da v1.9, incluindo geração 5+5, cópia, persistência e rejeição de dados inválidos.
 
 ## v1.8 — Geração individual e manómetros científicos
 
