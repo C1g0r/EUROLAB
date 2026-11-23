@@ -106,3 +106,17 @@ button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #f5
 .jackpot-fact{margin:15px 0;color:#b0d4c4;font-size:12px;line-height:1.55}
 .jackpot-fact strong{color:#d7f7e8}
 @media(prefers-reduced-motion:reduce){.dial-needle{transition:none}}
+
+/* v1.9 — selector of 1–5 entries and stacked lottery tickets. */
+.ticket-results{padding-top:18px;padding-bottom:20px}
+.ticket-count-label{display:block;font-size:12px;font-weight:750;color:#a9d5c5;margin-bottom:10px}
+.ticket-count{width:100%;background:#102d27;color:#e3f6ed;border:1px solid #4f8570;border-radius:10px;padding:12px 13px;font-weight:700;font-size:14px;margin:0 0 17px}
+.ticket-list{display:flex;flex-direction:column;gap:10px;min-height:88px}
+.bet-entry{padding:13px 12px 12px;border:1px solid #34574d;background:#0b2320;border-radius:12px;min-width:0}
+.bet-entry .ball-line{margin-top:10px;flex-wrap:wrap;min-height:0}
+.bet-title{color:#8bd9b8;font-size:11px;letter-spacing:1.3px}
+.bet-study{display:block;margin-top:11px;color:#a5cbbb;font-size:11px;line-height:1.4}
+.bet-entry .ball{flex-basis:41px;height:41px;font-size:14px}
+.bet-entry .ball.star{background:#e6c56e}
+.card-generate{margin-top:1px}
+@media(max-width:370px){.bet-entry .ball{flex-basis:38px;height:38px;font-size:13px}}
