@@ -30,9 +30,9 @@ jobs:
           node --check assets/duas-chaves-core.js
           node --check assets/duas-chaves.js
           node --check tests/interface-v18.test.cjs
-      - name: Testar a geração de duas chaves
+      - name: Testar geração e unicidade das apostas por método
         run: node tests/duas-chaves.test.cjs
-      - name: Testes da interface individual e dos manómetros
+      - name: Testes de 1 a 5 apostas por método e dos manómetros
         run: node tests/interface-v18.test.cjs
       - name: Testes da comparação
         run: node tests/comparacao.test.cjs
