@@ -83,6 +83,8 @@ function ranking(){
 function draw(){
  drawBatch(1);drawBatch(2);
  const n1=batches[0].length,n2=batches[1].length;
+ const count=n1+n2;
+ el('odds-total').textContent=count?('Total: '+count+' apostas distintas · chance conjunta de jackpot: '+count+' em 139 838 160 (aprox. '+fmt(count/139838160*100,9)+'%).'):'Total: 0 apostas geradas.';
  el('copy-1').disabled=!n1;el('copy-2').disabled=!n2;
  el('copy-both').disabled=!(n1||n2);
  if(activeSelection){
