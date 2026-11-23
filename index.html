@@ -6,25 +6,25 @@
   <meta name="theme-color" content="#071315">
   <meta name="description" content="EUROLAB: gera duas chaves distintas do Euromilhões através de dois métodos transparentes.">
   <title>EUROLAB — As tuas duas chaves</title>
-  <link rel="stylesheet" href="assets/duas-chaves.css?v=1.7">
-  <script src="assets/selecao-core.js?v=1.7" defer></script>
-  <script src="assets/duas-chaves-core.js?v=1.7" defer></script>
-  <script src="assets/duas-chaves.js?v=1.7" defer></script>
+  <link rel="stylesheet" href="assets/duas-chaves.css?v=1.8">
+  <script src="assets/selecao-core.js?v=1.8" defer></script>
+  <script src="assets/duas-chaves-core.js?v=1.8" defer></script>
+  <script src="assets/duas-chaves.js?v=1.8" defer></script>
 </head>
 <body>
   <div class="site">
     <header class="header">
       <a class="brand" href="./" aria-label="EUROLAB — Página inicial">
         <span class="brand-mark" aria-hidden="true">✳</span>
-        <span><strong>EURO<span>LAB</span></strong><small>MODELOS ESTATÍSTICOS · V1.7</small></span>
+        <span><strong>EURO<span>LAB</span></strong><small>MODELOS ESTATÍSTICOS · V1.8</small></span>
       </a>
       <span class="header-caption">EUROMILHÕES · PORTUGAL</span>
     </header>
     <main>
       <section class="intro" aria-labelledby="intro-title">
         <div class="eyebrow"><span class="pulse"></span> DOIS MÉTODOS · DUAS COMBINAÇÕES</div>
-        <h1 id="intro-title">Duas chaves.<br><em>Sem complicações.</em></h1>
-        <p>O EUROLAB compara cinco modelos históricos, escolhe o melhor classificado para a primeira chave e utiliza Crowd Intelligence na segunda. O desempenho passado não prevê o sorteio.</p>
+        <h1 id="intro-title">Duas chaves.<br><em>Dois geradores.</em></h1>
+        <p>Gera cada chave individualmente: a primeira usa o modelo com melhor pontuação histórica; a segunda utiliza Crowd Intelligence. Os manómetros mostram indicadores dos estudos, não probabilidades de ganhar.</p>
       </section>
       <section class="ticket-grid" aria-label="As duas chaves do Euromilhões">
         <article class="ticket" aria-labelledby="method-one-title">
@@ -35,11 +35,23 @@
           <p class="method-desc">O método é escolhido automaticamente por uma comparação cronológica e reproduzível de cinco estratégias desenvolvidas no EUROLAB.</p>
           <div class="ticket-body">
             <div class="ball-label">NÚMEROS</div>
-            <div id="key1-numbers" class="ball-line" aria-label="Números principais da primeira chave"><span class="placeholder">A gerar…</span></div>
+            <div id="key1-numbers" class="ball-line" aria-label="Números principais da primeira chave"><span class="placeholder">Por gerar</span></div>
             <div class="star-label">ESTRELAS</div>
             <div id="key1-stars" class="ball-line star-line" aria-label="Estrelas da primeira chave"></div>
           </div>
+          <section class="study-gauge" aria-labelledby="gauge1-title">
+            <div class="gauge-head"><strong id="gauge1-title">Desempenho histórico do método</strong><span id="gauge1-value">—</span></div>
+            <svg class="dial" viewBox="0 0 240 138" role="img" aria-labelledby="gauge1-title gauge1-caption">
+              <path class="dial-track" d="M 24 112 A 96 96 0 0 1 216 112"/>
+              <path class="dial-progress" id="gauge1-progress" d="M 24 112"/>
+              <line id="gauge1-needle" class="dial-needle" x1="120" y1="112" x2="120" y2="31"/>
+              <circle class="dial-hub" cx="120" cy="112" r="7"/>
+              <text class="dial-mark" x="14" y="134">0</text><text class="dial-mark" x="208" y="134">1,5</text>
+            </svg>
+            <p class="gauge-caption" id="gauge1-caption">Escala de 0 a 1,5 acertos ponderados/chave · Referência teórica: 0,6667. Não é probabilidade de ganhar.</p>
+          </section>
           <p class="model-signal" id="model1-signal" aria-live="polite">A comparar os cinco métodos históricos…</p>
+          <button class="card-generate" id="generate-1" type="button" disabled>Gerar Chave 1</button>
           <div class="ticket-foot">
             <span class="ticket-note" id="model1-info">A carregar o histórico…</span>
             <button id="copy-1" class="copy-button" type="button" disabled>Copiar <span aria-hidden="true">↗</span></button>
@@ -53,11 +65,23 @@
           <p class="method-desc">O modelo de comportamento dos jogadores pondera combinações pela quantidade de números entre 1 e 31, usando dados agregados dos vencedores.</p>
           <div class="ticket-body">
             <div class="ball-label">NÚMEROS</div>
-            <div id="key2-numbers" class="ball-line" aria-label="Números principais da segunda chave"><span class="placeholder">A gerar…</span></div>
+            <div id="key2-numbers" class="ball-line" aria-label="Números principais da segunda chave"><span class="placeholder">Por gerar</span></div>
             <div class="star-label">ESTRELAS</div>
             <div id="key2-stars" class="ball-line star-line" aria-label="Estrelas da segunda chave"></div>
           </div>
+          <section class="study-gauge" aria-labelledby="gauge2-title">
+            <div class="gauge-head"><strong id="gauge2-title">Índice Crowd experimental</strong><span id="gauge2-value">—</span></div>
+            <svg class="dial" viewBox="0 0 240 138" role="img" aria-labelledby="gauge2-title gauge2-caption">
+              <path class="dial-track" d="M 24 112 A 96 96 0 0 1 216 112"/>
+              <path class="dial-progress" id="gauge2-progress" d="M 24 112"/>
+              <line id="gauge2-needle" class="dial-needle" x1="120" y1="112" x2="120" y2="31"/>
+              <circle class="dial-hub" cx="120" cy="112" r="7"/>
+              <text class="dial-mark" x="14" y="134">0,85</text><text class="dial-mark" x="208" y="134">1,15</text>
+            </svg>
+            <p class="gauge-caption" id="gauge2-caption">Escala de 0,85 a 1,15 · Referência: 1,00. Estudo de uma razão agregada de vencedores, não da popularidade desta chave.</p>
+          </section>
           <p class="model-signal" id="model2-signal" aria-live="polite">O indicador é experimental, não uma previsão da popularidade individual.</p>
+          <button class="card-generate" id="generate-2" type="button" disabled>Gerar Chave 2</button>
           <div class="ticket-foot">
             <span class="ticket-note" id="model2-info">A carregar o modelo Crowd…</span>
             <button id="copy-2" class="copy-button" type="button" disabled>Copiar <span aria-hidden="true">↗</span></button>
@@ -65,9 +89,10 @@
         </article>
       </section>
       <section class="actions" aria-label="Controlos do gerador">
-        <button class="generate-button" id="generate" type="button"><span aria-hidden="true">✳</span> Gerar outras duas chaves</button>
+        <button class="generate-button" id="generate" type="button" disabled><span aria-hidden="true">✳</span> Gerar ambas as chaves</button>
         <button class="secondary-button" id="copy-both" type="button" disabled>Copiar as duas chaves</button>
-        <p class="saved-info" id="saved-info">A carregar o histórico e os dois modelos…</p>
+        <p class="saved-info" id="saved-info">A carregar os modelos…</p>
+        <p class="jackpot-fact"><strong>Probabilidade real do jackpot por chave:</strong> 1 em 139 838 160 (aprox. 0,000000715%). Igual para ambas.</p>
         <p id="status" class="status" aria-live="polite" role="status"></p>
       </section>
       <section class="methodology" aria-labelledby="ranking-heading">
